@@ -21,7 +21,6 @@
 		2B9BB2A316DCF32200BF5839 /* ActivityListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B9BB2A216DCF32200BF5839 /* ActivityListViewController.xib */; };
 		2B9BB2A916DCF41300BF5839 /* RestaurantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9BB2A716DCF41300BF5839 /* RestaurantViewController.m */; };
 		2B9BB2AA16DCF41300BF5839 /* RestaurantViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B9BB2A816DCF41300BF5839 /* RestaurantViewController.xib */; };
-		2B9BB2AC16DD723100BF5839 /* logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2B9BB2AB16DD723100BF5839 /* logo.jpg */; };
 		2BA23F9016E099480072B63D /* images in Resources */ = {isa = PBXBuildFile; fileRef = 2BA23F8F16E099480072B63D /* images */; };
 		2BCDB9F516DF684D00665167 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCDB9F416DF684D00665167 /* MapViewController.m */; };
 		2BCDB9F716DF89F900665167 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BCDB9F616DF89F900665167 /* MapKit.framework */; };
@@ -50,7 +49,6 @@
 		2B9BB2A616DCF41300BF5839 /* RestaurantViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantViewController.h; sourceTree = "<group>"; };
 		2B9BB2A716DCF41300BF5839 /* RestaurantViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantViewController.m; sourceTree = "<group>"; };
 		2B9BB2A816DCF41300BF5839 /* RestaurantViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RestaurantViewController.xib; sourceTree = "<group>"; };
-		2B9BB2AB16DD723100BF5839 /* logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = logo.jpg; path = ../../../Desktop/xinyun/logo.jpg; sourceTree = "<group>"; };
 		2BA23F8F16E099480072B63D /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
 		2BCDB9F316DF684D00665167 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		2BCDB9F416DF684D00665167 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
@@ -116,7 +114,6 @@
 			isa = PBXGroup;
 			children = (
 				2BA23F8F16E099480072B63D /* images */,
-				2B9BB2AB16DD723100BF5839 /* logo.jpg */,
 				2B0A806616DB1CE4005D337B /* 1.png */,
 				2B2138F016D9D50C00804724 /* Xingyun-Info.plist */,
 				2B2138F116D9D50C00804724 /* InfoPlist.strings */,
@@ -209,7 +206,6 @@
 				2B0A806716DB1CE4005D337B /* 1.png in Resources */,
 				2B9BB2A316DCF32200BF5839 /* ActivityListViewController.xib in Resources */,
 				2B9BB2AA16DCF41300BF5839 /* RestaurantViewController.xib in Resources */,
-				2B9BB2AC16DD723100BF5839 /* logo.jpg in Resources */,
 				2BA23F9016E099480072B63D /* images in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

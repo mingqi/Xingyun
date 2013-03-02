@@ -42,8 +42,7 @@
           self.scrollView.bounds.origin.x,
           self.scrollView.bounds.origin.y,
           self.scrollView.bounds.size.width,
-          self.scrollView.bounds.size.height);
-    
+          self.scrollView.bounds.size.height);    
     
     
     UIScrollView *scr=[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
