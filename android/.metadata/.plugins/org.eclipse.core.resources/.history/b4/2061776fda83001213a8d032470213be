@@ -1,0 +1,26 @@
+package com.xingyun.usercontrol;
+
+import android.content.Context;
+import android.view.View;
+
+public class EventSlider extends View {
+
+	private String title;
+	private String description;
+	private 
+
+	public EventSlider(Context context) {
+		super(context);
+		// TODO Auto-generated constructor stub
+	}
+
+	public EventSlider(Context context, String title, String description) {
+		super(context);
+		this.title = title;
+		this.description = description;
+		
+		
+	}
+	
+
+}
