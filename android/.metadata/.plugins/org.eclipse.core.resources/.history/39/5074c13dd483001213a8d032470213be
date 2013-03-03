@@ -1,0 +1,23 @@
+package com.xingyun.activity;
+
+import android.app.TabActivity;
+import android.os.Bundle;
+import android.widget.TabHost;
+
+public class HostActivity extends TabActivity {
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.tabs);
+		TabHost tabhost = getTabHost();
+		tabhost.addTab(tabhost.newTabSpec("111").setIndicator("view1")
+				.setContent(R.id.view1));
+		tabhost.addTab(tabhost.newTabSpec("222").setIndicator("view2")
+				.setContent(R.id.view2));
+//		mTabHost.addTab(mTabHost.newTabSpec("YouTube").setIndicator(  
+//                "YouTube",  
+//                getResources().getDrawable(android.R.drawable.arrow_down_float)).setContent(  
+//                new Intent(this, SubTab.class)));  
+	}
+}

@@ -1,0 +1,35 @@
+package com.xingyun.usercontrol;
+
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+
+public class EventSlider extends View {
+
+	private String title;
+	private String description;
+	private int drawableId;
+
+	private static RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+			RelativeLayout.LayoutParams.FILL_PARENT,
+			RelativeLayout.LayoutParams.FILL_PARENT);
+
+	public EventSlider(Context context) {
+		super(context);
+		// TODO Auto-generated constructor stub
+	}
+
+	public EventSlider(Context context, String title, String description) {
+		super(context);
+		this.title = title;
+		this.description = description;
+
+		ImageView imageView = new ImageView(context);
+		imageView.setImageResource(resId)(drawableId);
+		imageView.setLayoutParams(params);
+
+	}
+
+}
