@@ -22,6 +22,7 @@
 		2B9BB2A916DCF41300BF5839 /* RestaurantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9BB2A716DCF41300BF5839 /* RestaurantViewController.m */; };
 		2B9BB2AA16DCF41300BF5839 /* RestaurantViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B9BB2A816DCF41300BF5839 /* RestaurantViewController.xib */; };
 		2BA23F9016E099480072B63D /* images in Resources */ = {isa = PBXBuildFile; fileRef = 2BA23F8F16E099480072B63D /* images */; };
+		2BB686FD16E33A2D00A629D3 /* DishConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB686FC16E33A2D00A629D3 /* DishConfirmViewController.m */; };
 		2BCDB9F516DF684D00665167 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCDB9F416DF684D00665167 /* MapViewController.m */; };
 		2BCDB9F716DF89F900665167 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BCDB9F616DF89F900665167 /* MapKit.framework */; };
 /* End PBXBuildFile section */
@@ -51,6 +52,8 @@
 		2B9BB2A816DCF41300BF5839 /* RestaurantViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RestaurantViewController.xib; sourceTree = "<group>"; };
 		2BA23F8F16E099480072B63D /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
 		2BB686F516E32E0800A629D3 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		2BB686FB16E33A2D00A629D3 /* DishConfirmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DishConfirmViewController.h; sourceTree = "<group>"; };
+		2BB686FC16E33A2D00A629D3 /* DishConfirmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DishConfirmViewController.m; sourceTree = "<group>"; };
 		2BCDB9F316DF684D00665167 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		2BCDB9F416DF684D00665167 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		2BCDB9F616DF89F900665167 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -148,6 +151,8 @@
 				2B674A3F16DE3CDE009EB1C6 /* MenuViewController.m */,
 				2BCDB9F316DF684D00665167 /* MapViewController.h */,
 				2BCDB9F416DF684D00665167 /* MapViewController.m */,
+				2BB686FB16E33A2D00A629D3 /* DishConfirmViewController.h */,
+				2BB686FC16E33A2D00A629D3 /* DishConfirmViewController.m */,
 			);
 			name = placeorder;
 			sourceTree = "<group>";
@@ -226,6 +231,7 @@
 				2B9BB2A916DCF41300BF5839 /* RestaurantViewController.m in Sources */,
 				2B674A4116DE3CDE009EB1C6 /* MenuViewController.m in Sources */,
 				2BCDB9F516DF684D00665167 /* MapViewController.m in Sources */,
+				2BB686FD16E33A2D00A629D3 /* DishConfirmViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

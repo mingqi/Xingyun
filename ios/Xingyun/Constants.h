@@ -6,6 +6,9 @@
 //  Copyright (c) 2013 Mingqi Shao. All rights reserved.
 //
 
+/***  overall style configuration ***/
+#define BODY_BACKGROUND_COLOR [UIColor grayColor]
+
 /*** The dish list page configuration ***/
 #define DISH_LIST_HEAD_HEIGH 44
 #define DISH_LIST_HEAD_BACKGROUND_COLOR [UIColor darkGrayColor]
@@ -14,12 +17,13 @@
 #define DISH_LIST_SEGMENTED_VIRTICAL_SPACE 7
 #define TITLE_FONT   [UIFont systemFontOfSize:14]
 
-#define DISH_LIST_BACKGROUND_COLOR   [UIColor grayColor]
+#define DISH_LIST_BACKGROUND_COLOR [UIColor grayColor]
 #define DISH_CELL_HEIGHT   90
-#define DISH_IMAGE_HEIGHT   60
-#define DISH_IMAGE_WIDTH   60
-#define DISH_IMAGE_HORIZONTAL_SPACE   15
-#define DISH_IMAGE_VIRTICAL_SPACE   15
+#define DISH_CELL_SEPARATOR_HEIGHT  1
+#define DISH_IMAGE_HEIGHT   70
+#define DISH_IMAGE_WIDTH   70
+#define DISH_IMAGE_HORIZONTAL_SPACE   10
+#define DISH_IMAGE_VIRTICAL_SPACE   10
 
 #define DISH_MAIN_LABEL_X   30
 #define DISH_MAIN_LABEL_HEIGHT   20
@@ -46,3 +50,26 @@
 #define DISH_BUTTON_HIGHLIGHTED_IMAGE   @"images/blue.png"
 
 #define DISH_LIST_NAV_BAR_RIGHT_BUTTON_COLOR   [UIColor darkGrayColor]
+
+/***  Dish Confirm ***/
+#define DISH_CONFIRM_VIEW_TITLE @"确认菜单"
+#define DISH_CONFIRM_HEAD_HEIGH 44
+#define DISH_CONFIRM_HEAD_BACKGROUND_COLOR [UIColor darkGrayColor]
+#define DISH_CONFIRM_MSG @"请确认您要点的菜品"
+#define DISH_CONFIRM_HEAD_LEFT_SPACE 7
+#define DISH_CONFIRM_MSG_RATIO  2/3
+#define DISH_CONFIRM_MSG_FONT_SIZE 13
+#define DISH_CONFIRM_MSG_FONT_COLOR [UIColor whiteColor]
+#define DISH_CONFIRM_PAY_MSG @"总计: %1.0f元"
+#define DISH_CONFIRM_PAY_FONT_SIZE 14
+#define DISH_CONFIRM_PAY_FONT_COLOR [UIColor whiteColor]
+#define DISH_CONFIRM_BUTTON_WIDTH 25
+#define DISH_CONFIRM_BUTTON_HEIGHT 25
+#define DISH_CONFIRM_BUTTON_VIRTICAL_SPACE 5
+#define DISH_CONFIRM_BUTTON_CORNER_RADIUS 3
+#define DISH_CONFIRM_BUTTON_BORDER_WIDTH 1
+#define DISH_CONFIRM_BUTTON_BORDER_COLOR [UIColor darkGrayColor]
+#define DISH_CONFIRM_BUTTON_TITLE_COLOR [UIColor darkGrayColor]
+#define DISH_CONFIRM_BUTTON_TITLE_FONT_SIZE 30
+#define DISH_CONFIRM_NUMBER_LABEL_HEIGHT 20
+#define DISH_CONFIRM_NUMBER_LABEL_BACKGROUND_COLOR [UIColor darkGrayColor]

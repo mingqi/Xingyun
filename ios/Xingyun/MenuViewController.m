@@ -9,11 +9,13 @@
 #import "MenuViewController.h"
 #import "QuartzCore/QuartzCore.h"
 #import "Constants.h"
+#import "DishConfirmViewController.h"
 
 
 @interface MenuViewController ()
 
 @property (nonatomic, strong) UISegmentedControl *topSegmentedControl;
+@property (nonatomic, strong) DishConfirmViewController *dishConfirmController;
 
 @end
 
@@ -24,7 +26,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if(self) {
-
+        self.dishConfirmController = [[DishConfirmViewController alloc] init];
     }
     return self;
 }
@@ -52,11 +54,12 @@
     // draw table view of dish list
     [self drawDishListTableView];
     
-    self.navigationItem.leftBarButtonItem.tintColor = [UIColor redColor];
 }
 
 - (void) drawDishListTableView{
     UITableView *dishListTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, DISH_LIST_HEAD_HEIGH, 320, 460 - 44 - DISH_LIST_HEAD_HEIGH) style:UITableViewStylePlain];
+//    UITableView *dishListTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, DISH_LIST_HEAD_HEIGH, 320, 270) style:UITableViewStylePlain];
+    dishListTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     dishListTableView.backgroundColor = DISH_LIST_BACKGROUND_COLOR;
     dishListTableView.dataSource = self;
     dishListTableView.delegate = self;
@@ -113,9 +116,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-/**
- * implements of UITableDataSource
- */
 
 /************************************************
  ** Here is implements of UITableViewDataSource
@@ -172,24 +172,13 @@
         addCartButton.titleLabel.font = [UIFont systemFontOfSize:DISH_BUTTON_TITLE_FONT_SIZE];
         [addCartButton addTarget:self action:@selector(addCartButtonTouchupInside:) forControlEvents:UIControlEventTouchUpInside];
         [cell.contentView addSubview:addCartButton];
+        
+        // separator line
+        UIView *separatorLine = [[UIView alloc] initWithFrame:CGRectMake(0, DISH_CELL_HEIGHT, 320, DISH_CELL_SEPARATOR_HEIGHT)];
+        separatorLine.backgroundColor = [UIColor darkGrayColor];
+        [cell.contentView addSubview:separatorLine];
     }
     
-    switch (indexPath.row) {
-        case 0:
-//            cell.textLabel.text = @"餐厅简介";
-            break;
-        case 1:
-//            cell.textLabel.text = @"经典菜品";
-            break;
-        case 2:
-//            cell.textLabel.text = @"地图位置";
-            break;
-        case 3:
-//            cell.textLabel.text = @"电话：010-66668888";
-            break;
-        default:
-            break;
-    }
 //    cell.textLabel.font = [UIFont systemFontOfSize:14];
 //    cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     return cell;
@@ -200,7 +189,7 @@
  * here is the implements of UITableViewDelegate
  **********************************************/
 
-
+/*
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     UIView *footerView = [UIView new];
@@ -208,6 +197,7 @@
     return footerView;
     
 }
+*/
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"table row was selected: %d", indexPath.row);
@@ -238,7 +228,7 @@
  * the event when click checkout
  *******************************************/
 - (void) checkout{
-    NSLog(@"this is check out");
+    [self.navigationController pushViewController:self.dishConfirmController animated:YES];
 }
 @end
 
