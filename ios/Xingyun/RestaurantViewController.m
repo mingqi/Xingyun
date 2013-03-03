@@ -48,6 +48,7 @@
     self.tableView.layer.borderWidth = 0.4;
     self.tableView.layer.cornerRadius = 10;
     self.tableView.rowHeight = 25;
+    self.tableView.scrollEnabled = NO;
     
     self.menuViewController = [[MenuViewController alloc] init];
     NSLog(@"RestaurantView: x=%.1f, y=%.1f, width=%.1f, height=%.1f",
@@ -55,6 +56,7 @@
           self.view.bounds.origin.y,
           self.view.bounds.size.width,
           self.view.bounds.size.height);
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -133,9 +135,20 @@
             [self.phoneCallSheet showInView:self.tabBarController.view];
             break;
         case 1:
+        {
             self.menuViewController.hidesBottomBarWhenPushed = YES;
+            /*
+            UIBarButtonItem *backButton = [[UIBarButtonItem alloc]
+                                           initWithTitle: @"Back Button Text"
+                                           style: UIBarButtonItemStyleBordered
+                                           target: nil action: nil];
+            */
             [self.navigationController pushViewController:self.menuViewController animated:YES];
+            UIBarButtonItem *checkoutButton = [[UIBarButtonItem alloc] initWithTitle:@"跳过" style:UIBarButtonItemStyleBordered target:nil action:nil];
+            self.menuViewController.navigationItem.rightBarButtonItem = checkoutButton;
+            checkoutButton.tintColor = [UIColor darkGrayColor];
             break;
+        }
         case 2:
             self.mapViewController.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:self.mapViewController animated:YES];

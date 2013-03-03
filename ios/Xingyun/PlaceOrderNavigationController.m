@@ -28,7 +28,8 @@
         self.restaurantViewController = [[RestaurantViewController alloc] initWithNibName:@"RestaurantViewController" bundle:nil];
         
         self.viewControllers = @[self.restaurantViewController];
-    
+        
+        [[UIBarButtonItem appearance] setTintColor:[UIColor redColor]];
     }
     return self;
 }
@@ -41,6 +42,9 @@
           self.navigationBar.bounds.origin.y,
           self.navigationBar.bounds.size.width,
           self.navigationBar.bounds.size.height);
+    self.navigationBar.tintColor = [UIColor darkGrayColor];
+    self.navigationItem.leftBarButtonItem.tintColor = [UIColor redColor];
+    
 }
 
 - (void)didReceiveMemoryWarning
