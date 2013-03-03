@@ -50,6 +50,7 @@
 		2B9BB2A716DCF41300BF5839 /* RestaurantViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantViewController.m; sourceTree = "<group>"; };
 		2B9BB2A816DCF41300BF5839 /* RestaurantViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RestaurantViewController.xib; sourceTree = "<group>"; };
 		2BA23F8F16E099480072B63D /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
+		2BB686F516E32E0800A629D3 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		2BCDB9F316DF684D00665167 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		2BCDB9F416DF684D00665167 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		2BCDB9F616DF89F900665167 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -105,6 +106,7 @@
 				2B9BB2A416DCF35F00BF5839 /* activity */,
 				2B2138F716D9D50C00804724 /* AppDelegate.h */,
 				2B2138F816D9D50C00804724 /* AppDelegate.m */,
+				2BB686F516E32E0800A629D3 /* Constants.h */,
 				2B2138EF16D9D50C00804724 /* Supporting Files */,
 			);
 			path = Xingyun;

@@ -8,6 +8,7 @@
 
 #import "MenuViewController.h"
 #import "QuartzCore/QuartzCore.h"
+#import "Constants.h"
 
 
 @interface MenuViewController ()
@@ -18,89 +19,21 @@
 
 @implementation MenuViewController
 
-NSInteger  HEAD_HEIGH;
-UIColor *HEAD_BACKGROUND_COLOR;
-
-NSInteger HORIZONTAL_SPACE;
-NSInteger VIRTICAL_SPACE;
-UIFont  *TITLE_FONT;
-
-UIColor *DISH_LIST_BACKGROUND_COLOR ;
-NSInteger DISH_CELL_HEIGHT;
-NSInteger DISH_IMAGE_HEIGHT;
-NSInteger DISH_IMAGE_WIDTH;
-NSInteger DISH_IMAGE_HORIZONTAL_SPACE;
-NSInteger DISH_IMAGE_VIRTICAL_SPACE;
-
-NSInteger DISH_MAIN_LABEL_X;
-NSInteger DISH_MAIN_LABEL_HEIGHT;
-NSInteger DISH_MAIN_LABEL_WIDTH;
-NSInteger DISH_LABEL_LEFT_SPACE;
-NSInteger DISH_MAIN_LABEL_FONT_SIZE;
-UIColor *DISH_MAIN_LABEL_FONT_COLOR;
-
-NSInteger DISH_SECOND_LABEL_TOP_SPACE;
-NSInteger DISH_SECOND_LABEL_WIDTH;
-NSInteger DISH_SECOND_LABEL_HEIGHT;
-NSInteger DISH_SECOND_LABEL_FONT_SIZE;
-UIColor *DISH_SECOND_LABEL_FONT_COLOR;
-
-NSInteger DISH_BUTTON_RIGHT_SPACE;
-NSInteger DISH_BUTTON_WIDTH;
-NSInteger DISH_BUTTON_HEIGHT;
-NSInteger DISH_BUTTON_CORNER_RADIUS;
-NSInteger DISH_BUTTON_BORDER_WIDTH;
-UIColor *DISH_BUTTON_BACKGROUND_COLOR;
-UIColor *DISH_BUTTON_BORDER_COLOR;
-NSInteger DISH_BUTTON_TITLE_FONT_SIZE;
-UIColor *DISH_BUTTON_TITLE_COLOR;
-NSString *DISH_BUTTON_HIGHLIGHTED_IMAGE;
-
-
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if(self) {
-        HEAD_HEIGH = 44;
-        HEAD_BACKGROUND_COLOR = [UIColor darkGrayColor];
-        
-        HORIZONTAL_SPACE = 7;
-        VIRTICAL_SPACE = 7;
-        TITLE_FONT = [UIFont systemFontOfSize:14];
-        
-        DISH_LIST_BACKGROUND_COLOR = [UIColor grayColor];
-        DISH_CELL_HEIGHT = 90;
-        DISH_IMAGE_HEIGHT = 60;
-        DISH_IMAGE_WIDTH = 60;
-        DISH_IMAGE_HORIZONTAL_SPACE = 15;
-        DISH_IMAGE_VIRTICAL_SPACE = 15;
-        
-        DISH_MAIN_LABEL_X = 30;
-        DISH_MAIN_LABEL_HEIGHT = 20;
-        DISH_MAIN_LABEL_WIDTH = 100;
-        DISH_LABEL_LEFT_SPACE = 15;
-        DISH_MAIN_LABEL_FONT_SIZE = 12;
-        DISH_MAIN_LABEL_FONT_COLOR = [UIColor whiteColor];
-        
-        DISH_SECOND_LABEL_TOP_SPACE = 5;
-        DISH_SECOND_LABEL_WIDTH = 100;
-        DISH_SECOND_LABEL_HEIGHT = 15;
-        DISH_SECOND_LABEL_FONT_SIZE = 10;
-        DISH_SECOND_LABEL_FONT_COLOR = [UIColor whiteColor];
-        
-        DISH_BUTTON_RIGHT_SPACE = 10;
-        DISH_BUTTON_WIDTH = 50;
-        DISH_BUTTON_HEIGHT = 30;
-        DISH_BUTTON_CORNER_RADIUS = 4;
-        DISH_BUTTON_BORDER_WIDTH = 3;
-        DISH_BUTTON_BACKGROUND_COLOR = [UIColor redColor];
-        DISH_BUTTON_BORDER_COLOR = [UIColor blackColor];
-        DISH_BUTTON_TITLE_FONT_SIZE = 12;
-        DISH_BUTTON_TITLE_COLOR = [UIColor whiteColor];
-        DISH_BUTTON_HIGHLIGHTED_IMAGE = @"images/blue.png";
+
     }
     return self;
+}
+
+- (void) resetBeforePush{
+    self.navigationItem.rightBarButtonItem.title = @"跳过";
+    self.navigationItem.rightBarButtonItem.tintColor =  DISH_LIST_NAV_BAR_RIGHT_BUTTON_COLOR;
+    self.navigationItem.rightBarButtonItem.target = self;
+    self.navigationItem.rightBarButtonItem.action = @selector(checkout);
 }
 
 - (void)viewDidLoad
@@ -109,8 +42,8 @@ NSString *DISH_BUTTON_HIGHLIGHTED_IMAGE;
     self.title = @"点菜";
     
     /// draw heas view
-    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, HEAD_HEIGH)];
-    headView.backgroundColor = HEAD_BACKGROUND_COLOR;
+    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, DISH_LIST_HEAD_HEIGH)];
+    headView.backgroundColor = DISH_LIST_HEAD_BACKGROUND_COLOR;
     [self.view addSubview:headView];
     
     // draw head section: segmented control
@@ -123,7 +56,7 @@ NSString *DISH_BUTTON_HIGHLIGHTED_IMAGE;
 }
 
 - (void) drawDishListTableView{
-    UITableView *dishListTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, HEAD_HEIGH, 320, 460 - 44 - HEAD_HEIGH) style:UITableViewStylePlain];
+    UITableView *dishListTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, DISH_LIST_HEAD_HEIGH, 320, 460 - 44 - DISH_LIST_HEAD_HEIGH) style:UITableViewStylePlain];
     dishListTableView.backgroundColor = DISH_LIST_BACKGROUND_COLOR;
     dishListTableView.dataSource = self;
     dishListTableView.delegate = self;
@@ -135,8 +68,7 @@ NSString *DISH_BUTTON_HIGHLIGHTED_IMAGE;
 - (void) drawTopSegmentedControl:(UIView *) superView{
     self.topSegmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"全部", @"凉菜", @"热菜",@"其他"]];
 
-    
-    self.topSegmentedControl.frame =  CGRectMake(HORIZONTAL_SPACE, VIRTICAL_SPACE, superView.bounds.size.width - 2 * HORIZONTAL_SPACE, superView.bounds.size.height - 2 * VIRTICAL_SPACE);
+    self.topSegmentedControl.frame =  CGRectMake(DISH_LIST_SEGMENTED_HORIZONTAL_SPACE, DISH_LIST_SEGMENTED_VIRTICAL_SPACE, superView.bounds.size.width - 2 * DISH_LIST_SEGMENTED_HORIZONTAL_SPACE, superView.bounds.size.height - 2 * DISH_LIST_SEGMENTED_VIRTICAL_SPACE);
     self.topSegmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
     
     NSDictionary *attributes = [NSDictionary dictionaryWithObject:TITLE_FONT
@@ -298,8 +230,15 @@ NSString *DISH_BUTTON_HIGHLIGHTED_IMAGE;
  **********************************************/
 - (void) addCartButtonTouchupInside:(UIButton*)sender{
     NSLog(@"add cart button touch up inside");
-    self.navigationItem.rightBarButtonItem.tintColor = [UIColor redColor];
-    self.navigationItem.rightBarButtonItem.title = @"changed";
+    sender.backgroundColor = [UIColor darkGrayColor];
+    [sender setTitle:@"已点" forState:UIControlStateNormal];
+}
+
+/*******************************************
+ * the event when click checkout
+ *******************************************/
+- (void) checkout{
+    NSLog(@"this is check out");
 }
 @end
 

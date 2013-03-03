@@ -143,10 +143,11 @@
                                            style: UIBarButtonItemStyleBordered
                                            target: nil action: nil];
             */
-            [self.navigationController pushViewController:self.menuViewController animated:YES];
-            UIBarButtonItem *checkoutButton = [[UIBarButtonItem alloc] initWithTitle:@"跳过" style:UIBarButtonItemStyleBordered target:nil action:nil];
+            UIBarButtonItem *checkoutButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:nil action:nil];
             self.menuViewController.navigationItem.rightBarButtonItem = checkoutButton;
-            checkoutButton.tintColor = [UIColor darkGrayColor];
+            [self.menuViewController resetBeforePush];
+            [self.navigationController pushViewController:self.menuViewController animated:YES];
+            
             break;
         }
         case 2:
