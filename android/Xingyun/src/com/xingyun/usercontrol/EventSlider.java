@@ -3,10 +3,8 @@ package com.xingyun.usercontrol;
 import android.content.Context;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-////////////////todo: 确定用哪个layout
 public class EventSlider extends FrameLayout {
 
 	// private String title;
@@ -23,12 +21,10 @@ public class EventSlider extends FrameLayout {
 		// this.title = title;
 		// this.description = description;
 		// this.drawableId = drawableId;
-
 		ImageView imageView = new ImageView(context);
 		imageView.setImageResource(drawableId);
 		imageView.setLayoutParams(params);
 
 		this.addView(imageView, params);
 	}
-
 }

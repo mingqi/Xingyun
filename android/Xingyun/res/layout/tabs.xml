@@ -15,17 +15,6 @@
             android:layout_height="match_parent"
             android:layout_weight="1" >
 
-            <TextView
-                android:id="@+id/view1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="todo: 我要订餐" />
-
-            <TextView
-                android:id="@+id/view2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="todo: 个人信息" />
         </FrameLayout>
 
         <TabWidget

@@ -31,13 +31,14 @@ public class HostActivity extends TabActivity {
 								R.string.book_order))
 				.setIndicator(
 						(String) this.getResources().getText(
-								R.string.book_order)).setContent(R.id.view1));
+								R.string.book_order))
+				.setContent(new Intent(this, ResturantInfoActivity.class)));
 
 		tabHost.addTab(tabHost
 				.newTabSpec(
 						(String) this.getResources().getText(R.string.profile))
 				.setIndicator(
 						(String) this.getResources().getText(R.string.profile))
-				.setContent(R.id.view2));
+				.setContent(new Intent(this, ResturantInfoActivity.class)));
 	}
 }

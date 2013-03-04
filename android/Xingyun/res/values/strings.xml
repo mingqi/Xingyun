@@ -7,5 +7,6 @@
     <string name="resturant_events">餐厅活动</string>
     <string name="book_order">我要订餐</string>
     <string name="profile">个人中心</string>
+    <string name="resturant_info">餐厅详情</string>
 
 </resources>
