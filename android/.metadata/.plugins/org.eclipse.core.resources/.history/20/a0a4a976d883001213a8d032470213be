@@ -1,6 +1,0 @@
-package com.xingyun.usercontrol;
-
-public class EventSlider {
-	private String title;
-	private String description;
-}

@@ -1,8 +1,0 @@
-package com.xingyun.usercontrol;
-
-import android.view.View;
-
-public class EventSlider extends View {
-	private String title;
-	private String description;
-}
