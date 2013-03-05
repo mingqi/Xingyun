@@ -23,6 +23,10 @@
 		2B9BB2AA16DCF41300BF5839 /* RestaurantViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B9BB2A816DCF41300BF5839 /* RestaurantViewController.xib */; };
 		2BA23F9016E099480072B63D /* images in Resources */ = {isa = PBXBuildFile; fileRef = 2BA23F8F16E099480072B63D /* images */; };
 		2BB686FD16E33A2D00A629D3 /* DishConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB686FC16E33A2D00A629D3 /* DishConfirmViewController.m */; };
+		2BB686FF16E4657B00A629D3 /* Test.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BB686FE16E4657B00A629D3 /* Test.storyboard */; };
+		2BB6870216E46C6900A629D3 /* OrderConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB6870116E46C6900A629D3 /* OrderConfirmViewController.m */; };
+		2BB6870916E4AB4900A629D3 /* Placeorder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BB6870816E4AB4900A629D3 /* Placeorder.storyboard */; };
+		2BB6870C16E4AF7100A629D3 /* OrderConfirm2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB6870B16E4AF7100A629D3 /* OrderConfirm2ViewController.m */; };
 		2BCDB9F516DF684D00665167 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCDB9F416DF684D00665167 /* MapViewController.m */; };
 		2BCDB9F716DF89F900665167 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BCDB9F616DF89F900665167 /* MapKit.framework */; };
 /* End PBXBuildFile section */
@@ -54,6 +58,12 @@
 		2BB686F516E32E0800A629D3 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		2BB686FB16E33A2D00A629D3 /* DishConfirmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DishConfirmViewController.h; sourceTree = "<group>"; };
 		2BB686FC16E33A2D00A629D3 /* DishConfirmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DishConfirmViewController.m; sourceTree = "<group>"; };
+		2BB686FE16E4657B00A629D3 /* Test.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Test.storyboard; sourceTree = "<group>"; };
+		2BB6870016E46C6900A629D3 /* OrderConfirmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderConfirmViewController.h; sourceTree = "<group>"; };
+		2BB6870116E46C6900A629D3 /* OrderConfirmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderConfirmViewController.m; sourceTree = "<group>"; };
+		2BB6870816E4AB4900A629D3 /* Placeorder.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Placeorder.storyboard; sourceTree = "<group>"; };
+		2BB6870A16E4AF7000A629D3 /* OrderConfirm2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderConfirm2ViewController.h; sourceTree = "<group>"; };
+		2BB6870B16E4AF7100A629D3 /* OrderConfirm2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderConfirm2ViewController.m; sourceTree = "<group>"; };
 		2BCDB9F316DF684D00665167 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		2BCDB9F416DF684D00665167 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		2BCDB9F616DF89F900665167 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -105,6 +115,7 @@
 		2B2138EE16D9D50C00804724 /* Xingyun */ = {
 			isa = PBXGroup;
 			children = (
+				2BB6870716E4872B00A629D3 /* view */,
 				2B9BB2A516DCF37200BF5839 /* placeorder */,
 				2B9BB2A416DCF35F00BF5839 /* activity */,
 				2B2138F716D9D50C00804724 /* AppDelegate.h */,
@@ -141,6 +152,7 @@
 		2B9BB2A516DCF37200BF5839 /* placeorder */ = {
 			isa = PBXGroup;
 			children = (
+				2BB6870816E4AB4900A629D3 /* Placeorder.storyboard */,
 				2B21398316DA0FDE00804724 /* PlaceOrderNavigationController.h */,
 				2B21398416DA0FDE00804724 /* PlaceOrderNavigationController.m */,
 				2B21398516DA0FDE00804724 /* PlaceOrderNavigationController.xib */,
@@ -150,11 +162,23 @@
 				2B674A3E16DE3CDE009EB1C6 /* MenuViewController.h */,
 				2B674A3F16DE3CDE009EB1C6 /* MenuViewController.m */,
 				2BCDB9F316DF684D00665167 /* MapViewController.h */,
+				2BB686FE16E4657B00A629D3 /* Test.storyboard */,
 				2BCDB9F416DF684D00665167 /* MapViewController.m */,
 				2BB686FB16E33A2D00A629D3 /* DishConfirmViewController.h */,
 				2BB686FC16E33A2D00A629D3 /* DishConfirmViewController.m */,
+				2BB6870016E46C6900A629D3 /* OrderConfirmViewController.h */,
+				2BB6870116E46C6900A629D3 /* OrderConfirmViewController.m */,
+				2BB6870A16E4AF7000A629D3 /* OrderConfirm2ViewController.h */,
+				2BB6870B16E4AF7100A629D3 /* OrderConfirm2ViewController.m */,
 			);
 			name = placeorder;
+			sourceTree = "<group>";
+		};
+		2BB6870716E4872B00A629D3 /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = view;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,6 +238,8 @@
 				2B9BB2A316DCF32200BF5839 /* ActivityListViewController.xib in Resources */,
 				2B9BB2AA16DCF41300BF5839 /* RestaurantViewController.xib in Resources */,
 				2BA23F9016E099480072B63D /* images in Resources */,
+				2BB686FF16E4657B00A629D3 /* Test.storyboard in Resources */,
+				2BB6870916E4AB4900A629D3 /* Placeorder.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,6 +258,8 @@
 				2B674A4116DE3CDE009EB1C6 /* MenuViewController.m in Sources */,
 				2BCDB9F516DF684D00665167 /* MapViewController.m in Sources */,
 				2BB686FD16E33A2D00A629D3 /* DishConfirmViewController.m in Sources */,
+				2BB6870216E46C6900A629D3 /* OrderConfirmViewController.m in Sources */,
+				2BB6870C16E4AF7100A629D3 /* OrderConfirm2ViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

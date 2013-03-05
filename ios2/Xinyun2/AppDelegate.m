@@ -1,48 +1,21 @@
 //
 //  AppDelegate.m
-//  Xingyun
+//  Xinyun2
 //
-//  Created by Mingqi Shao on 2/24/13.
+//  Created by Mingqi Shao on 3/4/13.
 //  Copyright (c) 2013 Mingqi Shao. All rights reserved.
 //
 
 #import "AppDelegate.h"
-#import "ActivityListViewController.h"
-#import "PlaceOrderNavigationController.h"
-#import "MenuViewController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
-    NSLog(@"UI Main Screen %@", NSStringFromCGRect([[UIScreen mainScreen] applicationFrame]));
     // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
-    
-    UITabBarController *tabbarController = [[UITabBarController alloc] init];
-    
-    
-    ActivityListViewController  *activityListController = [[ActivityListViewController alloc] initWithNibName:@"ActivityListViewController" bundle:nil];
-    
-    
-    PlaceOrderNavigationController *placeOrderController = [[PlaceOrderNavigationController alloc] initWithNibName:@"PlaceOrderNavigationController" bundle:nil];
-   
-    MenuViewController *userCenterController = [[MenuViewController alloc] initWithNibName:@"MenuViewController" bundle:nil];
-    
-    tabbarController.viewControllers = @[activityListController
-                                         ,placeOrderController,
-                                         userCenterController
-                                         ];
-   
-    
-    self.window.rootViewController = tabbarController;
-     
     return YES;
 }
-
+							
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
