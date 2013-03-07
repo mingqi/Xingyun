@@ -8,6 +8,8 @@
 
 #import "PlaceOrderNavigationController.h"
 #import "RestaurantViewController.h"
+#import "OrderConfirmViewController.h"
+#import "OrderConfirm2ViewController.h"
 
 @interface PlaceOrderNavigationController ()
 
@@ -26,8 +28,19 @@
         
         
         self.restaurantViewController = [[RestaurantViewController alloc] initWithNibName:@"RestaurantViewController" bundle:nil];
-        
         self.viewControllers = @[self.restaurantViewController];
+    
+        
+        /*
+        OrderConfirmViewController *controller = [OrderConfirmViewController new];
+        self.viewControllers = @[controller];
+        */
+        
+        /*
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Placeorder" bundle:nil];
+        OrderConfirm2ViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"orderConfirm"];
+        self.viewControllers = @[vc];
+        */
         
         [[UIBarButtonItem appearance] setTintColor:[UIColor redColor]];
     }
