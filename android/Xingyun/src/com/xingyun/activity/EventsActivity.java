@@ -37,23 +37,17 @@ public class EventsActivity extends FragmentActivity {
 				R.drawable.s4, R.drawable.s5 };
 		for (int i = 0; i < drawableIds.length; i++) {
 			EventSlider es = new EventSlider(this, "", "", drawableIds[i]);
-			es.setOnClickListener(new OnClickListener(){
+			es.setOnClickListener(new OnClickListener() {
 
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
 					Log.d("==========", "added in events activity");
 				}
-				
+
 			});
 			eventViews.add(es);
 		}
-		TextView tv = new TextView(this);
-		tv.setText("dddddddddddddddddddddd");
-		TextView tv2 = new TextView(this);
-		tv2.setText("aaaaaaaaaaaaaaaaaaaaaaaa");
-		eventViews.add(tv);
-		eventViews.add(tv2);
 
 		eventPagerAdapter = new EventPagerAdapter();
 

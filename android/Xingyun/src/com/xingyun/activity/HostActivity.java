@@ -39,6 +39,6 @@ public class HostActivity extends TabActivity {
 						(String) this.getResources().getText(R.string.profile))
 				.setIndicator(
 						(String) this.getResources().getText(R.string.profile))
-				.setContent(new Intent(this, ResturantInfoActivity.class)));
+				.setContent(new Intent(this, LoginActivity.class)));
 	}
 }

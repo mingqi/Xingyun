@@ -23,15 +23,15 @@ public class RoundedRectListView extends ListView {
 	private void init() {
 		GradientDrawable gd = new GradientDrawable();
 		gd.setCornerRadius(RADIUS);
-		gd.setColor(0xff208020);
+		gd.setColor(0xff999999);
 		setBackgroundDrawable(gd);
 		setCacheColorHint(0);
 		setVerticalFadingEdgeEnabled(false);
 		StateListDrawable sld = new StateListDrawable();
 		sld.addState(PRESSED_ENABLED_STATE_SET, new GradientDrawable(
-				Orientation.LEFT_RIGHT, new int[] { 0xffa58cf5, 0xffa13f99 }));
+				Orientation.LEFT_RIGHT, new int[] { 0xff555555, 0xff555555 }));
 		sld.addState(EMPTY_STATE_SET, new GradientDrawable(
-				Orientation.LEFT_RIGHT, new int[] { 0xff058cf5, 0xff013f99 }));
+				Orientation.LEFT_RIGHT, new int[] { 0xff555555, 0xff555555 }));
 		setSelector(sld);
 	}
 
