@@ -1,19 +1,18 @@
 //
-//  OrderConfirmViewController.m
-//  Xinyun2
+//  MyDishListViewController.m
+//  Xingyun2
 //
-//  Created by Mingqi Shao on 3/5/13.
+//  Created by Mingqi Shao on 3/7/13.
 //  Copyright (c) 2013 Mingqi Shao. All rights reserved.
 //
 
-#import "OrderConfirmViewController.h"
-#import <QuartzCore/QuartzCore.h>
+#import "MyDishListViewController.h"
 
-@interface OrderConfirmViewController ()
+@interface MyDishListViewController ()
 
 @end
 
-@implementation OrderConfirmViewController
+@implementation MyDishListViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -27,6 +26,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
+ 
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
@@ -36,7 +41,7 @@
 }
 
 #pragma mark - Table view data source
-/*
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -46,18 +51,14 @@
 {
     return 3;
 }
-*/
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell...
+    static NSString *CellIdentifier = @"cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];   
     
     return cell;
 }
-*/
 
 /*
 // Override to support conditional editing of the table view.

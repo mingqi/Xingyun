@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RestViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface RestViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
 
 @end

@@ -7,8 +7,10 @@
 //
 
 #import "DishListViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface DishListViewController ()
+
 - (IBAction)checkOutAction:(UIBarButtonItem *)sender;
 
 @end
@@ -27,7 +29,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	 NSLog(@"view did load");
+//	 NSLog(@"view did load");
+//    NSLog(@"%@", self)
 }
 
 - (void)didReceiveMemoryWarning
@@ -49,11 +52,16 @@
  **/
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    NSLog(@"numberOfSectionsInTableView");
+    NSLog(@"%@", tableView.dataSource);
+    NSLog(@"%@", tableView.delegate);
     return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    UIButton *cartButton = (UIButton *)[cell viewWithTag:4];
+    cartButton.layer.cornerRadius = 5;
     return cell;
 }
 
@@ -63,7 +71,9 @@
 
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-   
+    
+    NSLog(@"row selected: %d", indexPath.row);
+    [self performSegueWithIdentifier:@"dishDetailSegue" sender:self];
 }
 
 @end

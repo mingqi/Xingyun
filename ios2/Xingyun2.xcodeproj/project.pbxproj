@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B6D41FA16E6034D00F97895 /* xingyun_intro.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2B6D41F916E6034D00F97895 /* xingyun_intro.jpg */; };
+		2B98821216E651C700F254BF /* dish2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2B98821116E651C700F254BF /* dish2.jpg */; };
+		2B98821516E6B57400F254BF /* DishDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B98821416E6B57300F254BF /* DishDetailViewController.m */; };
+		2B98821816E78E8400F254BF /* MyOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B98821716E78E8400F254BF /* MyOrderViewController.m */; };
+		2B98821B16E7934C00F254BF /* MyAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B98821A16E7934C00F254BF /* MyAccountViewController.m */; };
+		2B98821E16E7A27900F254BF /* MyDishListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B98821D16E7A27900F254BF /* MyDishListViewController.m */; };
 		2BB6871A16E4B28300A629D3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BB6871916E4B28300A629D3 /* UIKit.framework */; };
 		2BB6871C16E4B28300A629D3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BB6871B16E4B28300A629D3 /* Foundation.framework */; };
 		2BB6871E16E4B28300A629D3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BB6871D16E4B28300A629D3 /* CoreGraphics.framework */; };
@@ -32,9 +38,24 @@
 		2BB6877216E5CCDF00A629D3 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BB6877116E5CCDF00A629D3 /* icon@2x.png */; };
 		2BB6877416E5CE6600A629D3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BB6877316E5CE6600A629D3 /* Default.png */; };
 		2BB6877616E5CE6E00A629D3 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BB6877516E5CE6E00A629D3 /* Default@2x.png */; };
+		2BFE6DFF16E5D852007720D9 /* fork-knife.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BFE6DFE16E5D852007720D9 /* fork-knife.png */; };
+		2BFE6E0116E5D8B7007720D9 /* man.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BFE6E0016E5D8B7007720D9 /* man.png */; };
+		2BFE6E0316E5D9EB007720D9 /* gift.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BFE6E0216E5D9EB007720D9 /* gift.png */; };
+		2BFE6E0616E5E000007720D9 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BFE6E0516E5E000007720D9 /* MainViewController.m */; };
+		2BFE6E0816E5E265007720D9 /* blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BFE6E0716E5E265007720D9 /* blue.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2B6D41F916E6034D00F97895 /* xingyun_intro.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = xingyun_intro.jpg; sourceTree = "<group>"; };
+		2B98821116E651C700F254BF /* dish2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dish2.jpg; sourceTree = "<group>"; };
+		2B98821316E6B57300F254BF /* DishDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DishDetailViewController.h; sourceTree = "<group>"; };
+		2B98821416E6B57300F254BF /* DishDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DishDetailViewController.m; sourceTree = "<group>"; };
+		2B98821616E78E8400F254BF /* MyOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderViewController.h; sourceTree = "<group>"; };
+		2B98821716E78E8400F254BF /* MyOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderViewController.m; sourceTree = "<group>"; };
+		2B98821916E7934C00F254BF /* MyAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAccountViewController.h; sourceTree = "<group>"; };
+		2B98821A16E7934C00F254BF /* MyAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAccountViewController.m; sourceTree = "<group>"; };
+		2B98821C16E7A27900F254BF /* MyDishListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDishListViewController.h; sourceTree = "<group>"; };
+		2B98821D16E7A27900F254BF /* MyDishListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDishListViewController.m; sourceTree = "<group>"; };
 		2BB6871616E4B28300A629D3 /* 行运餐厅.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "行运餐厅.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BB6871916E4B28300A629D3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2BB6871B16E4B28300A629D3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -71,6 +92,12 @@
 		2BB6877116E5CCDF00A629D3 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		2BB6877316E5CE6600A629D3 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		2BB6877516E5CE6E00A629D3 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		2BFE6DFE16E5D852007720D9 /* fork-knife.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fork-knife.png"; sourceTree = "<group>"; };
+		2BFE6E0016E5D8B7007720D9 /* man.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = man.png; sourceTree = "<group>"; };
+		2BFE6E0216E5D9EB007720D9 /* gift.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gift.png; sourceTree = "<group>"; };
+		2BFE6E0416E5E000007720D9 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		2BFE6E0516E5E000007720D9 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		2BFE6E0716E5E265007720D9 /* blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,12 +155,22 @@
 				2BB6875116E4F4AC00A629D3 /* MapViewController.h */,
 				2BB6875216E4F4AC00A629D3 /* MapViewController.m */,
 				2BB6876116E5C34A00A629D3 /* MainStoryboard.storyboard */,
+				2B98821316E6B57300F254BF /* DishDetailViewController.h */,
+				2B98821416E6B57300F254BF /* DishDetailViewController.m */,
+				2BFE6E0416E5E000007720D9 /* MainViewController.h */,
+				2BFE6E0516E5E000007720D9 /* MainViewController.m */,
 				2BB6875416E4FB1800A629D3 /* DishListViewController.h */,
+				2BB6875516E4FB1800A629D3 /* DishListViewController.m */,
 				2BB6875E16E5B91700A629D3 /* OrderConfirmViewController.h */,
 				2BB6875F16E5B91700A629D3 /* OrderConfirmViewController.m */,
-				2BB6875516E4FB1800A629D3 /* DishListViewController.m */,
 				2BB6875916E5B2CB00A629D3 /* DishConfirmViewController.h */,
 				2BB6875A16E5B2CB00A629D3 /* DishConfirmViewController.m */,
+				2B98821616E78E8400F254BF /* MyOrderViewController.h */,
+				2B98821716E78E8400F254BF /* MyOrderViewController.m */,
+				2B98821916E7934C00F254BF /* MyAccountViewController.h */,
+				2B98821A16E7934C00F254BF /* MyAccountViewController.m */,
+				2B98821C16E7A27900F254BF /* MyDishListViewController.h */,
+				2B98821D16E7A27900F254BF /* MyDishListViewController.m */,
 				2BB6874916E4E0AF00A629D3 /* images */,
 				2BB6872816E4B28300A629D3 /* AppDelegate.h */,
 				2BB6872916E4B28300A629D3 /* AppDelegate.m */,
@@ -164,6 +201,12 @@
 		2BB6874916E4E0AF00A629D3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				2B98821116E651C700F254BF /* dish2.jpg */,
+				2B6D41F916E6034D00F97895 /* xingyun_intro.jpg */,
+				2BFE6E0716E5E265007720D9 /* blue.png */,
+				2BFE6E0216E5D9EB007720D9 /* gift.png */,
+				2BFE6E0016E5D8B7007720D9 /* man.png */,
+				2BFE6DFE16E5D852007720D9 /* fork-knife.png */,
 				2BB6875716E5AD4E00A629D3 /* dish.jpg */,
 				2BB6874A16E4E0AF00A629D3 /* logo.jpg */,
 			);
@@ -233,6 +276,12 @@
 				2BB6877216E5CCDF00A629D3 /* icon@2x.png in Resources */,
 				2BB6877416E5CE6600A629D3 /* Default.png in Resources */,
 				2BB6877616E5CE6E00A629D3 /* Default@2x.png in Resources */,
+				2BFE6DFF16E5D852007720D9 /* fork-knife.png in Resources */,
+				2BFE6E0116E5D8B7007720D9 /* man.png in Resources */,
+				2BFE6E0316E5D9EB007720D9 /* gift.png in Resources */,
+				2BFE6E0816E5E265007720D9 /* blue.png in Resources */,
+				2B6D41FA16E6034D00F97895 /* xingyun_intro.jpg in Resources */,
+				2B98821216E651C700F254BF /* dish2.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,6 +301,11 @@
 				2BB6875616E4FB1800A629D3 /* DishListViewController.m in Sources */,
 				2BB6875B16E5B2CB00A629D3 /* DishConfirmViewController.m in Sources */,
 				2BB6876016E5B91700A629D3 /* OrderConfirmViewController.m in Sources */,
+				2BFE6E0616E5E000007720D9 /* MainViewController.m in Sources */,
+				2B98821516E6B57400F254BF /* DishDetailViewController.m in Sources */,
+				2B98821816E78E8400F254BF /* MyOrderViewController.m in Sources */,
+				2B98821B16E7934C00F254BF /* MyAccountViewController.m in Sources */,
+				2B98821E16E7A27900F254BF /* MyDishListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,6 +428,7 @@
 				2BB6874616E4B28300A629D3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

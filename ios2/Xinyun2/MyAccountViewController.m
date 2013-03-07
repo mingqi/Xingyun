@@ -1,19 +1,18 @@
 //
-//  OrderConfirmViewController.m
-//  Xinyun2
+//  MyAccountViewController.m
+//  Xingyun2
 //
-//  Created by Mingqi Shao on 3/5/13.
+//  Created by Mingqi Shao on 3/6/13.
 //  Copyright (c) 2013 Mingqi Shao. All rights reserved.
 //
 
-#import "OrderConfirmViewController.h"
-#import <QuartzCore/QuartzCore.h>
+#import "MyAccountViewController.h"
 
-@interface OrderConfirmViewController ()
+@interface MyAccountViewController ()
 
 @end
 
-@implementation OrderConfirmViewController
+@implementation MyAccountViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -27,6 +26,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
+ 
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
@@ -39,15 +44,18 @@
 /*
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+#warning Potentially incomplete method implementation.
+    // Return the number of sections.
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+#warning Incomplete method implementation.
+    // Return the number of rows in the section.
+    return 0;
 }
-*/
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
@@ -58,7 +66,6 @@
     return cell;
 }
 */
-
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -102,13 +109,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    [self performSegueWithIdentifier:@"orderDetailSegue" sender:self];
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    [segue.destinationViewController setHidesBottomBarWhenPushed:YES];
 }
 
 @end
