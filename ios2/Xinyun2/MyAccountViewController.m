@@ -109,7 +109,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier:@"orderDetailSegue" sender:self];
+    switch (indexPath.row) {
+        case 0:
+            [self performSegueWithIdentifier:@"orderDetailSegue" sender:self];
+            break;
+        case 1:
+            [self performSegueWithIdentifier:@"changePasswordSegue" sender:self];
+            break;
+        default:
+            break;
+    }
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

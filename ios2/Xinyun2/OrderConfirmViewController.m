@@ -10,6 +10,9 @@
 #import <QuartzCore/QuartzCore.h>
 
 @interface OrderConfirmViewController ()
+@property (strong, nonatomic) IBOutlet UITextField *customerNameTextField;
+@property (strong, nonatomic) IBOutlet UITextField *telPhoneTextField;
+@property (strong, nonatomic) IBOutlet UITextField *peopleNumberTextField;
 
 @end
 
@@ -35,6 +38,21 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
+    [theTextField resignFirstResponder];
+    return YES;
+}
+
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    if ([self.customerNameTextField isFirstResponder]) {
+        [self.customerNameTextField resignFirstResponder];
+    }else if( [self.telPhoneTextField isFirstResponder]){
+        [self.telPhoneTextField resignFirstResponder];
+    }else if([self.peopleNumberTextField isFirstResponder]){
+        [self.peopleNumberTextField resignFirstResponder];
+    }
+}
 #pragma mark - Table view data source
 /*
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -102,13 +120,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
     /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    if(indexPath.section == 0 && indexPath.row == 4){
+        UIDatePicker *datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 250, 320, 300)];
+        datePicker.datePickerMode = UIDatePickerModeDateAndTime;
+        [self.view addSubview:datePicker];
+        
+    }
+    */
 }
 
 @end
