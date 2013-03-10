@@ -9,6 +9,7 @@ import com.xingyun.usercontrol.EventSlider;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
@@ -37,12 +38,18 @@ public class EventsActivity extends FragmentActivity {
 				R.drawable.s4, R.drawable.s5 };
 		for (int i = 0; i < drawableIds.length; i++) {
 			EventSlider es = new EventSlider(this, "", "", drawableIds[i]);
+			final int index = i;
 			es.setOnClickListener(new OnClickListener() {
-
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
 					Log.d("==========", "added in events activity");
+					Intent intent = new Intent();
+					Bundle bundle = new Bundle();
+					bundle.putInt("event_index", index);
+					intent.setClass(EventsActivity.this, EventDetailActivity.class);
+					intent.putExtras(bundle);
+					startActivity(intent);
 				}
 
 			});

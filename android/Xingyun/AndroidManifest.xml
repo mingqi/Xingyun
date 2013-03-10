@@ -26,6 +26,9 @@
         <activity android:name="com.xingyun.activity.ResturantInfoActivity" />
         <activity android:name="com.xingyun.activity.MapActivity" />
         <activity android:name="com.xingyun.activity.LoginActivity" />
+        <activity android:name="com.xingyun.activity.EventDetailActivity" />
+        <activity android:name="com.xingyun.activity.OrderDishesActivity" />
+        <activity android:name="com.xingyun.activity.OrderDetailActivity" />
     </application>
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
@@ -33,6 +36,7 @@
     <permission
         android:name="com.xingyun.activity.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
+
     <uses-permission android:name="com.xingyun.activity.permission.MAPS_RECEIVE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />

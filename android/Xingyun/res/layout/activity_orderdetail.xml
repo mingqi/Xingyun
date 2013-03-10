@@ -17,7 +17,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/resturant_info"
+                android:text="订单"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
         </LinearLayout>
 
@@ -35,21 +35,6 @@
                 android:text="返回" >
             </Button>
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:gravity="right|center_vertical"
-            android:orientation="vertical" >
-
-            <Button
-                android:id="@+id/btn_orderdishes"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="餐厅预订" >
-            </Button>
-        </LinearLayout>
     </FrameLayout>
 
     <ScrollView
@@ -63,41 +48,67 @@
             android:gravity="center_vertical|center_horizontal"
             android:orientation="vertical" >
 
-            <LinearLayout
+            <!--
+            EditText
+                android:id="@+id/editText1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="vertical" >
+                android:background="@null"
+                android:ems="10"
+                android:textColor="@color/default_title_indicator_footer_color" >
 
-                <ImageView
-                    android:id="@+id/img_event"
-                    android:layout_width="244dp"
-                    android:layout_height="127dp"
-                    android:src="@drawable/ic_launcher" />
-            </LinearLayout>
+                <requestFocus />
+            </EditText
+            -->
 
             <TextView
-                android:id="@+id/txt_title"
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="联系人信息"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <com.xingyun.excontrol.RoundedRectListView
+                android:id="@+id/rv_contact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+            </com.xingyun.excontrol.RoundedRectListView>
+        </LinearLayout>
+    </ScrollView>
+
+    <com.xingyun.excontrol.RoundedRectTableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Large Text"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
+        </TableRow>
 
-            <LinearLayout
-                android:layout_width="match_parent"
+        <View
+            android:layout_height="1dip"
+            android:background="#B7B7B7" />
+
+        <TableRow
+            android:id="@+id/tableRow4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="vertical" >
-
-                <com.xingyun.excontrol.RoundedRectTextView
-                    android:id="@+id/rtv_description"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:padding="13dp"
-                    android:text="Large Teaaaaaaaadddddddddd\nxt" />
-            </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
+                android:text="Medium Text"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+        </TableRow>
+    </com.xingyun.excontrol.RoundedRectTableLayout>
 
 </LinearLayout>

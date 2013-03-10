@@ -481,28 +481,43 @@ containing a value of this type.
         public static final int vpi__tab_unselected_pressed_holo=0x7f02000c;
     }
     public static final class id {
-        public static final int action_settings=0x7f040016;
+        public static final int action_settings=0x7f040025;
         public static final int bottom=0x7f040007;
         public static final int btn_back=0x7f04000b;
-        public static final int btn_cancel=0x7f04000e;
-        public static final int btn_login=0x7f040010;
-        public static final int circlePageIndicator=0x7f04000d;
-        public static final int eventPager=0x7f04000c;
+        public static final int btn_cancel=0x7f040012;
+        public static final int btn_login=0x7f040014;
+        public static final int btn_orderdishes=0x7f04000c;
+        public static final int btn_skip=0x7f04001c;
+        public static final int circlePageIndicator=0x7f040011;
+        public static final int dishImage=0x7f040020;
+        public static final int dishName=0x7f040021;
+        public static final int dishPrice=0x7f040022;
+        public static final int eventPager=0x7f040010;
         public static final int hybrid=0x7f040004;
+        public static final int img_event=0x7f04000d;
         public static final int itemTitle=0x7f04000a;
         public static final int listItem=0x7f040009;
-        public static final int login_password=0x7f040015;
-        public static final int login_tel=0x7f040014;
-        public static final int lv_actions=0x7f040013;
-        public static final int lv_form=0x7f04000f;
-        public static final int map=0x7f040011;
+        public static final int login_password=0x7f040024;
+        public static final int login_tel=0x7f040023;
+        public static final int lv_actions=0x7f04001f;
+        public static final int lv_dishes=0x7f04001d;
+        public static final int lv_form=0x7f040013;
+        public static final int map=0x7f040015;
         public static final int none=0x7f040000;
         public static final int normal=0x7f040001;
+        public static final int rtv_description=0x7f04000f;
+        public static final int rv_contact=0x7f040017;
         public static final int satellite=0x7f040002;
+        public static final int tableRow2=0x7f040018;
+        public static final int tableRow4=0x7f04001a;
         public static final int terrain=0x7f040003;
+        public static final int textView1=0x7f040016;
+        public static final int textView2=0x7f040019;
+        public static final int textView3=0x7f04001b;
         public static final int top=0x7f040008;
         public static final int triangle=0x7f040005;
-        public static final int txt_address=0x7f040012;
+        public static final int txt_address=0x7f04001e;
+        public static final int txt_title=0x7f04000e;
         public static final int underline=0x7f040006;
     }
     public static final class integer {
@@ -518,9 +533,13 @@ containing a value of this type.
         public static final int activity_events=0x7f030002;
         public static final int activity_login=0x7f030003;
         public static final int activity_map=0x7f030004;
-        public static final int activity_resturantinfo=0x7f030005;
-        public static final int loginform=0x7f030006;
-        public static final int tabs=0x7f030007;
+        public static final int activity_orderdetail=0x7f030005;
+        public static final int activity_orderdishes=0x7f030006;
+        public static final int activity_resturantinfo=0x7f030007;
+        public static final int dishlistitem=0x7f030008;
+        public static final int loadinglistitem=0x7f030009;
+        public static final int loginform=0x7f03000a;
+        public static final int tabs=0x7f03000b;
     }
     public static final class menu {
         public static final int events=0x7f0b0000;
