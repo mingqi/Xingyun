@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B5C178816E8E82700795666 /* PromotionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B5C178716E8E82700795666 /* PromotionViewController.m */; };
+		2B5C178C16E8ECBB00795666 /* prom01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2B5C178916E8ECBB00795666 /* prom01.jpg */; };
+		2B5C178D16E8ECBB00795666 /* prom02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2B5C178A16E8ECBB00795666 /* prom02.jpg */; };
+		2B5C178E16E8ECBB00795666 /* prom03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2B5C178B16E8ECBB00795666 /* prom03.jpg */; };
 		2B6D41FA16E6034D00F97895 /* xingyun_intro.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2B6D41F916E6034D00F97895 /* xingyun_intro.jpg */; };
 		2B98821216E651C700F254BF /* dish2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2B98821116E651C700F254BF /* dish2.jpg */; };
 		2B98821516E6B57400F254BF /* DishDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B98821416E6B57300F254BF /* DishDetailViewController.m */; };
@@ -46,6 +50,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2B5C178616E8E82700795666 /* PromotionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromotionViewController.h; sourceTree = "<group>"; };
+		2B5C178716E8E82700795666 /* PromotionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromotionViewController.m; sourceTree = "<group>"; };
+		2B5C178916E8ECBB00795666 /* prom01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = prom01.jpg; sourceTree = "<group>"; };
+		2B5C178A16E8ECBB00795666 /* prom02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = prom02.jpg; sourceTree = "<group>"; };
+		2B5C178B16E8ECBB00795666 /* prom03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = prom03.jpg; sourceTree = "<group>"; };
 		2B6D41F916E6034D00F97895 /* xingyun_intro.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = xingyun_intro.jpg; sourceTree = "<group>"; };
 		2B98821116E651C700F254BF /* dish2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dish2.jpg; sourceTree = "<group>"; };
 		2B98821316E6B57300F254BF /* DishDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DishDetailViewController.h; sourceTree = "<group>"; };
@@ -171,6 +180,8 @@
 				2B98821A16E7934C00F254BF /* MyAccountViewController.m */,
 				2B98821C16E7A27900F254BF /* MyDishListViewController.h */,
 				2B98821D16E7A27900F254BF /* MyDishListViewController.m */,
+				2B5C178616E8E82700795666 /* PromotionViewController.h */,
+				2B5C178716E8E82700795666 /* PromotionViewController.m */,
 				2BB6874916E4E0AF00A629D3 /* images */,
 				2BB6872816E4B28300A629D3 /* AppDelegate.h */,
 				2BB6872916E4B28300A629D3 /* AppDelegate.m */,
@@ -201,6 +212,9 @@
 		2BB6874916E4E0AF00A629D3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				2B5C178916E8ECBB00795666 /* prom01.jpg */,
+				2B5C178A16E8ECBB00795666 /* prom02.jpg */,
+				2B5C178B16E8ECBB00795666 /* prom03.jpg */,
 				2B98821116E651C700F254BF /* dish2.jpg */,
 				2B6D41F916E6034D00F97895 /* xingyun_intro.jpg */,
 				2BFE6E0716E5E265007720D9 /* blue.png */,
@@ -282,6 +296,9 @@
 				2BFE6E0816E5E265007720D9 /* blue.png in Resources */,
 				2B6D41FA16E6034D00F97895 /* xingyun_intro.jpg in Resources */,
 				2B98821216E651C700F254BF /* dish2.jpg in Resources */,
+				2B5C178C16E8ECBB00795666 /* prom01.jpg in Resources */,
+				2B5C178D16E8ECBB00795666 /* prom02.jpg in Resources */,
+				2B5C178E16E8ECBB00795666 /* prom03.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +323,7 @@
 				2B98821816E78E8400F254BF /* MyOrderViewController.m in Sources */,
 				2B98821B16E7934C00F254BF /* MyAccountViewController.m in Sources */,
 				2B98821E16E7A27900F254BF /* MyDishListViewController.m in Sources */,
+				2B5C178816E8E82700795666 /* PromotionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,9 +374,9 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos6.1;
 			};
 			name = Debug;
 		};
@@ -380,9 +398,9 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos6.1;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -393,7 +411,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Xinyun2/Xinyun2-Prefix.pch";
 				INFOPLIST_FILE = "Xinyun2/Xinyun2-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "行运餐厅";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -404,7 +424,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Xinyun2/Xinyun2-Prefix.pch";
 				INFOPLIST_FILE = "Xinyun2/Xinyun2-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "行运餐厅";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

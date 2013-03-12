@@ -7,6 +7,7 @@
 //
 
 #import "DishConfirmViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface DishConfirmViewController ()
 - (IBAction)nextStepAction:(UIBarButtonItem *)sender;
@@ -27,7 +28,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,6 +47,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    UIView *plusButton = [cell viewWithTag:3];
+    plusButton.layer.cornerRadius = 3;
+    
+    UIView *minusButton = [cell viewWithTag:4];
+    minusButton.layer.cornerRadius = 3;
     return cell;
 }
 
