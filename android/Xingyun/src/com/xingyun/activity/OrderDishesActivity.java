@@ -1,7 +1,6 @@
 package com.xingyun.activity;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import com.xingyun.adapter.DishListAdapter;
 import com.xingyun.entity.Dish;
@@ -19,14 +18,13 @@ import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 
 public class OrderDishesActivity extends Activity {
 
 	private ListView listView;
-	private SimpleAdapter adapter;
-	private ArrayList<HashMap<String, Object>> dishList;
+	private DishListAdapter adapter;
 	private View footerView;
+	private ArrayList<Dish> dishes;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -60,37 +58,12 @@ public class OrderDishesActivity extends Activity {
 
 		});
 
-		// /////////////show dishes/////////////////////////////
-
-		// todo: construct dish arraylist from a list of dish object.
-
 		listView.addFooterView(footerView);
 
-		dishList = new ArrayList<HashMap<String, Object>>();
+		dishes = WSUtility.getDishes(DishType.ALL);
+		adapter = new DishListAdapter(this, dishes, listView);
+		listView.setAdapter(adapter);
 
-		ArrayList<Dish> dishes = WSUtility.getDishes(DishType.ALL);
-		for (int i = 0; i < dishes.size(); i++) {
-			Dish dish = dishes.get(i);
-			HashMap<String, Object> mapping = new HashMap<String, Object>();
-			mapping.put("name", dish.getName());
-			mapping.put("price", dish.getPrice() + "");
-			dishList.add(mapping);
-		}
-
-		loadData();
-
-		Log.d("dish size", "" + dishList.size());
-
-		final SimpleAdapter adapter = new SimpleAdapter(this, dishList,
-				R.layout.dishlistitem,
-				new String[] { "image", "name", "price" }, new int[] {
-						R.id.dishImage, R.id.dishName, R.id.dishPrice });
-
-		// listView.setAdapter(adapter);
-
-		listView.setAdapter(new DishListAdapter(this, dishes, listView));
-
-		// listView.setOnScrollListener(listener);
 		listView.setOnScrollListener(new OnScrollListener() {
 
 			@Override
@@ -101,52 +74,24 @@ public class OrderDishesActivity extends Activity {
 
 			@Override
 			public void onScrollStateChanged(AbsListView arg0, int arg1) {
-				// TODO Auto-generated method stub
-				Log.d("===last visible position",
-						"" + arg0.getLastVisiblePosition());
-				Log.d("===view count", "" + arg0.getCount());
-
 				if (arg0.getLastVisiblePosition() == arg0.getCount() - 1) {
+					Log.d("time to load data!", arg0.getLastVisiblePosition()
+							+ ":" + (arg0.getCount() - 1));
 					loadData();
 					adapter.notifyDataSetChanged();
 				}
 			}
-
 		});
 	}
 
-	private AbsListView.OnScrollListener listener = new AbsListView.OnScrollListener() {
-
-		@Override
-		public void onScrollStateChanged(AbsListView view, int scrollState) {
-			if (view.getLastVisiblePosition() == view.getCount() - 1) {
-				loadData();
-				adapter.notifyDataSetChanged();
-			}
-		}
-
-		@Override
-		public void onScroll(AbsListView view, int firstVisibleItem,
-				int visibleItemCount, int totalItemCount) {
-
-		}
-	};
-
-	/**
-	 * 构造List列表数据
-	 */
 	private void loadData() {
-		if (dishList.size() < 40) {
+		if (dishes.size() < 100) {
 			for (int i = 0; i < 10; i++) {
-				HashMap<String, Object> map = new HashMap<String, Object>();
-				map.put("image", R.drawable.ic_launcher);
-				map.put("name", "t");
-				map.put("price", "p" + i);
-				dishList.add(map);
+				dishes.add(new Dish("dish" + i, i,
+						"http://www.baidu.com/img/shouye_b5486898c692066bd2cbaeda86d74448.gif"));
 			}
 		} else {
 			listView.removeFooterView(footerView);
 		}
 	}
-
 }
