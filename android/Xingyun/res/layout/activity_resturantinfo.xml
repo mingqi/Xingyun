@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     android:orientation="vertical" >
 
     <FrameLayout
@@ -11,45 +12,17 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:background="#8B2252"
             android:gravity="center_vertical|center_horizontal"
             android:orientation="vertical" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/resturant_info"
+                android:text="我要订餐"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
         </LinearLayout>
-
-        <!-- Button
-            android:id="@+id/btn_back"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="7dp"
-            android:text="Button" /-->
     </FrameLayout>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="170dp"
-        android:background="@color/default_title_indicator_footer_color"
-        android:src="@drawable/s1" >
-    </ImageView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:gravity="center_vertical|center_horizontal"
-        android:orientation="vertical" >
-
-        <TextView
-            android:id="@+id/txt_address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="地址：北京市东城区"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-    </LinearLayout>
 
     <com.xingyun.excontrol.RoundedRectListView
         android:id="@+id/lv_actions"
@@ -58,7 +31,20 @@
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp" >
+        android:layout_marginTop="10dp"
+        android:divider="#B3B3B3"
+        android:dividerHeight="1dp" >
     </com.xingyun.excontrol.RoundedRectListView>
+
+    <Button
+        android:id="@+id/btn_orderdishes"
+        android:background="@drawable/rounded_corner_button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:text="预订餐厅" />
 
 </LinearLayout>

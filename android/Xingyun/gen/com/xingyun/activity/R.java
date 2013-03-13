@@ -466,22 +466,32 @@ containing a value of this type.
         public static final int default_title_indicator_top_padding=0x7f06000e;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
-        public static final int s1=0x7f020001;
-        public static final int s2=0x7f020002;
-        public static final int s3=0x7f020003;
-        public static final int s4=0x7f020004;
-        public static final int s5=0x7f020005;
-        public static final int vpi__tab_indicator=0x7f020006;
-        public static final int vpi__tab_selected_focused_holo=0x7f020007;
-        public static final int vpi__tab_selected_holo=0x7f020008;
-        public static final int vpi__tab_selected_pressed_holo=0x7f020009;
-        public static final int vpi__tab_unselected_focused_holo=0x7f02000a;
-        public static final int vpi__tab_unselected_holo=0x7f02000b;
-        public static final int vpi__tab_unselected_pressed_holo=0x7f02000c;
+        public static final int fork_knife=0x7f020000;
+        public static final int gift=0x7f020001;
+        public static final int ic_launcher=0x7f020002;
+        public static final int icon_marka=0x7f020003;
+        public static final int man=0x7f020004;
+        public static final int navigation_button=0x7f020005;
+        public static final int pop=0x7f020006;
+        public static final int rounded_corner_border=0x7f020007;
+        public static final int rounded_corner_button=0x7f020008;
+        public static final int s1=0x7f020009;
+        public static final int s2=0x7f02000a;
+        public static final int s3=0x7f02000b;
+        public static final int s4=0x7f02000c;
+        public static final int s5=0x7f02000d;
+        public static final int vpi__tab_indicator=0x7f02000e;
+        public static final int vpi__tab_selected_focused_holo=0x7f02000f;
+        public static final int vpi__tab_selected_holo=0x7f020010;
+        public static final int vpi__tab_selected_pressed_holo=0x7f020011;
+        public static final int vpi__tab_unselected_focused_holo=0x7f020012;
+        public static final int vpi__tab_unselected_holo=0x7f020013;
+        public static final int vpi__tab_unselected_pressed_holo=0x7f020014;
+        public static final int xingyun_intro=0x7f020015;
     }
     public static final class id {
         public static final int action_settings=0x7f040025;
+        public static final int bmapsView=0x7f040015;
         public static final int bottom=0x7f040007;
         public static final int btn_back=0x7f04000b;
         public static final int btn_cancel=0x7f040012;
@@ -494,6 +504,7 @@ containing a value of this type.
         public static final int dishPrice=0x7f040022;
         public static final int eventPager=0x7f040010;
         public static final int hybrid=0x7f040004;
+        public static final int imageView1=0x7f04001e;
         public static final int img_event=0x7f04000d;
         public static final int itemTitle=0x7f04000a;
         public static final int listItem=0x7f040009;
@@ -502,7 +513,6 @@ containing a value of this type.
         public static final int lv_actions=0x7f04001f;
         public static final int lv_dishes=0x7f04001d;
         public static final int lv_form=0x7f040013;
-        public static final int map=0x7f040015;
         public static final int none=0x7f040000;
         public static final int normal=0x7f040001;
         public static final int rtv_description=0x7f04000f;
@@ -516,7 +526,6 @@ containing a value of this type.
         public static final int textView3=0x7f04001b;
         public static final int top=0x7f040008;
         public static final int triangle=0x7f040005;
-        public static final int txt_address=0x7f04001e;
         public static final int txt_title=0x7f04000e;
         public static final int underline=0x7f040006;
     }
@@ -535,11 +544,12 @@ containing a value of this type.
         public static final int activity_map=0x7f030004;
         public static final int activity_orderdetail=0x7f030005;
         public static final int activity_orderdishes=0x7f030006;
-        public static final int activity_resturantinfo=0x7f030007;
-        public static final int dishlistitem=0x7f030008;
-        public static final int loadinglistitem=0x7f030009;
-        public static final int loginform=0x7f03000a;
-        public static final int tabs=0x7f03000b;
+        public static final int activity_resturantdetail=0x7f030007;
+        public static final int activity_resturantinfo=0x7f030008;
+        public static final int dishlistitem=0x7f030009;
+        public static final int loadinglistitem=0x7f03000a;
+        public static final int loginform=0x7f03000b;
+        public static final int tabs=0x7f03000c;
     }
     public static final class menu {
         public static final int events=0x7f0b0000;

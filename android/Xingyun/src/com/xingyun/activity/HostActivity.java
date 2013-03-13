@@ -4,6 +4,7 @@ import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TabHost;
+import android.widget.TabWidget;
 
 public class HostActivity extends TabActivity {
 
@@ -19,11 +20,9 @@ public class HostActivity extends TabActivity {
 								R.string.resturant_events))
 				.setIndicator(
 						(String) this.getResources().getText(
-								R.string.resturant_events)
-				// ,
-				// getResources().getDrawable( //设置图标
-				// android.R.drawable.btn_default)
-				).setContent(new Intent(this, EventsActivity.class)));
+								R.string.resturant_events),
+						getResources().getDrawable(R.drawable.gift))
+				.setContent(new Intent(this, EventsActivity.class)));
 
 		tabHost.addTab(tabHost
 				.newTabSpec(
@@ -31,14 +30,21 @@ public class HostActivity extends TabActivity {
 								R.string.book_order))
 				.setIndicator(
 						(String) this.getResources().getText(
-								R.string.book_order))
+								R.string.book_order),
+						getResources().getDrawable(R.drawable.fork_knife))
 				.setContent(new Intent(this, ResturantInfoActivity.class)));
 
 		tabHost.addTab(tabHost
 				.newTabSpec(
 						(String) this.getResources().getText(R.string.profile))
 				.setIndicator(
-						(String) this.getResources().getText(R.string.profile))
+						(String) this.getResources().getText(R.string.profile),
+						getResources().getDrawable(R.drawable.man))
 				.setContent(new Intent(this, LoginActivity.class)));
+
+		TabWidget tabWidget = tabHost.getTabWidget();
+		for (int i = 0; i < tabWidget.getChildCount(); i++) {
+			tabWidget.getChildAt(i).getLayoutParams().height = 80;
+		}
 	}
 }
