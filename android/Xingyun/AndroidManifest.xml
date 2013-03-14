@@ -63,6 +63,16 @@
         <activity
             android:name="com.xingyun.activity.ModifyPasswordActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="com.xingyun.activity.MyOrderActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.xingyun.activity.ViewOrderActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.xingyun.activity.DishDetailActivity"
+            android:screenOrientation="portrait" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

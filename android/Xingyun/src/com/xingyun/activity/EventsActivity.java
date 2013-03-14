@@ -44,12 +44,12 @@ public class EventsActivity extends FragmentActivity {
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
 					Log.d("==========", "added in events activity");
-					Intent intent = new Intent();
-					Bundle bundle = new Bundle();
-					bundle.putInt("event_index", index);
-					intent.setClass(EventsActivity.this, EventDetailActivity.class);
-					intent.putExtras(bundle);
-					startActivity(intent);
+//					Intent intent = new Intent();
+//					Bundle bundle = new Bundle();
+//					bundle.putInt("event_index", index);
+//					intent.setClass(EventsActivity.this, EventDetailActivity.class);
+//					intent.putExtras(bundle);
+//					startActivity(intent);
 				}
 
 			});

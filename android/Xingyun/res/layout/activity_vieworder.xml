@@ -19,7 +19,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="订单确认"
+                android:text="订单详情"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
         </LinearLayout>
 
@@ -36,24 +36,7 @@
                 android:layout_height="25dp"
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/navigation_button"
-                android:text="确认菜单"
-                android:textColor="#FFFFFF" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@null"
-            android:gravity="right|center_vertical"
-            android:orientation="vertical" >
-
-            <Button
-                android:id="@+id/btn_next"
-                android:layout_width="70dp"
-                android:layout_height="25dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/navigation_button"
-                android:text="提交订单"
+                android:text="我的订单"
                 android:textColor="#FFFFFF" />
         </LinearLayout>
     </FrameLayout>
@@ -65,9 +48,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp" >
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical" >
 
             <TextView
                 android:id="@+id/textView1"
@@ -91,19 +74,12 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:layout_marginLeft="10dp"
-                        android:text="顾客姓名："
+                        android:gravity="center_vertical"
+                        android:text="顾客姓名：孙先生"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#000000" />
-
-                    <EditText
-                        android:id="@+id/editText1"
-                        android:layout_width="180dp"
-                        android:layout_height="38dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginTop="2dp"
-                        android:inputType="textPersonName" />
                 </TableRow>
 
                 <TableRow
@@ -126,20 +102,12 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:layout_marginLeft="10dp"
-                        android:text="联系方式："
+                        android:gravity="center_vertical"
+                        android:text="联系方式：138-0013-8000"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#000000" />
-
-                    <EditText
-                        android:id="@+id/editText2"
-                        android:layout_width="180dp"
-                        android:layout_height="38dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginTop="2dp"
-                        android:inputType="phone" >
-                    </EditText>
                 </TableRow>
 
                 <TableRow
@@ -162,21 +130,12 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:layout_marginLeft="10dp"
-                        android:text="用餐人数："
+                        android:gravity="center_vertical"
+                        android:text="用餐人数：8人"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#000000" />
-
-                    <EditText
-                        android:id="@+id/editText4"
-                        android:layout_width="180dp"
-                        android:layout_height="38dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginTop="2dp"
-                        android:ems="10"
-                        android:inputType="number" >
-                    </EditText>
                 </TableRow>
 
                 <TableRow
@@ -199,17 +158,12 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:layout_marginLeft="10dp"
-                        android:text="是否包厢："
+                        android:gravity="center_vertical"
+                        android:text="堂食/包厢：包厢"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#000000" />
-
-                    <CheckBox
-                        android:id="@+id/checkBox1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="38dp"
-                        android:text="CheckBox" />
                 </TableRow>
 
                 <TableRow
@@ -227,24 +181,17 @@
                 <TableRow
                     android:id="@+id/tableRow5"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:gravity="center_vertical" >
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:layout_marginLeft="10dp"
-                        android:text="到店时间："
+                        android:gravity="center_vertical"
+                        android:text="到店时间：2013-04-02 12:00"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#000000" />
-
-                    <EditText
-                        android:id="@+id/editText5"
-                        android:layout_width="180dp"
-                        android:layout_height="38dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginTop="2dp"
-                        android:inputType="time" />
                 </TableRow>
             </com.xingyun.excontrol.RoundedRectTableLayout>
 
@@ -317,8 +264,9 @@
                 android:layout_height="80dp"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
+                android:enabled="false"
                 android:inputType="textMultiLine"
-                android:text="" >
+                android:text="不要香菜" >
             </com.xingyun.excontrol.RoundedRectEditTextLayout>
         </LinearLayout>
     </ScrollView>

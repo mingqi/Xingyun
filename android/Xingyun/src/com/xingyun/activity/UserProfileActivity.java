@@ -20,14 +20,13 @@ public class UserProfileActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-//				Intent i = new Intent();
-//				i.setClass(UserProfileActivity.this,
-//						ModifyPasswordActivity.class);
-//				startActivity(i);
+				Intent i = new Intent();
+				i.setClass(UserProfileActivity.this, MyOrderActivity.class);
+				startActivity(i);
 			}
 
 		});
-		
+
 		TableRow trPassword = (TableRow) findViewById(R.id.tr_password);
 		trPassword.setOnClickListener(new OnClickListener() {
 

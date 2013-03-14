@@ -18,6 +18,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -71,6 +74,22 @@ public class OrderDishesActivity extends Activity {
 		dishes = WSUtility.getDishes(DishType.ALL);
 		adapter = new DishListAdapter(this, dishes, listView, 0);
 		listView.setAdapter(adapter);
+
+		Log.e("====", "???/");
+
+		listView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				// TODO Auto-generated method stub
+				Log.e("====", "???/!!");
+				Intent i = new Intent();
+				i.setClass(OrderDishesActivity.this, DishDetailActivity.class);
+				startActivity(i);
+			}
+
+		});
 
 		listView.setOnScrollListener(new OnScrollListener() {
 
@@ -133,6 +152,7 @@ public class OrderDishesActivity extends Activity {
 			}
 
 		});
+
 	}
 
 	private void loadData() {
