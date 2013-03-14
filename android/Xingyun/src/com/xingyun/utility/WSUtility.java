@@ -21,8 +21,8 @@ public class WSUtility {
 	public static ArrayList<Dish> getDishes(DishType type) {
 		ArrayList<Dish> dishes = new ArrayList<Dish>();
 
-		for (int i = 0; i < 30; i++) {
-			Dish dish = new Dish("dish" + i, i, "http://www.baidu.com/img/shouye_b5486898c692066bd2cbaeda86d74448.gif");
+		for (int i = 0; i < 10; i++) {
+			Dish dish = new Dish("宫保鸡丁" + i, "价格: "+i+"元", "http://scby.cn/uploads/allimg/110116/1-110116154004.jpg");
 			dishes.add(dish);
 		}
 

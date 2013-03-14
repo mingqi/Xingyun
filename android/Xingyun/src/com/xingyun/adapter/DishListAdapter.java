@@ -20,11 +20,13 @@ public class DishListAdapter extends ArrayAdapter<Dish> {
 
 	private ListView listView;
 	private AsyncImageLoader asyncImageLoader;
+	private int listViewType;
 
 	public DishListAdapter(Activity activity, List<Dish> imageAndTexts,
-			ListView listView) {
+			ListView listView, int listViewType) {
 		super(activity, 0, imageAndTexts);
 		this.listView = listView;
+		this.listViewType = listViewType; // 待重构
 		asyncImageLoader = new AsyncImageLoader();
 	}
 
@@ -36,7 +38,12 @@ public class DishListAdapter extends ArrayAdapter<Dish> {
 		DishListItemCache viewCache;
 		if (rowView == null) {
 			LayoutInflater inflater = activity.getLayoutInflater();
-			rowView = inflater.inflate(R.layout.dishlistitem, null);
+
+			if (listViewType == 0) {
+				rowView = inflater.inflate(R.layout.dishlistitem, null);
+			} else if (listViewType == 1) {
+				rowView = inflater.inflate(R.layout.dishlistitem1, null);
+			}
 			viewCache = new DishListItemCache(rowView);
 			rowView.setTag(viewCache);
 		} else {

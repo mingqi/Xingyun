@@ -40,7 +40,7 @@ public class HostActivity extends TabActivity {
 				.setIndicator(
 						(String) this.getResources().getText(R.string.profile),
 						getResources().getDrawable(R.drawable.man))
-				.setContent(new Intent(this, LoginActivity.class)));
+				.setContent(new Intent(this, UserProfileActivity.class)));
 
 		TabWidget tabWidget = tabHost.getTabWidget();
 		for (int i = 0; i < tabWidget.getChildCount(); i++) {

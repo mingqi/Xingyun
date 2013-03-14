@@ -22,6 +22,7 @@
             android:id="@+id/dishImage"
             android:layout_width="80dp"
             android:layout_height="80dp" >
+
         </ImageView>
     </LinearLayout>
 
@@ -75,12 +76,29 @@
         android:orientation="vertical" >
 
         <Button
-            android:layout_width="70dp"
-            android:layout_height="40dp"
-            android:background="@drawable/rounded_corner_button"
-            android:paddingRight="10dp"
-            android:text="点菜"
-            android:textColor="#FFFFFF" />
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/rounded_corner_button_gray"
+            android:padding="0dp"
+            android:text="+"
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:layout_marginTop="5dp"
+            android:text="1"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/rounded_corner_button_gray"
+            android:padding="0dp"
+            android:text="-"
+            android:textColor="#000000" />
     </LinearLayout>
 
 </LinearLayout>

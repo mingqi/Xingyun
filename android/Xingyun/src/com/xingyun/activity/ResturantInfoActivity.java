@@ -62,6 +62,15 @@ public class ResturantInfoActivity extends Activity {
 					break;
 				case 1:
 					// 菜品
+//					Intent dishesIntent = new Intent();
+//					dishesIntent.setClass(ResturantInfoActivity.this,
+//							DishesActivity.class);
+//					startActivity(dishesIntent);
+					
+					Intent dishesIntent = new Intent();
+					dishesIntent.setClass(ResturantInfoActivity.this,
+							OrderDishesActivity.class);
+					startActivity(dishesIntent);
 					break;
 				case 2:
 					// 地图

@@ -2,10 +2,10 @@ package com.xingyun.entity;
 
 public class Dish {
 	private String name;
-	private float price;
+	private String price;
 	private String imageUrl;
 
-	public Dish(String name, float price, String imageUrl) {
+	public Dish(String name, String price, String imageUrl) {
 		super();
 		this.name = name;
 		this.price = price;
@@ -20,11 +20,11 @@ public class Dish {
 		this.name = name;
 	}
 
-	public float getPrice() {
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(float price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 

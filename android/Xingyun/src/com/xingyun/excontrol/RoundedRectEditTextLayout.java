@@ -10,11 +10,12 @@ import android.graphics.Path.Direction;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.util.AttributeSet;
+import android.widget.EditText;
 import android.widget.TableLayout;
 
-public class RoundedRectTableLayout extends TableLayout {
+public class RoundedRectEditTextLayout extends EditText {
 
-	public RoundedRectTableLayout(Context context, AttributeSet attrs) {
+	public RoundedRectEditTextLayout(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		init();
 	}
