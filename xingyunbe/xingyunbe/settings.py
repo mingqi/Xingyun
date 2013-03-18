@@ -110,14 +110,14 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
-    'django.contrib.auth',
+#    'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.sites',
+#    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
-    'django.contrib.admin',
+#    'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'xingyun'
@@ -155,11 +155,11 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': True,
         },
-        '':{
-            'handlers': ['console'],
-            'level': 'DEBUG',
-            'propagate': True,
-         },
+#        '':{
+#            'handlers': ['console'],
+#            'level': 'DEBUG',
+#            'propagate': True,
+#         },
 #        'django.db':{
 #            'handlers': ['console'],
 #            'level': 'DEBUG',

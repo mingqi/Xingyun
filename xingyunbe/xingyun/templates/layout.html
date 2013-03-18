@@ -11,6 +11,8 @@ body {
 	padding-top: 60px;
 }
 </style>
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<script src="{{STATIC_URL}}js/bootstrap.min.js"></script>
 </head>
 <body>
 	<div class="navbar navbar-inverse navbar-fixed-top">
@@ -24,7 +26,7 @@ body {
 				<a class="brand" href="#">行运餐厅</a>
 				<div class="nav-collapse collapse">
 					<ul class="nav">
-						<li><a href="/menu/list">菜单管理</a></li>
+						<li><a href="{%url 'menu/list' %}">菜单管理</a></li>
 						<li><a href="">订单管理</a></li>
 						<li><a href="#contact">设置</a></li>
 					</ul>
@@ -36,7 +38,5 @@ body {
 	
 	{% block content %} {% endblock %}
 	
-	<script src="http://code.jquery.com/jquery.js"></script>
-	<script src="{{STATIC_URL}}js/bootstrap.min.js"></script>
 </body>
 </html>
