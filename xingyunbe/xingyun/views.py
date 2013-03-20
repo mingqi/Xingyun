@@ -1,3 +1,5 @@
+#-*- coding: utf-8 -*-
+
 '''
 Created on Mar 17, 2013
 
@@ -6,26 +8,36 @@ Created on Mar 17, 2013
 
 from .models import *
 from django import forms
+from django.conf import settings
+from django.core import serializers
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
+from django.views.generic import ListView, View
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.views.generic import ListView
-from django.conf import settings
-import logging, uuid
 from os.path import join
+import json
+import logging
+import uuid
 
 logger = logging.getLogger(__name__)
 
-def list_items(request):
-    return render(request, "menu/list.html", None)
+class JSONContextRenderMixin(object):
+    def convert_context_to_json(self, context):
+        return json.dumps([ model_to_jsondict(x) for x in context['object_list']],ensure_ascii=False)
 
-class MenuItemList(ListView):
+class MenuItemList(JSONContextRenderMixin, ListView):
     template_name = 'menu/list.html'
     model = MenuItem
     queryset = MenuItem.objects.all().order_by('sortedSeq')
     
-
+    def render_to_response(self, context, **response_kwargs):
+        if self.request.META['CONTENT_TYPE'] == 'application/json':
+            content = self.convert_context_to_json(context)
+            return HttpResponse(content, content_type = "application/json; charset=utf-8", status = 200)
+        else:
+            return super(MenuItemList, self).render_to_response(context, **response_kwargs)
+        
 class MenuItemCreate(CreateView):
     template_name = "menu/add.html"
     form_class = MenuItemForm
@@ -74,3 +86,10 @@ def deleteMenuItem(request, menuItemId):
     if item:
         item.delete()
     return HttpResponseRedirect(reverse('menu/list'))
+
+
+class PlaceOrderView(View):
+    def post(self, request):
+        print 'this is post'
+        orderId = next_sequence(u'order_id')
+        return HttpResponse('hello, world')
