@@ -19,7 +19,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="菜品"
+                android:text="@string/dishes"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
         </LinearLayout>
 
@@ -35,8 +35,8 @@
                 android:layout_width="70dp"
                 android:layout_height="25dp"
                 android:layout_marginLeft="10dp"
-                android:background="@drawable/navigation_button"
-                android:text="菜单"
+                android:background="@drawable/nav_button_back"
+                android:text="@string/back"
                 android:textColor="#FFFFFF" />
         </LinearLayout>
     </FrameLayout>
@@ -53,7 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="宫保鸡丁"
+        android:text="@string/sample_str2"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#000000" />
 
@@ -62,7 +62,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="20元"
+        android:text="@string/sample_str3"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#000000" />
 
@@ -74,13 +74,13 @@
         android:orientation="vertical" >
 
         <Button
-            android:id="@+id/btn_orderdishe"
+            android:id="@+id/btn_orderdish"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="100dp"
             android:layout_marginRight="100dp"
             android:background="@drawable/rounded_corner_button"
-            android:text="点菜"
+            android:text="@string/order_dish"
             android:textColor="#FFFFFF"
             android:textSize="18sp" />
     </LinearLayout>

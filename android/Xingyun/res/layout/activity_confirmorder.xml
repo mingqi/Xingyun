@@ -19,7 +19,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="确认菜单"
+                android:text="@string/confirm_order"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
         </LinearLayout>
 
@@ -35,8 +35,8 @@
                 android:layout_width="70dp"
                 android:layout_height="25dp"
                 android:layout_marginLeft="10dp"
-                android:background="@drawable/navigation_button"
-                android:text="菜单"
+                android:background="@drawable/nav_button_back"
+                android:text="@string/back"
                 android:textColor="#FFFFFF" />
         </LinearLayout>
 
@@ -52,8 +52,8 @@
                 android:layout_width="70dp"
                 android:layout_height="25dp"
                 android:layout_marginRight="10dp"
-                android:background="@drawable/navigation_button"
-                android:text="下一步"
+                android:background="@drawable/nav_button_next"
+                android:text="@string/next"
                 android:textColor="#FFFFFF" />
         </LinearLayout>
     </FrameLayout>
@@ -71,7 +71,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:text="请确认您要点的菜品 一共68元"
+            android:text="@string/sample_str1"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#000000" />
     </LinearLayout>

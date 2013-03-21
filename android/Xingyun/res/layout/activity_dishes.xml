@@ -19,7 +19,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="菜单"
+                android:text="@string/dish_list"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
         </LinearLayout>
 
@@ -35,8 +35,8 @@
                 android:layout_width="70dp"
                 android:layout_height="25dp"
                 android:layout_marginLeft="10dp"
-                android:background="@drawable/navigation_button"
-                android:text="我要订餐"
+                android:background="@drawable/nav_button_back"
+                android:text="@string/back"
                 android:textColor="#FFFFFF" />
         </LinearLayout>
     </FrameLayout>
@@ -60,7 +60,7 @@
             android:layout_weight="1"
             android:background="#8B2252"
             android:gravity="center"
-            android:text="全部"
+            android:text="@string/dish_all"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
@@ -71,7 +71,7 @@
             android:layout_weight="1"
             android:background="#8B2252"
             android:gravity="center"
-            android:text="凉菜"
+            android:text="@string/dish_cold"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
@@ -82,7 +82,7 @@
             android:layout_weight="1"
             android:background="#8B2252"
             android:gravity="center"
-            android:text="热菜"
+            android:text="@string/dish_hot"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
@@ -94,7 +94,7 @@
             android:layout_weight="1"
             android:background="#8B2252"
             android:gravity="center"
-            android:text="其他"
+            android:text="@string/dish_other"
             android:textAppearance="?android:attr/textAppearanceMedium" />
     </LinearLayout>
 
