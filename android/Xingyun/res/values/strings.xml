@@ -26,9 +26,24 @@
 	<string name="new_password">新密码: </string>
 	<string name="retype">再输一遍:  </string>
 	<string name="my_order">我的订单</string>
-	
+	<string name="take_order">下单</string>
+	<string name="submit_order">提交订单</string>
+	<string name="order_info">订单信息</string>
+	<string name="customer_name">顾客姓名：</string>
+	<string name="telephone">联系方式：</string>
+	<string name="guest_number">用餐人数：</string>
+	<string name="is_vip">是否包厢：</string>
+	<string name="arrival_time">到店时间：</string>
+	<string name="requirements">特殊要求</string>
+	<string name="resturant_introduction">餐厅介绍</string>
+	<string name="resturant_overall">我要订餐</string>
+	<string name="logout">退出登录</string>
+	<string name="loading">加载中</string>
 	
 	<string name="sample_str1">请确认您要点的菜品 一共68元</string>
 	<string name="sample_str2">宫保鸡丁</string>
 	<string name="sample_str3">20元</string>
+	<string name="sample_str4">共电菜2道</string>
+	<string name="sample_str5">一共55元</string>
+	<string name="sample_str6">这里是餐厅介绍</string>
 </resources>

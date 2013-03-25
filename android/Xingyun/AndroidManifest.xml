@@ -39,16 +39,7 @@
             android:name="com.xingyun.activity.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.xingyun.activity.EventDetailActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name="com.xingyun.activity.OrderDishesActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.xingyun.activity.OrderDetailActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.xingyun.activity.DishesActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.xingyun.activity.ConfirmOrderActivity"
