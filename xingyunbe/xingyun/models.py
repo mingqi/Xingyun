@@ -8,6 +8,7 @@ Created on Mar 17, 2013
 from django.db import models
 from django import forms
 from django.template.defaultfilters import filesizeformat
+from datetime import datetime
 
 def model_to_jsondict(model):
     d = dict()
@@ -61,39 +62,38 @@ def next_sequence(sequenceName):
     seq.save()
     return value
 
+############# Menu Models #################
 class MenuItem(models.Model):
     MENU_ITEM_CATEGORY_CHOICES = (
         (1, '凉菜'),
         (2, '热菜'),
-        (3, '酒水'),
-        (4, '其他'),
+        (3, '其他'),
     )
-    menuItemId = models.CharField(primary_key = True, db_column='menu_item_id', max_length=100)
+    menu_item_id = models.IntegerField(primary_key = True)
     title = models.CharField('菜品名', max_length=50)
     price = models.DecimalField('价格', max_digits=5, decimal_places=2)
     category = models.IntegerField('类别', choices=MENU_ITEM_CATEGORY_CHOICES)
-    sortedSeq = models.IntegerField('展示序号', db_column='sorted_seq' )
-    imageUri = models.CharField(max_length=255)
+    sorted_seq = models.IntegerField('展示序号' )
+    image_uri = models.CharField(max_length=255)
     
     class Meta:
         db_table = 'menu_item'
         
     
 class MenuItemForm(forms.ModelForm): 
-    imageFile = ContentTypeRestrictedFileField(label='图片', content_types=['image/gif', 'image/jpeg', 'image/pjpeg', 'image/png'], max_upload_size = 1024 * 500)
+    image_file = ContentTypeRestrictedFileField(label='图片', content_types=['image/gif', 'image/jpeg', 'image/pjpeg', 'image/png'], max_upload_size = 1024 * 500)
     class Meta:
         model = MenuItem
-        fields = ('imageFile', 'title', 'price', 'category', 'sortedSeq')
+        fields = ('image_file', 'title', 'price', 'category', 'sorted_seq')
         
 class MenuItemUpdateForm(forms.ModelForm):
-    imageFile = ContentTypeRestrictedFileField(label='图片', 
+    image_file = ContentTypeRestrictedFileField(label='图片', 
                                                content_types=['image/gif', 'image/jpeg', 'image/pjpeg', 'image/png'], 
                                                max_upload_size = 1024 * 500, required=False)
-    menuItemId = forms.CharField(widget=forms.HiddenInput)
+    menu_item_id = forms.CharField(widget=forms.HiddenInput)
     class Meta:
         model = MenuItem
-        fields = ('imageFile', 'title', 'price', 'category', 'sortedSeq', 'menuItemId')
-        
+        fields = ('image_file', 'title', 'price', 'category', 'sorted_seq', 'menu_item_id')
         
 ############# Order Models #################
 class Order(models.Model):
@@ -101,30 +101,55 @@ class Order(models.Model):
         (1, '未处理'),
         (2, '预定成功'),
         (3, '取消'),
-        (4, '正在处理'),
     )
     
-    customerId = models.IntegerField(db_column='customer_id')
-    contactName = models.CharField('顾客姓名',max_length=50, db_column='contact_name')
-    contactPhone = models.CharField('联系电话', max_length=50, db_column='contact_phone')
-    peopleNumber = models.IntegerField('用餐人数', db_column = 'people_number')
-    isBox = models.BooleanField('是否包厢', db_column = 'is_box')
-    orderPrice = models.DecimalField('订单总价', max_digits=5, decimal_places=2, db_column='order_price')
-    dishCount = models.IntegerField('菜品数量', db_column='dish_count')
-    reservedTime = models.DateTimeField('就餐时间', db_column='reserved_time')
-    orderCreationTime = models.DateTimeField('下单时间', db_column='order_creation_time')
-    orderStatus = models.IntegerField('订单状态', db_column='order_status', choices=ORDER_STATUS_CHOICES)
+    order_id = models.IntegerField(primary_key = True)
+    customer_id = models.IntegerField()
+    contact_name = models.CharField('顾客姓名',max_length=50)
+    contact_phone = models.CharField('联系电话', max_length=50)
+    people_number = models.IntegerField('用餐人数')
+    box_required = models.BooleanField('是否包厢')
+    order_price = models.DecimalField('订单总价', max_digits=5, decimal_places=2)
+    dishes_count = models.IntegerField('菜品数量', db_column='dish_count')
+    reserved_time = models.DateTimeField('就餐时间')
+    order_creation_time = models.DateTimeField('下单时间')
+    order_status = models.IntegerField('订单状态', choices=ORDER_STATUS_CHOICES)
+    other_requirements = models.TextField('其他要求')
     
     class Meta:
-        db_table = 'order'
+        db_table = 'customer_orders'
+        
+    @staticmethod
+    def load_from_dict(d):
+        order = Order()
+        for key, value in d.items():
+            if hasattr(order, key):
+                setattr(order, key, value)
+                
+        if not order.order_creation_time:
+            order.order_creation_time = datetime.now()
+            order.order_creation_time = order.order_creation_time.replace(microsecond=0)
+            
+        if not order.order_status:
+            order.order_status = 1
+        return order
+        
    
 class OrderDish(models.Model): 
-    order = models.ForeignKey(Order, related_name='dish')
-    orderDishId = models.IntegerField(primary_key = True, db_column='order_dish_id')
+    order = models.ForeignKey(Order, related_name='dishes')
+    order_dish_id = models.IntegerField(primary_key = True)
     title = models.CharField('菜品名', max_length=50)
     price = models.DecimalField('价格', max_digits=5, decimal_places=2)
     quantity = models.IntegerField('数量', db_column = 'quantity')
-    imageUri = models.CharField(max_length=255)
+    image_uri = models.CharField(max_length=255)
     
     class Meta:
-        db_table = 'order_dish'
+        db_table = 'customer_order_dishes'
+        
+    @staticmethod
+    def load_from_dict(d):
+        dish = OrderDish()
+        for key, value in d.items():
+            if hasattr(dish, key):
+                setattr(dish, key, value)
+        return dish

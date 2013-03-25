@@ -1,0 +1,10 @@
+## get all menu item list
+curl -X GET --header "Content-Type:application/json"  "http://127.0.0.1:8000/xingyun/api/menu/list" -v
+
+## get menu item by category
+curl -X GET --header "Content-Type:application/json"  "http://127.0.0.1:8000/xingyun/api/menu/list?category=1" -v
+
+## place a order
+curl -X POST --header "Content-Type:application/json"  http://127.0.0.1:8000/xingyun/api/order  --data @./apitest/placeorder.json -v
+
+
