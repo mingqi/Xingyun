@@ -34,7 +34,7 @@ public class EventsActivity extends FragmentActivity {
 
 		// 5张示例图
 		eventViews = new ArrayList<View>();
-		int[] drawableIds = { R.drawable.s1, R.drawable.s2, R.drawable.s3,
+		int[] drawableIds = { R.drawable.s2, R.drawable.s3,
 				R.drawable.s4, R.drawable.s5 };
 		for (int i = 0; i < drawableIds.length; i++) {
 			EventSlider es = new EventSlider(this, "", "", drawableIds[i]);

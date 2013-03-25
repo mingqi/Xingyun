@@ -8,5 +8,27 @@
     <string name="book_order">我要订餐</string>
     <string name="profile">个人中心</string>
     <string name="resturant_info">餐厅详情</string>
-
+    <string name="back">\u0020\u0020返回</string>
+	<string name="next">下一步</string>
+	<string name="confirm_order">确认订单</string>
+	<string name="dishes">菜品</string>
+	<string name="order_dish">点菜</string>
+	<string name="dish_list">菜单</string>
+	<string name="dish_all">全部</string>
+	<string name="dish_cold">凉菜</string>
+	<string name="dish_hot">热菜</string>
+	<string name="dish_other">其他</string>
+	<string name="book_resturant">预订餐厅</string>
+	<string name="map">餐厅地图</string>
+	<string name="modify_password">修改密码</string>
+	<string name="submit">提交</string>
+	<string name="old_password">旧密码: </string>
+	<string name="new_password">新密码: </string>
+	<string name="retype">再输一遍:  </string>
+	<string name="my_order">我的订单</string>
+	
+	
+	<string name="sample_str1">请确认您要点的菜品 一共68元</string>
+	<string name="sample_str2">宫保鸡丁</string>
+	<string name="sample_str3">20元</string>
 </resources>

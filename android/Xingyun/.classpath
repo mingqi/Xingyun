@@ -2,7 +2,11 @@
 <classpath>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
+<<<<<<< HEAD
+	<classpathentry kind="lib" path="/home/liang/Project/Xingyun/android/Xingyun/libs/baidumapapi_v2_0_0.jar"/>
+=======
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
+>>>>>>> 97811ad6bb350f156a25239139e7a4766e4f2fa8
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

@@ -36,7 +36,7 @@ public class ResturantInfoActivity extends Activity {
 		HashMap<String, String> mMap = new HashMap<String, String>();
 		mMap.put("title", "地图位置");
 		HashMap<String, String> mTel = new HashMap<String, String>();
-		mTel.put("title", "联系电话(xuliang): 18611653424");
+		mTel.put("title", "联系电话: 88886666");
 		actionList.add(mOrder);
 		actionList.add(mFood);
 		actionList.add(mMap);
@@ -82,7 +82,7 @@ public class ResturantInfoActivity extends Activity {
 				case 3:
 					// 电话
 					Intent callIntent = new Intent(Intent.ACTION_CALL);
-					callIntent.setData(Uri.parse("tel:18611653424"));
+					callIntent.setData(Uri.parse("tel:88886666"));
 					startActivity(callIntent);
 					break;
 				}

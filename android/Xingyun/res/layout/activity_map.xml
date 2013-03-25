@@ -18,7 +18,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="餐厅地图"
+                android:text="@string/map"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
         </LinearLayout>
 
@@ -34,9 +34,9 @@
                 android:layout_width="70dp"
                 android:layout_height="25dp"
                 android:layout_marginLeft="10dp"
-                android:text="我要订餐" 
+                android:text="@string/back" 
                 android:textColor="#FFFFFF"
-                android:background="@drawable/navigation_button"/>
+                android:background="@drawable/nav_button_back"/>
         </LinearLayout>
     </FrameLayout>
 

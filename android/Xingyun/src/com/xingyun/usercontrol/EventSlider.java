@@ -12,8 +12,8 @@ public class EventSlider extends FrameLayout {
 	// private int drawableId;
 
 	private static RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
-			RelativeLayout.LayoutParams.FILL_PARENT,
-			RelativeLayout.LayoutParams.FILL_PARENT);
+			RelativeLayout.LayoutParams.MATCH_PARENT,
+			RelativeLayout.LayoutParams.MATCH_PARENT);
 
 	public EventSlider(Context context, String title, String description,
 			int drawableId) {
@@ -23,6 +23,7 @@ public class EventSlider extends FrameLayout {
 		// this.drawableId = drawableId;
 		ImageView imageView = new ImageView(context);
 		imageView.setImageResource(drawableId);
+		params.setMargins(0, 0, 0, 0);
 		imageView.setLayoutParams(params);
 
 		this.addView(imageView, params);

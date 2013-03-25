@@ -348,29 +348,33 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int default_title_indicator_top_padding=0x7f04000e;
     }
     public static final class drawable {
-        public static final int fork_knife=0x7f020000;
-        public static final int gift=0x7f020001;
-        public static final int ic_launcher=0x7f020002;
-        public static final int icon_marka=0x7f020003;
-        public static final int man=0x7f020004;
-        public static final int navigation_button=0x7f020005;
-        public static final int pop=0x7f020006;
-        public static final int rounded_corner_border=0x7f020007;
-        public static final int rounded_corner_button=0x7f020008;
-        public static final int rounded_corner_button_gray=0x7f020009;
-        public static final int s1=0x7f02000a;
-        public static final int s2=0x7f02000b;
-        public static final int s3=0x7f02000c;
-        public static final int s4=0x7f02000d;
-        public static final int s5=0x7f02000e;
-        public static final int vpi__tab_indicator=0x7f02000f;
-        public static final int vpi__tab_selected_focused_holo=0x7f020010;
-        public static final int vpi__tab_selected_holo=0x7f020011;
-        public static final int vpi__tab_selected_pressed_holo=0x7f020012;
-        public static final int vpi__tab_unselected_focused_holo=0x7f020013;
-        public static final int vpi__tab_unselected_holo=0x7f020014;
-        public static final int vpi__tab_unselected_pressed_holo=0x7f020015;
-        public static final int xingyun_intro=0x7f020016;
+        public static final int btn_back=0x7f020000;
+        public static final int btn_next=0x7f020001;
+        public static final int fork_knife=0x7f020002;
+        public static final int gift=0x7f020003;
+        public static final int ic_launcher=0x7f020004;
+        public static final int icon_marka=0x7f020005;
+        public static final int man=0x7f020006;
+        public static final int nav_button_back=0x7f020007;
+        public static final int nav_button_next=0x7f020008;
+        public static final int navigation_button=0x7f020009;
+        public static final int pop=0x7f02000a;
+        public static final int rounded_corner_border=0x7f02000b;
+        public static final int rounded_corner_button=0x7f02000c;
+        public static final int rounded_corner_button_gray=0x7f02000d;
+        public static final int s1=0x7f02000e;
+        public static final int s2=0x7f02000f;
+        public static final int s3=0x7f020010;
+        public static final int s4=0x7f020011;
+        public static final int s5=0x7f020012;
+        public static final int vpi__tab_indicator=0x7f020013;
+        public static final int vpi__tab_selected_focused_holo=0x7f020014;
+        public static final int vpi__tab_selected_holo=0x7f020015;
+        public static final int vpi__tab_selected_pressed_holo=0x7f020016;
+        public static final int vpi__tab_unselected_focused_holo=0x7f020017;
+        public static final int vpi__tab_unselected_holo=0x7f020018;
+        public static final int vpi__tab_unselected_pressed_holo=0x7f020019;
+        public static final int xingyun_intro=0x7f02001a;
     }
     public static final class id {
         public static final int action_settings=0x7f070036;
@@ -381,7 +385,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int btn_confirmorder=0x7f070026;
         public static final int btn_login=0x7f07001a;
         public static final int btn_next=0x7f070008;
-        public static final int btn_orderdishe=0x7f07000d;
+        public static final int btn_orderdish=0x7f07000d;
         public static final int btn_orderdishes=0x7f070012;
         public static final int checkBox1=0x7f070027;
         public static final int circlePageIndicator=0x7f070017;
@@ -467,11 +471,32 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     public static final class string {
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
+        public static final int back=0x7f050007;
         public static final int book_order=0x7f050004;
+        public static final int book_resturant=0x7f050011;
+        public static final int confirm_order=0x7f050009;
+        public static final int dish_all=0x7f05000d;
+        public static final int dish_cold=0x7f05000e;
+        public static final int dish_hot=0x7f05000f;
+        public static final int dish_list=0x7f05000c;
+        public static final int dish_other=0x7f050010;
+        public static final int dishes=0x7f05000a;
         public static final int hello_world=0x7f050002;
+        public static final int map=0x7f050012;
+        public static final int modify_password=0x7f050013;
+        public static final int my_order=0x7f050018;
+        public static final int new_password=0x7f050016;
+        public static final int next=0x7f050008;
+        public static final int old_password=0x7f050015;
+        public static final int order_dish=0x7f05000b;
         public static final int profile=0x7f050005;
         public static final int resturant_events=0x7f050003;
         public static final int resturant_info=0x7f050006;
+        public static final int retype=0x7f050017;
+        public static final int sample_str1=0x7f050019;
+        public static final int sample_str2=0x7f05001a;
+        public static final int sample_str3=0x7f05001b;
+        public static final int submit=0x7f050014;
     }
     public static final class style {
         /** 

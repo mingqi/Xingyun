@@ -35,8 +35,8 @@
                 android:layout_width="70dp"
                 android:layout_height="25dp"
                 android:layout_marginLeft="10dp"
-                android:background="@drawable/navigation_button"
-                android:text="确认菜单"
+                android:background="@drawable/nav_button_back"
+                android:text="@string/back"
                 android:textColor="#FFFFFF" />
         </LinearLayout>
 
@@ -52,7 +52,7 @@
                 android:layout_width="70dp"
                 android:layout_height="25dp"
                 android:layout_marginRight="10dp"
-                android:background="@drawable/navigation_button"
+                android:background="@drawable/nav_button_next"
                 android:text="提交订单"
                 android:textColor="#FFFFFF" />
         </LinearLayout>
