@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="span6">
-<form class="form-horizontal" method='POST' enctype='multipart/form-data' action="{% url 'menu/update' form.menuItemId.value %}">
+<form class="form-horizontal" method='POST' enctype='multipart/form-data' action="{% url 'menu/update' form.menu_item_id.value %}">
 	{% csrf_token %}
 	{% for field in form.visible_fields %}
 	<div class="control-group {% if field.errors %} error {% endif%} ">
