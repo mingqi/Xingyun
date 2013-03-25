@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="span6">
+<form class="form-horizontal" method='POST' action="{% url 'order/update' form.order_id.value %}">
+	{% csrf_token %}
+	{% for field in form.visible_fields %}
+	<div class="control-group {% if field.errors %} error {% endif%} ">
+		<label class="control-label">{{field.label}}</label>
+		<div class="controls">
+			{{field}}
+			{% if field.errors %}	
+			<span class="help-inline">{{field.errors}}</span>
+			{%endif%}
+		</div>
+	</div>
+	{% endfor %}
+	
+	{% for field in form.hidden_fields %}
+	{{field}}	
+	{% endfor %}
+	
+	<div class="control-group">
+		<div class="controls">
+			<button type="submit" class="btn btn-primary">修改</button>
+		</div>
+	</div>
+	
+</form>
+</div>
+
+<div class="span5">
+		<table class="table table-striped">
+			<tr>
+				<th>菜品图片</th>
+				<th>菜品名称</th>
+				<th>价格</th>
+				<th>数量</th>
+			</tr>
+			
+			{%for dish in object.dishes.all%}
+			<tr>
+				<td><img src="{{STATIC_URL}}/menu/{{dish.image_uri}}" class="img-roundeds" width="100" heigth="100" /></td>
+				<td>{{dish.title}}</td>
+				<td>{{dish.price}}</td>
+				<td>{{dish.quantity}}</td>
+			</tr>
+			{%endfor%}
+		</table>
+</div>
+{% endblock %}

@@ -20,8 +20,13 @@ urlpatterns = patterns('',
     
     ### order url ###
     url(r'^order/list/?$', OrderList.as_view(), name='order/list'),
-    url(r'^api/order/list/?$', OrderList.as_view(), name='api/order/list'),
-    url(r'^api/order/?$', csrf_exempt(require_POST(PlaceOrderView.as_view())), name='api/placeorder'),
+    url(r'^order/(?P<pk>\w+)/update/?$', OrderUpdate.as_view(), name='order/update'),
+    url(r'^order/(?P<orderId>\w+)/delete/?$', deleteOrder, name='order/delete'),
+    
+    
+    url(r'^api/orders/?$', csrf_exempt(APIOrdersView.as_view()), name='api/orders'),
+    #url(r'^api/orders/?$', csrf_exempt(require_POST(APIOrdersView.as_view())), name='api/placeorder'),
+    url(r'^api/order/(?P<pk>\w+)/?$', csrf_exempt(APIOrderView.as_view()), name='api/order'),
 )
 
 

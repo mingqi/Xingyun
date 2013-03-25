@@ -22,6 +22,52 @@ def model_to_jsondict(model):
             d[field.name] = value
     return d
 
+class ModelAsDictMixin(object):
+    def as_dict(self, **kwargs ):
+        """
+        transform Model to a dict
+        kwargs: 
+            one2many_fields: to override default one2many_fields
+        """
+        d = dict()
+        for field in self._meta.fields:
+            value = getattr(self, field.name)
+            if isinstance(field, models.IntegerField):
+                d[field.name] = int(value)
+            elif isinstance(field, models.DecimalField):
+                d[field.name] = int(value)
+            elif isinstance(field, models.ForeignKey):
+                pass
+            else:
+                d[field.name] = value
+        
+        one2many_fields = None
+        
+        if hasattr(self, 'one2many_fields'):
+            one2many_fields = getattr(self, 'one2many_fields')
+        
+        if 'one2many_fields' in kwargs:
+            one2many_fields = kwargs['one2many_fields']
+        
+        if one2many_fields:
+            for one2many_field in one2many_fields:
+                d[one2many_field] = [x.as_dict() for x in getattr(self, one2many_field).all()]
+        return d
+    
+class ModelSetFieldsByDictMixin(object):
+    
+    def set_fields_by_dict(self, d):
+        for key, value in d.items():
+            if hasattr(self, key):
+                setattr(self, key, value)
+    
+class ModelUpdateFromDictMixin(object):
+    def update_from_dict(self, d):
+        for key, value in d.items():
+            if hasattr(self, key):
+                setattr(self, key, value)
+
+
 class ContentTypeRestrictedFileField(forms.FileField):
     def __init__(self, *args, **kwargs):
         self.content_types = kwargs.pop("content_types")
@@ -96,11 +142,15 @@ class MenuItemUpdateForm(forms.ModelForm):
         fields = ('image_file', 'title', 'price', 'category', 'sorted_seq', 'menu_item_id')
         
 ############# Order Models #################
-class Order(models.Model):
+class Order(models.Model, ModelAsDictMixin, ModelUpdateFromDictMixin, ModelSetFieldsByDictMixin):
     ORDER_STATUS_CHOICES = (
         (1, '未处理'),
         (2, '预定成功'),
         (3, '取消'),
+    )
+    BOX_REQUIRED_CHOICES = (
+        (True, '是'),
+        (False, '否'),
     )
     
     order_id = models.IntegerField(primary_key = True)
@@ -108,7 +158,7 @@ class Order(models.Model):
     contact_name = models.CharField('顾客姓名',max_length=50)
     contact_phone = models.CharField('联系电话', max_length=50)
     people_number = models.IntegerField('用餐人数')
-    box_required = models.BooleanField('是否包厢')
+    box_required = models.BooleanField('是否包厢', choices=BOX_REQUIRED_CHOICES)
     order_price = models.DecimalField('订单总价', max_digits=5, decimal_places=2)
     dishes_count = models.IntegerField('菜品数量', db_column='dish_count')
     reserved_time = models.DateTimeField('就餐时间')
@@ -116,6 +166,7 @@ class Order(models.Model):
     order_status = models.IntegerField('订单状态', choices=ORDER_STATUS_CHOICES)
     other_requirements = models.TextField('其他要求')
     
+    one2many_fields = ('dishes',)
     class Meta:
         db_table = 'customer_orders'
         
@@ -133,9 +184,24 @@ class Order(models.Model):
         if not order.order_status:
             order.order_status = 1
         return order
+    
         
-   
-class OrderDish(models.Model): 
+    
+class OrderForm(forms.ModelForm): 
+    order_id = forms.IntegerField(widget=forms.HiddenInput)
+    customer_id = forms.IntegerField(widget=forms.HiddenInput)
+    
+    reserved_time =       forms.DateTimeField(label='就餐时间', input_formats=('%Y-%m-%d %H:%M',), widget=forms.DateTimeInput(attrs={'readonly': 'readonly'}, format='%Y-%m-%d %H:%M'))
+    order_creation_time = forms.DateTimeField(label='下单时间', input_formats=('%Y-%m-%d %H:%M',), widget=forms.DateTimeInput(attrs={'readonly': 'readonly'}, format='%Y-%m-%d %H:%M'))
+    
+    class Meta:
+        model = Order
+        widgets = {
+            'order_price' : forms.TextInput(attrs={'readonly': 'readonly'}),
+            'dishes_count' : forms.TextInput(attrs={'readonly': 'readonly'}),
+        }
+        
+class OrderDish(models.Model, ModelAsDictMixin): 
     order = models.ForeignKey(Order, related_name='dishes')
     order_dish_id = models.IntegerField(primary_key = True)
     title = models.CharField('菜品名', max_length=50)
