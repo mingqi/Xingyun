@@ -16,7 +16,6 @@ urlpatterns = patterns('',
     url(r'^menu/add/?$', MenuItemCreate.as_view(), name='menu/add'),
     url(r'^menu/(?P<pk>\w+)/update/?$', MenuItemUpdate.as_view(), name='menu/update'),
     url(r'^menu/(?P<menuItemId>\w+)/delete/?$', deleteMenuItem, name='menu/delete'),
-    url(r'^api/menu/list/?$', MenuItemList.as_view(), name='api/menu/list'),
     
     ### order url ###
     url(r'^order/list/?$', OrderList.as_view(), name='order/list'),
@@ -24,8 +23,9 @@ urlpatterns = patterns('',
     url(r'^order/(?P<orderId>\w+)/delete/?$', deleteOrder, name='order/delete'),
     
     
+    # api url    
+    url(r'^api/menus/?$', APIMenusView.as_view(), name='api/menus'),
     url(r'^api/orders/?$', csrf_exempt(APIOrdersView.as_view()), name='api/orders'),
-    #url(r'^api/orders/?$', csrf_exempt(require_POST(APIOrdersView.as_view())), name='api/placeorder'),
     url(r'^api/order/(?P<pk>\w+)/?$', csrf_exempt(APIOrderView.as_view()), name='api/order'),
 )
 

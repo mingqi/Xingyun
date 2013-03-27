@@ -1,5 +1,7 @@
 {% extends "layout.html" %}
 
+{% block nav_menu_class %}active{%endblock%}
+
 {% block content %}
 <script type="text/javascript">
 $(document).ready(function() {
@@ -35,6 +37,15 @@ $(document).ready(function() {
 		<a href="{% url 'menu/add' %}"><button class="btn btn-primary" >增加菜品</button></a>
 		</br>
 		</br>
+
+		<div class="btn-group">
+			<button class="btn {%if not selected_category %}btn-primary{%endif%}" onclick="window.location.href='{% url 'menu/list' %}';">所有菜品</button>
+			{%for category_id, category_name in menu_item_category_choices %}
+  			<button class="btn {%if category_id == selected_category %}btn-primary{%endif%}" onclick="window.location.href='{% url 'menu/list' %}?category={{category_id}}';" >{{category_name}}</button>
+  			{% endfor %}
+		</div>
+		</br>	
+		</br>	
 		<table class="table table-striped">
 			<tr>
 				<th>图片</th>
@@ -52,8 +63,20 @@ $(document).ready(function() {
 				<td>{{item.get_category_display}}</td>
 				<td>{{item.sorted_seq}}</td>
 				<td>
+					<!-- 
 					<a href="{% url 'menu/update' item.menu_item_id %}"><button class="btn btn-success">修改</button></a></br></br>
 					<a href="{% url 'menu/delete' item.menu_item_id %}" data-confirm="你确定要删除吗?"><button class="btn btn-danger" onclick="javascript:$('.alert').alert()" >删除</button></a></br>
+					-->
+					<div class="btn-group">
+					  <a class="btn dropdown-toggle btn-primary" data-toggle="dropdown" href="#">
+					   	操作 
+					    <span class="caret"></span>
+					  </a>
+					  <ul class="dropdown-menu">
+					  	<li><a href="{%url 'menu/update' item.menu_item_id %}">查看/修改</a></li>
+						<li><a href="{%url 'menu/delete' item.menu_item_id %}" data-confirm="你确定要删除吗?" onclick="javascript:$('.alert').alert()">删除</a></li>
+					  </ul>
+					</div>				
 				</td>
 			</tr>
 			{% endfor %}

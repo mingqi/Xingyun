@@ -109,7 +109,7 @@ def next_sequence(sequenceName):
     return value
 
 ############# Menu Models #################
-class MenuItem(models.Model):
+class MenuItem(models.Model, ModelAsDictMixin):
     MENU_ITEM_CATEGORY_CHOICES = (
         (1, '凉菜'),
         (2, '热菜'),
@@ -170,23 +170,6 @@ class Order(models.Model, ModelAsDictMixin, ModelUpdateFromDictMixin, ModelSetFi
     class Meta:
         db_table = 'customer_orders'
         
-    @staticmethod
-    def load_from_dict(d):
-        order = Order()
-        for key, value in d.items():
-            if hasattr(order, key):
-                setattr(order, key, value)
-                
-        if not order.order_creation_time:
-            order.order_creation_time = datetime.now()
-            order.order_creation_time = order.order_creation_time.replace(microsecond=0)
-            
-        if not order.order_status:
-            order.order_status = 1
-        return order
-    
-        
-    
 class OrderForm(forms.ModelForm): 
     order_id = forms.IntegerField(widget=forms.HiddenInput)
     customer_id = forms.IntegerField(widget=forms.HiddenInput)
@@ -212,10 +195,7 @@ class OrderDish(models.Model, ModelAsDictMixin):
     class Meta:
         db_table = 'customer_order_dishes'
         
-    @staticmethod
-    def load_from_dict(d):
-        dish = OrderDish()
-        for key, value in d.items():
-            if hasattr(dish, key):
-                setattr(dish, key, value)
-        return dish
+class Activity(models.Model):
+    image_uri = models.CharField(max_length = 100)
+    sorted_seq = models.IntegerField()
+    

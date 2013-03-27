@@ -34,8 +34,6 @@ class CustomizedJsonEncoder(json.JSONEncoder):
         else:
             return json.JSONEncoder.default(self, obj)
 
-def convert_context_to_json(context, attribute_name = None):
-    return json.dumps([ model_to_jsondict(x) for x in context[attribute_name]],ensure_ascii=False, cls=CustomizedJsonEncoder)
 
 class MenuItemList(ListView):
     template_name = 'menu/list.html'
@@ -47,13 +45,16 @@ class MenuItemList(ListView):
             return MenuItem.objects.filter(category = self.request.REQUEST['category']).order_by('sorted_seq')
         else:
             return MenuItem.objects.all().order_by('sorted_seq')
+        
+    def get_context_data(self, **kwargs):
+        context = super(MenuItemList, self).get_context_data(**kwargs)
+        if 'category'  in self.request.REQUEST:
+            context['selected_category'] = int(self.request.REQUEST['category'])
+            
+        context['menu_item_category_choices'] = MenuItem.MENU_ITEM_CATEGORY_CHOICES
+            
+        return context
     
-    def render_to_response(self, context, **response_kwargs):
-        if self.request.META['CONTENT_TYPE'] == 'application/json':
-            content = convert_context_to_json(context, 'object_list')
-            return HttpResponse(content, content_type = "application/json; charset=utf-8", status = 200)
-        else:
-            return super(MenuItemList, self).render_to_response(context, **response_kwargs)
         
 class MenuItemCreate(CreateView):
     template_name = "menu/add.html"
@@ -151,6 +152,19 @@ def deleteOrder(request, orderId):
 
 
 ### API Views ###
+class APIMenusView(View):
+     
+    def get(self, request):
+        if 'category'  in self.request.REQUEST:
+            queryset = MenuItem.objects.filter(category = self.request.REQUEST['category']).order_by('sorted_seq')
+        else:
+            queryset = MenuItem.objects.order_by('sorted_seq')
+        
+        menu_items_list = queryset.all()
+        content = json.dumps([ x.as_dict() for x in menu_items_list], ensure_ascii = False, cls=CustomizedJsonEncoder)
+        return HttpResponse(content, content_type = "application/json; charset=utf-8", status = 200)
+            
+
 class APIOrderView(DetailView):
     '''
     api/order/<pk>
@@ -221,7 +235,6 @@ class APIOrdersView(View):
                                        type = 'client',
                                        status = 400)
             
-        #order = Order.load_from_dict(order_from_json)
         order = Order()
         order.set_fields_by_dict(order_as_dict)
         order.order_status = 1
