@@ -21,6 +21,8 @@ import json
 import logging
 import uuid
 from datetime import date, datetime, timedelta
+from cStringIO import StringIO
+from PIL import Image
 
 logger = logging.getLogger(__name__)
 
@@ -64,7 +66,15 @@ class MenuItemList(ListView):
         context['menu_item_category_choices'] = MenuItem.MENU_ITEM_CATEGORY_CHOICES
             
         return context
-    
+   
+
+def resize_image(original_image, sizes):
+    im = Image.open(original_image)
+    file_name, file_suffix = original_image.split('.')
+    for size in sizes:
+        resized_im = im.resize(size, Image.ANTIALIAS)
+        resized_im.save("%s_%dx%d.%s" % (file_name, size[0], size[1], file_suffix))
+        
         
 class MenuItemCreate(CreateView):
     template_name = "menu_add.html"
@@ -76,10 +86,13 @@ class MenuItemCreate(CreateView):
         menu_item_id = next_sequence('menu_item_id')
         image_file =  self.request.FILES['image_file']
         dest_file_name = str(menu_item_id) + '.' + image_file.name.split('.')[-1]
+        
+        imageIO = StringIO()
         with open(join(settings.UPLOAD_IMAGE_SAVE_ROOT,dest_file_name), 'wb+') as destination:
             for chunk in image_file.chunks():
                 destination.write(chunk)
         logger.info("upload file was save as " + dest_file_name)
+        resize_image(join(settings.UPLOAD_IMAGE_SAVE_ROOT,dest_file_name), ((400,400), (100, 100)))
         
         form.instance.menu_item_id=menu_item_id
         form.instance.image_uri = dest_file_name

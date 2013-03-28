@@ -127,13 +127,13 @@ class MenuItem(models.Model, ModelAsDictMixin):
         
     
 class MenuItemForm(forms.ModelForm): 
-    image_file = ContentTypeRestrictedFileField(label='图片', content_types=['image/gif', 'image/jpeg', 'image/pjpeg', 'image/png'], max_upload_size = 1024 * 500)
+    image_file = ContentTypeRestrictedFileField(label='图片(400x400)', content_types=['image/gif', 'image/jpeg', 'image/pjpeg', 'image/png'], max_upload_size = 1024 * 500)
     class Meta:
         model = MenuItem
         fields = ('image_file', 'title', 'price', 'category', 'sorted_seq')
         
 class MenuItemUpdateForm(forms.ModelForm):
-    image_file = ContentTypeRestrictedFileField(label='图片', 
+    image_file = ContentTypeRestrictedFileField(label='图片(400x400)', 
                                                content_types=['image/gif', 'image/jpeg', 'image/pjpeg', 'image/png'], 
                                                max_upload_size = 1024 * 500, required=False)
     menu_item_id = forms.CharField(widget=forms.HiddenInput)
