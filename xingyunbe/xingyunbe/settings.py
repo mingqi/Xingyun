@@ -169,4 +169,4 @@ LOGGING = {
 }
 
 ## root folder of upload image save as
-UPLOAD_IMAGE_SAVE_ROOT = join('/','Users','mingqi','python','xingyunbe', 'xingyun', 'static', 'menu')
+UPLOAD_IMAGE_SAVE_ROOT = '/Users/mingqi/python/xingyunbe/xingyun/static/menu'

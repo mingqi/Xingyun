@@ -196,6 +196,23 @@ class OrderDish(models.Model, ModelAsDictMixin):
         db_table = 'customer_order_dishes'
         
 class Activity(models.Model):
+    activity_id = models.IntegerField(primary_key = True)
     image_uri = models.CharField(max_length = 100)
-    sorted_seq = models.IntegerField()
+    sorted_seq = models.IntegerField('显示序号')
     
+    class Meta:
+        db_table = 'activities'
+        
+class ActivityForm(forms.ModelForm): 
+    image_file = ContentTypeRestrictedFileField(label='图片', content_types=['image/gif', 'image/jpeg', 'image/pjpeg', 'image/png'], max_upload_size = 1024 * 500)
+    class Meta:
+        model = Activity
+        fields = ('image_file', 'sorted_seq')
+        
+class ActivityUpdateForm(forms.ModelForm): 
+    image_file = ContentTypeRestrictedFileField(label='图片', content_types=['image/gif', 'image/jpeg', 'image/pjpeg', 'image/png'], max_upload_size = 1024 * 500, required=False)
+    activity_id = forms.CharField(widget=forms.HiddenInput)
+    class Meta:
+        model = Activity
+        fields = ('image_file', 'sorted_seq', 'activity_id')
+        

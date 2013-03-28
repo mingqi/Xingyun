@@ -35,8 +35,18 @@ class CustomizedJsonEncoder(json.JSONEncoder):
             return json.JSONEncoder.default(self, obj)
 
 
+class ObjectDeleteView(View):
+    model = None
+    succesful_view = None
+    
+    def get(self, request, pk):
+        object = self.model.objects.get(pk=pk)
+        if object:
+            object.delete()
+        return HttpResponseRedirect(reverse(self.succesful_view))    
+
 class MenuItemList(ListView):
-    template_name = 'menu/list.html'
+    template_name = 'menu_list.html'
     model = MenuItem
     queryset = MenuItem.objects.all().order_by('sorted_seq')
     
@@ -57,7 +67,7 @@ class MenuItemList(ListView):
     
         
 class MenuItemCreate(CreateView):
-    template_name = "menu/add.html"
+    template_name = "menu_add.html"
     form_class = MenuItemForm
     success_url = reverse_lazy('menu/list')
     
@@ -79,7 +89,7 @@ class MenuItemCreate(CreateView):
 class MenuItemUpdate(UpdateView):
     model = MenuItem
     form_class = MenuItemUpdateForm
-    template_name = 'menu/update.html'
+    template_name = 'menu_update.html'
     success_url = reverse_lazy('menu/list')
     
     def form_valid(self, form):
@@ -96,11 +106,6 @@ class MenuItemUpdate(UpdateView):
             form.instance.image_uri = dest_file_name
         return super(MenuItemUpdate, self).form_valid(form)
    
-def deleteMenuItem(request, menuItemId):
-    item = MenuItem.objects.get(pk=menuItemId)
-    if item:
-        item.delete()
-    return HttpResponseRedirect(reverse('menu/list'))
 
 
 def rest_response_error(errorCode, message, type, status):
@@ -111,7 +116,7 @@ def rest_response_error(errorCode, message, type, status):
     
     
 class OrderList(ListView):
-    template_name = 'order/list.html'
+    template_name = 'order_list.html'
     
     def get_queryset(self):
         queryset = Order.objects
@@ -135,7 +140,7 @@ class OrderList(ListView):
 class OrderUpdate(UpdateView):
     model = Order
     form_class = OrderForm
-    template_name = 'order/update.html'
+    template_name = 'order_update.html'
     success_url = reverse_lazy('order/list')
     
     
@@ -144,13 +149,53 @@ class OrderUpdate(UpdateView):
         print form.data
         return super(OrderUpdate, self).form_invalid(form)
     
-def deleteOrder(request, orderId):
-    order = Order.objects.get(pk=orderId)
-    if order:
-        order.delete()
-    return HttpResponseRedirect(reverse('order/list'))
 
+class ActivityList(ListView):
+    template_name = 'activity_list.html'
+    model = Activity
+    queryset = Activity.objects.all().order_by('sorted_seq')    
 
+class ActivityCreate(CreateView):
+    template_name = "activity_add.html"
+    form_class = ActivityForm
+    success_url = reverse_lazy('activity/list')
+    
+    
+    def form_valid(self, form):
+        activity_id = next_sequence('activity_id')
+        image_file =  self.request.FILES['image_file']
+        dest_file_name = 'activity_' + str(activity_id) + '.' + image_file.name.split('.')[-1]
+        with open(join(settings.UPLOAD_IMAGE_SAVE_ROOT,dest_file_name), 'wb+') as destination:
+            for chunk in image_file.chunks():
+                destination.write(chunk)
+        logger.info("upload file was save as " + dest_file_name)
+        
+        form.instance.menu_item_id=activity_id
+        form.instance.image_uri = dest_file_name
+        return super(ActivityCreate, self).form_valid(form)
+    
+    
+class ActivityUpdate(UpdateView):
+    model = Activity
+    form_class = ActivityUpdateForm
+    template_name = 'activity_update.html'
+    success_url = reverse_lazy('activity/list')
+    
+    def form_valid(self, form):
+        activity_id = form.instance.activity_id
+        if self.request.FILES.has_key('image_file'):
+            image_file = self.request.FILES['image_file']
+            dest_file_name = 'activity_' + str(activity_id) + '.' + image_file.name.split('.')[-1]
+            with open(join(settings.UPLOAD_IMAGE_SAVE_ROOT,dest_file_name), 'wb+') as destination:
+                for chunk in image_file.chunks():
+                    destination.write(chunk)
+            logger.info("upload file was save as " + dest_file_name)
+            
+            form.instance.menu_item_id = activity_id
+            form.instance.image_uri = dest_file_name
+        return super(ActivityUpdate, self).form_valid(form)
+
+    
 ### API Views ###
 class APIMenusView(View):
      
@@ -259,3 +304,4 @@ class APIOrdersView(View):
             
         order.save()
         return HttpResponse(status = 201)
+    
