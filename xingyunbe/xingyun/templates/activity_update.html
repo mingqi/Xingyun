@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block nav_activity_class %}active{%endblock%}
+{% block content %}
+<div class="span6">
+<form class="form-horizontal" method='POST' enctype='multipart/form-data' action="{% url 'activity/update' form.activity_id.value %}">
+	{% csrf_token %}
+	{% for field in form.visible_fields %}
+	<div class="control-group {% if field.errors %} error {% endif%} ">
+		<label class="control-label">{{field.label}}</label>
+		<div class="controls">
+			{{field}}
+			{% if field.errors %}	
+			<span class="help-inline">{{field.errors}}</span>
+			{%endif%}
+		</div>
+	</div>
+	{% endfor %}
+	
+	{% for field in form.hidden_fields %}
+	{{field}}	
+	{% endfor %}
+	
+	<div class="control-group">
+		<div class="controls">
+			<button type="submit" class="btn btn-primary">修改</button>
+		</div>
+	</div>
+	
+</form>
+</div>
+{% endblock %}

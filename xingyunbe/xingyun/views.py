@@ -304,4 +304,81 @@ class APIOrdersView(View):
             
         order.save()
         return HttpResponse(status = 201)
+   
+ 
+class APIActivitiesView(View):
+    '''
+    the view for url api/activities
+    '''
     
+    def get(self, request):
+        """
+        GET api/activities: get the list of activities
+        """
+        queryset = Activity.objects.all().order_by('sorted_seq')
+        content = json.dumps([ x.as_dict(one2many_fields=None) for x in queryset], ensure_ascii = False, cls=CustomizedJsonEncoder)
+        return HttpResponse(content, content_type = "application/json; charset=utf-8", status = 200)
+    
+    
+class APICustomerSigninView(View):
+    
+    def get(self, request):
+        """
+        api/customer/signin
+        """
+        if 'name'  not in request.REQUEST:
+            return rest_response_error(errorCode = 'AuthenticationException', 
+                                           message = 'user parameter is required', 
+                                           type = 'client',
+                                           status = 400)
+        if 'password'  not in request.REQUEST:
+            return rest_response_error(errorCode = 'AuthenticationException', 
+                                           message = 'password parameter is required', 
+                                           type = 'client',
+                                           status = 400)
+            
+        name = request.REQUEST['name']
+        password = request.REQUEST['password']
+       
+        try: 
+            customer =  Customer.objects.filter(name = name, password = password).get()
+        except Customer.DoesNotExist:
+            return rest_response_error(errorCode = 'AuthenticationException', 
+                                       message = 'incorrect user or password', 
+                                       type = 'client',
+                                       status = 404)
+        
+        return HttpResponse(status=200, 
+                            content = json.dumps({'customer_id' : customer.customer_id, 'name' : customer.name}), 
+                            content_type = "application/json; charset=utf-8")
+    
+class APICustomerSignupView(View):
+    
+    def put(self, request):
+        """
+        api/customer/signup
+        """
+        try:
+            signup_dict = json.loads(request.body )
+            
+        except Exception as e:
+            logger.exception("failed parse json")
+            return rest_response_error(errorCode = 'SerializationException', 
+                                       message = 'illegal json content: %s' % e, 
+                                       type = 'client',
+                                       status = 400)
+        
+        existing_customers = Customer.objects.filter(name = signup_dict['name']) 
+        if existing_customers.count() > 0:
+            return rest_response_error(errorCode = 'ExistingNameException', 
+                                       message = 'name %s is existing already' % signup_dict['name'], 
+                                       type = 'client',
+                                       status = 400)
+        customer = Customer()
+        customer.set_fields_by_dict(signup_dict)
+        customer.customer_id = next_sequence('customer_id')
+        customer.save()
+        
+        return HttpResponse(status=200, 
+                            content = json.dumps({'customer_id' : customer.customer_id, 'name' : customer.name}), 
+                            content_type = "application/json; charset=utf-8")

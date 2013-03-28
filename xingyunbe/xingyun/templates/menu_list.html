@@ -1,0 +1,86 @@
+{% extends "layout.html" %}
+
+{% block nav_menu_class %}active{%endblock%}
+
+{% block content %}
+<script type="text/javascript">
+$(document).ready(function() {
+    $('a[data-confirm]').click(function(ev) {
+        var href = $(this).attr('href');
+
+        if (!$('#dataConfirmModal').length) {
+            $('body').append('<div id="dataConfirmModal" class="modal" role="dialog" aria-labelledby="dataConfirmLabel" aria-hidden="true"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h3 id="dataConfirmLabel">确认删除</h3></div><div class="modal-body"></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button><a class="btn btn-primary" id="dataConfirmOK">OK</a></div></div>');
+        } 
+        $('#dataConfirmModal').find('.modal-body').text($(this).attr('data-confirm'));
+        $('#dataConfirmOK').attr('href', href);
+        $('#dataConfirmModal').modal({show:true});
+        return false;
+    });
+});
+</script>
+
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Modal header</h3>
+  </div>
+  <div class="modal-body">
+    <p>One fine body…</p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button class="btn btn-primary" onclick="javascript:window.location =''">Save changes</button>
+  </div>
+</div>
+
+	<div class="container">
+		<a href="{% url 'menu/add' %}"><button class="btn btn-primary" >增加菜品</button></a>
+		</br>
+		</br>
+
+		<div class="btn-group">
+			<button class="btn {%if not selected_category %}btn-primary{%endif%}" onclick="window.location.href='{% url 'menu/list' %}';">所有菜品</button>
+			{%for category_id, category_name in menu_item_category_choices %}
+  			<button class="btn {%if category_id == selected_category %}btn-primary{%endif%}" onclick="window.location.href='{% url 'menu/list' %}?category={{category_id}}';" >{{category_name}}</button>
+  			{% endfor %}
+		</div>
+		</br>	
+		</br>	
+		<table class="table table-striped">
+			<tr>
+				<th>图片</th>
+				<th>标题</th>
+				<th>价格</th>
+				<th>类别</th>
+				<th>序号</th>
+				<th>操作</th>
+			</tr>
+			{% for item in object_list%}
+			<tr>
+				<td><img src="{{STATIC_URL}}/menu/{{item.image_uri}}" class="img-roundeds" width="100" heigth="100" /></td>
+				<td>{{item.title}}</td>
+				<td>{{item.price}}</td>
+				<td>{{item.get_category_display}}</td>
+				<td>{{item.sorted_seq}}</td>
+				<td>
+					<!-- 
+					<a href="{% url 'menu/update' item.menu_item_id %}"><button class="btn btn-success">修改</button></a></br></br>
+					<a href="{% url 'menu/delete' item.menu_item_id %}" data-confirm="你确定要删除吗?"><button class="btn btn-danger" onclick="javascript:$('.alert').alert()" >删除</button></a></br>
+					-->
+					<div class="btn-group">
+					  <a class="btn dropdown-toggle btn-primary" data-toggle="dropdown" href="#">
+					   	操作 
+					    <span class="caret"></span>
+					  </a>
+					  <ul class="dropdown-menu">
+					  	<li><a href="{%url 'menu/update' item.menu_item_id %}">查看/修改</a></li>
+						<li><a href="{%url 'menu/delete' item.menu_item_id %}" data-confirm="你确定要删除吗?" onclick="javascript:$('.alert').alert()">删除</a></li>
+					  </ul>
+					</div>				
+				</td>
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
+
+{% endblock %}

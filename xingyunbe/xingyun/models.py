@@ -195,7 +195,7 @@ class OrderDish(models.Model, ModelAsDictMixin):
     class Meta:
         db_table = 'customer_order_dishes'
         
-class Activity(models.Model):
+class Activity(models.Model, ModelAsDictMixin):
     activity_id = models.IntegerField(primary_key = True)
     image_uri = models.CharField(max_length = 100)
     sorted_seq = models.IntegerField('显示序号')
@@ -215,4 +215,11 @@ class ActivityUpdateForm(forms.ModelForm):
     class Meta:
         model = Activity
         fields = ('image_file', 'sorted_seq', 'activity_id')
-        
+       
+class Customer(models.Model, ModelSetFieldsByDictMixin): 
+    customer_id = models.IntegerField(primary_key = True)
+    name = models.CharField(max_length = 20, unique = True)
+    password = models.CharField(max_length = 20)
+    
+    class Meta:
+        db_table = 'customers'

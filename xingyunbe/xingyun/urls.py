@@ -12,6 +12,8 @@ from django.views.decorators.csrf import csrf_exempt
 
 
 urlpatterns = patterns('',
+    url(r'^$', ActivityList.as_view()),
+    
     ### menu url ###
     url(r'^menu/list/?$', MenuItemList.as_view(), name='menu/list'),
     url(r'^menu/add/?$', MenuItemCreate.as_view(), name='menu/add'),
@@ -29,12 +31,13 @@ urlpatterns = patterns('',
     url(r'^activity/(?P<pk>\w+)/update/?$', ActivityUpdate.as_view(), name='activity/update'),
     url(r'^activity/(?P<pk>\w+)/delete/?$', ObjectDeleteView.as_view(model=Activity, succesful_view='activity/list'), name='activity/delete'),
     
-    
-    
     # api url    
     url(r'^api/menus/?$', APIMenusView.as_view(), name='api/menus'),
     url(r'^api/orders/?$', csrf_exempt(APIOrdersView.as_view()), name='api/orders'),
     url(r'^api/order/(?P<pk>\w+)/?$', csrf_exempt(APIOrderView.as_view()), name='api/order'),
+    url(r'^api/activities/?$', APIActivitiesView.as_view(), name='api/activities'),
+    url(r'^api/customer/signin?$', APICustomerSigninView.as_view()),
+    url(r'^api/customer/signup?$', csrf_exempt(APICustomerSignupView.as_view())),
 )
 
 
