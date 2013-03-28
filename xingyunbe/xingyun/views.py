@@ -7,6 +7,9 @@ Created on Mar 17, 2013
 '''
 
 from .models import *
+from PIL import Image
+from cStringIO import StringIO
+from datetime import date, datetime, timedelta
 from django import forms
 from django.conf import settings
 from django.core import serializers
@@ -14,15 +17,12 @@ from django.core.urlresolvers import reverse, reverse_lazy
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic import ListView, View
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from os.path import join
 import json
 import logging
 import uuid
-from datetime import date, datetime, timedelta
-from cStringIO import StringIO
-from PIL import Image
 
 logger = logging.getLogger(__name__)
 
@@ -114,6 +114,7 @@ class MenuItemUpdate(UpdateView):
                 for chunk in image_file.chunks():
                     destination.write(chunk)
             logger.info("upload file was save as " + dest_file_name)
+            resize_image(join(settings.UPLOAD_IMAGE_SAVE_ROOT,dest_file_name), ((400,400), (100, 100)))
             
             form.instance.menu_item_id = menu_item_id
             form.instance.image_uri = dest_file_name
@@ -182,6 +183,7 @@ class ActivityCreate(CreateView):
             for chunk in image_file.chunks():
                 destination.write(chunk)
         logger.info("upload file was save as " + dest_file_name)
+        resize_image(join(settings.UPLOAD_IMAGE_SAVE_ROOT,dest_file_name), ((400, 500),))
         
         form.instance.menu_item_id=activity_id
         form.instance.image_uri = dest_file_name
@@ -203,6 +205,7 @@ class ActivityUpdate(UpdateView):
                 for chunk in image_file.chunks():
                     destination.write(chunk)
             logger.info("upload file was save as " + dest_file_name)
+            resize_image(join(settings.UPLOAD_IMAGE_SAVE_ROOT,dest_file_name), ((400, 500),))
             
             form.instance.menu_item_id = activity_id
             form.instance.image_uri = dest_file_name
