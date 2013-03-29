@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+
+{% block nav_customer_class %}active{%endblock%}
+
+{% block content %}
+<script type="text/javascript">
+$(document).ready(function() {
+    $('a[data-confirm]').click(function(ev) {
+        var href = $(this).attr('href');
+
+        if (!$('#dataConfirmModal').length) {
+            $('body').append('<div id="dataConfirmModal" class="modal" role="dialog" aria-labelledby="dataConfirmLabel" aria-hidden="true"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h3 id="dataConfirmLabel">确认删除</h3></div><div class="modal-body"></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button><a class="btn btn-primary" id="dataConfirmOK">OK</a></div></div>');
+        } 
+        $('#dataConfirmModal').find('.modal-body').text($(this).attr('data-confirm'));
+        $('#dataConfirmOK').attr('href', href);
+        $('#dataConfirmModal').modal({show:true});
+        return false;
+    });
+});
+</script>
+
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Modal header</h3>
+  </div>
+  <div class="modal-body">
+    <p>One fine body…</p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button class="btn btn-primary" onclick="javascript:window.location =''">Save changes</button>
+  </div>
+</div>
+
+	<div class="container span8">
+		<form class="navbar-search pull-left" method = "put">
+  			<input type="text" class="search-query" placeholder="输入顾客登录名，手机号码或者姓名" name="keyword"/> 
+			<button type="submit" class="btn ">搜索</button>
+		</form>
+		</br>
+		</br>
+
+		<table class="table table-striped">
+			<tr>
+				<th>用户名</th>
+				<th>联系人</th>
+				<th>联系电话</th>
+				<th>操作</th>
+			</tr>
+			{% for customer in object_list%}
+			<tr>
+				<td>{{customer.name}}</td>
+				<td>{{customer.contact_name}}</td>
+				<td>{{customer.contact_phone}}</td>
+				<td>
+					<div class="btn-group">
+					  <a class="btn dropdown-toggle btn-primary" data-toggle="dropdown" href="#">
+					   	操作 
+					    <span class="caret"></span>
+					  </a>
+					  <ul class="dropdown-menu">
+					  	<li><a href="{%url 'customer/resetpassword' customer.customer_id  %}">重置密码</a></li>
+					  </ul>
+					</div>				
+				</td>
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
+
+{% endblock %}

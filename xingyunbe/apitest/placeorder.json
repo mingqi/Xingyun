@@ -1,5 +1,5 @@
 {
-    "customer_id" : 123,
+    "customer_id" : 2,
     "contact_name" : "邵明岐",
     "contact_phone" : "13811021667",
     "people_number" : 2,
@@ -12,7 +12,7 @@
         {   "menu_item_id": 1,
             "quantity" : 1
         },
-        {   "menu_item_id": 3,
+        {   "menu_item_id": 5,
             "quantity" : 3
         }
     ]

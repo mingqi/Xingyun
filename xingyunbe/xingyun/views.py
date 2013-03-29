@@ -15,14 +15,16 @@ from django.conf import settings
 from django.core import serializers
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.http import HttpResponse, HttpResponseRedirect
+from django.template.response import TemplateResponse
 from django.shortcuts import render
 from django.views.generic import ListView, View
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from os.path import join
-import json
-import logging
-import uuid
+import json, logging
+from django.db.models import Q
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 
 logger = logging.getLogger(__name__)
 
@@ -211,6 +213,70 @@ class ActivityUpdate(UpdateView):
             form.instance.image_uri = dest_file_name
         return super(ActivityUpdate, self).form_valid(form)
 
+class CustomerList(ListView):
+    template_name = 'customer_list.html'
+    model = Customer
+    #queryset = Activity.objects.all().order_by('sorted_seq')    
+    
+    def get_queryset(self):
+        if 'keyword' not in self.request.REQUEST:
+            return None
+        
+        keyword = self.request.REQUEST['keyword']
+        return Customer.objects.filter(Q(name = keyword) | Q(contact_name__contains = keyword) | Q(contact_phone__contains = keyword))
+    
+class CustomerPasswordReset(UpdateView):
+    model = Customer
+    form_class = CustomerResetPasswordForm
+    template_name = 'customer_reset_password.html'
+    success_url = reverse_lazy('customer/list')
+    
+   
+class LoginView(FormView): 
+    
+    template_name = 'login.html'
+    form_class = LoginForm
+    success_url = reverse_lazy('activity/list')
+      
+    def form_valid(self, form):
+        # This method is called when valid form data has been POSTed.
+        # It should return an HttpResponse.
+        self.request.session.set_expiry(3600 * 12)
+        user = authenticate(username=form.cleaned_data['user'], password=form.cleaned_data['password'])
+        if user is not None and user.is_active:
+            login(self.request, user)
+            print "expire age is %d " % self.request.session.get_expiry_age()
+            return super(LoginView, self).form_valid(form) 
+        else:
+            return HttpResponseRedirect(reverse('login'))
+        
+    
+    def form_invalid(self, form):
+        # This method is called when valid form data has been POSTed.
+        # It should return an HttpResponse.
+        print form.errors
+        return super(LoginView, self).form_invalid(form)  
+    
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('login'))
+
+
+class ChangePasswordView(FormView):
+    template_name = 'change_password.html'
+    form_class = ChangePasswordForm
+    success_url = reverse_lazy('change_password_succesful')
+    
+    def form_valid(self, form):
+        password = form.cleaned_data['password']
+        u = User.objects.get(username__exact=self.request.user.username)
+        u.set_password(password)
+        u.save()
+        return super(ChangePasswordView, self).form_valid( form)
+    
+def change_password_succesful(request):
+    return TemplateResponse(request, 'change_password_succesful.html', {})
+        
     
 ### API Views ###
 class APIMenusView(View):
@@ -247,6 +313,7 @@ class APIOrderView(DetailView):
             order = Order.objects.get(pk = pk) 
             order.update_from_dict(order_update_dict)
             order.save()
+            
             return HttpResponse(status=204)
         else:
             return super(OrderUpdate, self).post(self, request, **kwargs)
@@ -295,7 +362,14 @@ class APIOrdersView(View):
                                        message = 'illegal json content: %s' % e, 
                                        type = 'client',
                                        status = 400)
-            
+         
+        try:
+            customer = Customer.objects.get(pk = order_as_dict['customer_id'])   
+        except Customer.DoesNotExist:
+            return rest_response_error(errorCode = 'IllegalParameterException', 
+                                       message = 'customer id not exists: %s' % order_as_dict['customer_id'], 
+                                       type = 'client',
+                                       status = 400)
         order = Order()
         order.set_fields_by_dict(order_as_dict)
         order.order_status = 1
@@ -308,7 +382,7 @@ class APIOrdersView(View):
             except MenuItem.DoesNotExist:
                 order.delete()
                 return rest_response_error(errorCode = 'IllegalRequestContent', 
-                                       message = '%d men item does not exists' % dish_from_json['menu_item_id'], 
+                                       message = '%d menu item does not exists' % dish_from_json['menu_item_id'], 
                                        type = 'client',
                                        status = 400)
             order_dish = OrderDish()
@@ -319,6 +393,10 @@ class APIOrdersView(View):
             order.dishes.add(order_dish)
             
         order.save()
+        
+        customer.contact_name = order.contact_name
+        customer.contact_phone = order.contact_phone
+        customer.save()
         return HttpResponse(status = 201)
    
  
@@ -355,7 +433,7 @@ class APICustomerSigninView(View):
             
         name = request.REQUEST['name']
         password = request.REQUEST['password']
-       
+        
         try: 
             customer =  Customer.objects.filter(name = name, password = password).get()
         except Customer.DoesNotExist:
@@ -364,8 +442,34 @@ class APICustomerSigninView(View):
                                        type = 'client',
                                        status = 404)
         
+        content_dict = customer.as_dict()
+        del content_dict['password']
         return HttpResponse(status=200, 
-                            content = json.dumps({'customer_id' : customer.customer_id, 'name' : customer.name}), 
+                            content = json.dumps(content_dict), 
+                            content_type = "application/json; charset=utf-8")
+        
+class APICustomerGetInfo(View):
+    
+    def get(self, request):
+        """
+        api/customer/signin
+        """
+        if 'customer_id'  not in request.REQUEST:
+            return rest_response_error(errorCode = 'MissRequiredParameterException', 
+                                           message = 'customer_id parameter is required', 
+                                           type = 'client',
+                                           status = 400)
+            
+        try: 
+            customer =  Customer.objects.get(pk = request.REQUEST['customer_id'])
+        except Customer.DoesNotExist:
+            return rest_response_error(errorCode = 'IllegalParameterException', 
+                                       message = 'illegal customer id', 
+                                       type = 'client',
+                                       status = 404)
+        
+        return HttpResponse(status=200, 
+                            content = json.dumps(customer.as_dict()), 
                             content_type = "application/json; charset=utf-8")
     
 class APICustomerSignupView(View):
@@ -393,6 +497,8 @@ class APICustomerSignupView(View):
         customer = Customer()
         customer.set_fields_by_dict(signup_dict)
         customer.customer_id = next_sequence('customer_id')
+        
+        
         customer.save()
         
         return HttpResponse(status=200, 

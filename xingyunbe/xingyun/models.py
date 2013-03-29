@@ -32,14 +32,15 @@ class ModelAsDictMixin(object):
         d = dict()
         for field in self._meta.fields:
             value = getattr(self, field.name)
-            if isinstance(field, models.IntegerField):
-                d[field.name] = int(value)
-            elif isinstance(field, models.DecimalField):
-                d[field.name] = int(value)
-            elif isinstance(field, models.ForeignKey):
-                pass
-            else:
-                d[field.name] = value
+            if value:
+                if isinstance(field, models.IntegerField):
+                    d[field.name] = int(value)
+                elif isinstance(field, models.DecimalField):
+                    d[field.name] = int(value)
+                elif isinstance(field, models.ForeignKey):
+                    pass
+                else:
+                    d[field.name] = value
         
         one2many_fields = None
         
@@ -123,7 +124,7 @@ class MenuItem(models.Model, ModelAsDictMixin):
     image_uri = models.CharField(max_length=255)
     
     class Meta:
-        db_table = 'menu_item'
+        db_table = 'menu_items'
         
     
 class MenuItemForm(forms.ModelForm): 
@@ -216,10 +217,49 @@ class ActivityUpdateForm(forms.ModelForm):
         model = Activity
         fields = ('image_file', 'sorted_seq', 'activity_id')
        
-class Customer(models.Model, ModelSetFieldsByDictMixin): 
+class Customer(models.Model, ModelSetFieldsByDictMixin, ModelAsDictMixin): 
     customer_id = models.IntegerField(primary_key = True)
     name = models.CharField(max_length = 20, unique = True)
     password = models.CharField(max_length = 20)
+    contact_name = models.CharField(max_length = 20, blank = True)
+    contact_phone = models.CharField(max_length = 20, blank = True)
     
     class Meta:
         db_table = 'customers'
+        
+class CustomerResetPasswordForm(forms.ModelForm):
+    customer_id = forms.CharField(widget=forms.HiddenInput)
+    name = forms.CharField(label = '用户名', widget=forms.TextInput(attrs={'readonly':'readonly'}))
+    password = forms.CharField(label='密码', initial='', required=True, widget=forms.PasswordInput())
+    repassword = forms.CharField(label='再输一遍', initial='', required=True, widget=forms.PasswordInput())
+    
+    def clean(self):
+        form_data = self.cleaned_data
+        
+        if 'password' in form_data or 'repassword' in form_data:
+            if form_data['password'] != form_data['repassword']:
+                self._errors["repassword"] = "两次输入的密码不匹配"
+                del form_data['password']
+        return form_data
+    
+    class Meta:
+        model = Customer
+        fields = ('customer_id', 'name','password','repassword')
+        
+class LoginForm(forms.Form):
+    user = forms.CharField(max_length=20)
+    password = forms.CharField(max_length=20)
+    
+class ChangePasswordForm(forms.Form):
+    password = forms.CharField(label='新密码', initial='', required=True, widget=forms.PasswordInput())
+    repassword = forms.CharField(label='再输一遍', initial='', required=True, widget=forms.PasswordInput())
+    
+    def clean(self):
+        form_data = self.cleaned_data
+        
+        if 'password' in form_data or 'repassword' in form_data:
+            if form_data['password'] != form_data['repassword']:
+                self._errors["repassword"] = "两次输入的密码不匹配"
+                del form_data['password']
+        return form_data
+    

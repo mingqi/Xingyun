@@ -29,7 +29,9 @@ body {
 						<li class="{% block nav_activity_class %} {% endblock %}"><a href="{%url 'activity/list' %}" >活动管理</a></li>
 						<li class="{% block nav_menu_class %} {% endblock %}"><a href="{%url 'menu/list' %}" >菜单管理</a></li>
 						<li class="{% block nav_order_class %} {% endblock %}"><a href="{%url 'order/list' %}">订单管理</a></li>
-						<li><a href="#contact">设置</a></li>
+						<li class="{% block nav_customer_class %} {% endblock %}"><a href="{%url 'customer/list' %}">顾客管理</a></li>
+						<li class="{% block nav_changepassword_class %} {% endblock %}"><a href="{%url 'changepassword' %}">修改密码</a></li>
+						<li class=""><a href="{%url 'logout' %}">退出</a></li>
 					</ul>
 				</div>
 				<!--/.nav-collapse -->
