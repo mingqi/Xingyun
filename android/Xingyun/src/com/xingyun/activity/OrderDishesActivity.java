@@ -149,13 +149,17 @@ public class OrderDishesActivity extends Activity {
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+			public void onItemClick(AdapterView<?> arg0, View view, int index,
 					long arg3) {
 				Intent i = new Intent();
 				i.setClass(OrderDishesActivity.this, DishDetailActivity.class);
+				Dish selectedDish = dishList.get(index);
+				i.putExtra("name", selectedDish.getName());
+				i.putExtra("imageUrl", selectedDish.getImageUrl());
+				i.putExtra("price", selectedDish.getPrice());
+				i.putExtra("id", selectedDish.getMenuItemId());
 				startActivity(i);
 			}
-
 		});
 	}
 
@@ -188,6 +192,12 @@ public class OrderDishesActivity extends Activity {
 						String price = dish.getString("price");
 						int menuItemId = dish.getInt("menu_item_id");
 						String imageUri = dish.getString("image_uri");
+
+						if (imageUri != null) {
+							imageUri = StringUtility.replaceLast(imageUri,
+									".", "_100x100.");
+						}
+
 						int sortedSeq = dish.getInt("sorted_seq");
 						Dish dishObj = new Dish(category, menuItemId,
 								sortedSeq, title, price, imageUri);

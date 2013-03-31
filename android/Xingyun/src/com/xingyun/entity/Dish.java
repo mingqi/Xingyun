@@ -35,6 +35,9 @@ public class Dish {
 		this.imageUrl = imageUrl;
 	}
 
+	public Dish() {
+	}
+
 	public int getCategory() {
 		return category;
 	}

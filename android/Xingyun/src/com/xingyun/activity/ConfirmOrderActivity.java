@@ -5,31 +5,31 @@ import java.util.ArrayList;
 import com.xingyun.adapter.DishListAdapter;
 import com.xingyun.entity.Dish;
 import com.xingyun.entity.DishType;
+import com.xingyun.persistence.CartManager;
 import com.xingyun.utility.WSUtility;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class ConfirmOrderActivity extends Activity {
 	private ListView listView;
 	private DishListAdapter adapter;
-//	private View footerView;
 	private ArrayList<Dish> dishes;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_confirmorder);
-		
+
 		listView = (ListView) findViewById(R.id.lv_dishes);
-//		footerView = (View) LayoutInflater.from(this).inflate(
-//				R.layout.loadinglistitem, null);
 
 		Button btnBack = (Button) findViewById(R.id.btn_back);
 		btnBack.setOnClickListener(new OnClickListener() {
@@ -53,10 +53,22 @@ public class ConfirmOrderActivity extends Activity {
 
 		});
 
-//		listView.addFooterView(footerView);
-		
-		dishes = WSUtility.getDishes(DishType.ALL);
+		dishes = CartManager.getPureDishes();
 		adapter = new DishListAdapter(this, dishes, listView, 1);
 		listView.setAdapter(adapter);
+		
+		this.reloadPrice();
+	}
+
+	public void reloadPrice() {
+		String priceStr = "请确认您要点的菜品 一共" + CartManager.getTotalPrice() + "元";
+		TextView txtTotalPrice = (TextView) this
+				.findViewById(R.id.txt_totalprice);
+		txtTotalPrice.setText(priceStr);
+	}
+	
+	public void removeRow(Dish dish) {
+		dishes.remove(dish);
+		adapter.notifyDataSetChanged();
 	}
 }

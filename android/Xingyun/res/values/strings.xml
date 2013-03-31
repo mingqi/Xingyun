@@ -33,6 +33,7 @@
 	<string name="telephone">联系方式：</string>
 	<string name="guest_number">用餐人数：</string>
 	<string name="is_vip">是否包厢：</string>
+	<string name="arrival_date">到店日期：</string>
 	<string name="arrival_time">到店时间：</string>
 	<string name="requirements">特殊要求</string>
 	<string name="resturant_introduction">餐厅介绍</string>
@@ -40,8 +41,9 @@
 	<string name="logout">退出登录</string>
 	<string name="loading">加载中</string>
 	<string name="failed_to_get_data">获取网络内容失败</string>
+	<string name="add_to_cart_succeed">点菜成功</string>
 	
-	<string name="sample_str1">请确认您要点的菜品 一共68元</string>
+	<string name="sample_str1">请确认您要点的菜品 一共元</string>
 	<string name="sample_str2">宫保鸡丁</string>
 	<string name="sample_str3">20元</string>
 	<string name="sample_str4">共电菜2道</string>

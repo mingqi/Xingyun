@@ -67,7 +67,8 @@ public class AsyncImageLoader {
 	private static Bitmap decodeInputStream(InputStream is) {
 		try {
 			BitmapFactory.Options opt = new BitmapFactory.Options();
-			opt.inSampleSize = 4;
+			//opt.inSampleSize = 4;
+			opt.inSampleSize = 1;
 			return BitmapFactory.decodeStream(is, null, opt);
 		} catch (Exception e) {
 			return null;
