@@ -71,12 +71,12 @@ public class DishListAdapter extends ArrayAdapter<Dish> {
 		} else {
 			imageView.setImageDrawable(cachedImage);
 		}
-		// Set the text on the TextView
+
 		TextView dishName = viewCache.getDishName();
 		dishName.setText(dish.getName());
 
 		TextView dishPrice = viewCache.getDishPrice();
-		dishPrice.setText(dish.getPrice() + "");
+		dishPrice.setText("价格: " + dish.getPrice() + "元");
 
 		return rowView;
 	}

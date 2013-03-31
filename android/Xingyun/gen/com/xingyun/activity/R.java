@@ -452,10 +452,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int activity_vieworder=0x7f03000d;
         public static final int dishlistitem=0x7f03000e;
         public static final int dishlistitem1=0x7f03000f;
-        public static final int loadinglistitem=0x7f030010;
-        public static final int loginform=0x7f030011;
-        public static final int orderlistitem=0x7f030012;
-        public static final int tabs=0x7f030013;
+        public static final int loginform=0x7f030010;
+        public static final int orderlistitem=0x7f030011;
+        public static final int tabs=0x7f030012;
     }
     public static final class menu {
         public static final int events=0x7f0b0000;
@@ -475,6 +474,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int dish_list=0x7f05000c;
         public static final int dish_other=0x7f050010;
         public static final int dishes=0x7f05000a;
+        public static final int failed_to_get_data=0x7f050026;
         public static final int guest_number=0x7f05001e;
         public static final int hello_world=0x7f050002;
         public static final int is_vip=0x7f05001f;
@@ -495,12 +495,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int resturant_introduction=0x7f050022;
         public static final int resturant_overall=0x7f050023;
         public static final int retype=0x7f050017;
-        public static final int sample_str1=0x7f050026;
-        public static final int sample_str2=0x7f050027;
-        public static final int sample_str3=0x7f050028;
-        public static final int sample_str4=0x7f050029;
-        public static final int sample_str5=0x7f05002a;
-        public static final int sample_str6=0x7f05002b;
+        public static final int sample_str1=0x7f050027;
+        public static final int sample_str2=0x7f050028;
+        public static final int sample_str3=0x7f050029;
+        public static final int sample_str4=0x7f05002a;
+        public static final int sample_str5=0x7f05002b;
+        public static final int sample_str6=0x7f05002c;
         public static final int submit=0x7f050014;
         public static final int submit_order=0x7f05001a;
         public static final int take_order=0x7f050019;

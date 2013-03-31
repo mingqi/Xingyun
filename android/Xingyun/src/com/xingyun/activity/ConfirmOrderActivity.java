@@ -19,7 +19,7 @@ import android.widget.ListView;
 public class ConfirmOrderActivity extends Activity {
 	private ListView listView;
 	private DishListAdapter adapter;
-	private View footerView;
+//	private View footerView;
 	private ArrayList<Dish> dishes;
 	
 	@Override
@@ -28,8 +28,8 @@ public class ConfirmOrderActivity extends Activity {
 		setContentView(R.layout.activity_confirmorder);
 		
 		listView = (ListView) findViewById(R.id.lv_dishes);
-		footerView = (View) LayoutInflater.from(this).inflate(
-				R.layout.loadinglistitem, null);
+//		footerView = (View) LayoutInflater.from(this).inflate(
+//				R.layout.loadinglistitem, null);
 
 		Button btnBack = (Button) findViewById(R.id.btn_back);
 		btnBack.setOnClickListener(new OnClickListener() {

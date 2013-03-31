@@ -7,6 +7,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
@@ -47,17 +50,29 @@ public class AsyncImageLoader {
 
 	public static Drawable loadImageFromUrl(String url) {
 		URL m;
-		InputStream i = null;
+		InputStream instream = null;
 		try {
 			m = new URL(url);
-			i = (InputStream) m.getContent();
+			instream = (InputStream) m.getContent();
 		} catch (MalformedURLException e1) {
 			e1.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		Drawable d = Drawable.createFromStream(i, "src");
-		return d;
+
+		return new BitmapDrawable(decodeInputStream(instream));
+	}
+
+	// decodes image and scales it to reduce memory consumption
+	private static Bitmap decodeInputStream(InputStream is) {
+		try {
+			BitmapFactory.Options opt = new BitmapFactory.Options();
+			opt.inSampleSize = 4;
+			return BitmapFactory.decodeStream(is, null, opt);
+		} catch (Exception e) {
+			return null;
+		}
+
 	}
 
 	public interface ImageCallback {

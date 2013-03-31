@@ -39,6 +39,7 @@
 	<string name="resturant_overall">我要订餐</string>
 	<string name="logout">退出登录</string>
 	<string name="loading">加载中</string>
+	<string name="failed_to_get_data">获取网络内容失败</string>
 	
 	<string name="sample_str1">请确认您要点的菜品 一共68元</string>
 	<string name="sample_str2">宫保鸡丁</string>
