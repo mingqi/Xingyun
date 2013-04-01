@@ -15,11 +15,18 @@ public class UserProfileActivityGroup extends ActivityGroup {
 		super.onCreate(savedInstanceState);
 		group = this;
 
-		View view = getLocalActivityManager().startActivity(
-				"activity_login",
-				new Intent(UserProfileActivityGroup.this, LoginActivity.class)
-						.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-				.getDecorView();
+		Intent i = this.getIntent();
+		String nextStep;
+		try {
+			nextStep = i.getStringExtra("nextstep").toString();
+		} catch (Exception ex) {
+			nextStep = "";
+		}
+		Intent intentToShow = new Intent(UserProfileActivityGroup.this,
+				LoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		intentToShow.putExtra("nextstep", nextStep);
+		View view = getLocalActivityManager().startActivity("activity_login",
+				intentToShow).getDecorView();
 		setContentView(view);
 	}
 

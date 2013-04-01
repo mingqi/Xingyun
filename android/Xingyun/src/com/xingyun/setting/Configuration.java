@@ -9,6 +9,8 @@ public class Configuration {
 	public static final String WS_LOGIN = "http://192.168.1.102:8000/xingyun/api/customer/signin?name=__1__&password=__2__";
 	public static final String WS_PLACEORDER = "http://192.168.1.102:8000/xingyun/api/orders";
 	public static final String WS_SIGNUP = "http://192.168.1.102:8000/xingyun/api/customer/signup";
+	public static final String WS_GETORDERS = "http://192.168.1.102:8000/xingyun/api/orders?customerId=";
+	public static final String WS_GETORDER = "http://192.168.1.102:8000/xingyun/api/order/";
 	public static final int WS_CONNTIMEOUT = 3000;
 	public static final int WS_SOCKETTIMEOUT = 3000;
 	// public static int LAZYLOAD_ITEM_DISPLAY_COUNT = 10;

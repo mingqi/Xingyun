@@ -6,6 +6,7 @@ import com.xingyun.adapter.DishListAdapter;
 import com.xingyun.entity.Dish;
 import com.xingyun.entity.DishType;
 import com.xingyun.persistence.CartManager;
+import com.xingyun.persistence.UserManager;
 import com.xingyun.utility.WSUtility;
 
 import android.app.Activity;
@@ -46,9 +47,18 @@ public class ConfirmOrderActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent();
-				i.setClass(ConfirmOrderActivity.this, OrderInfoActivity.class);
-				startActivity(i);
+				if (UserManager.isLogin()) {
+					Intent i = new Intent();
+					i.setClass(ConfirmOrderActivity.this,
+							OrderInfoActivity.class);
+					startActivity(i);
+				} else {
+					Intent i = new Intent();
+					i.setClass(ConfirmOrderActivity.this,
+							UserProfileActivityGroup.class);
+					i.putExtra("nextstep", "order");
+					startActivity(i);
+				}
 			}
 
 		});
@@ -56,7 +66,7 @@ public class ConfirmOrderActivity extends Activity {
 		dishes = CartManager.getPureDishes();
 		adapter = new DishListAdapter(this, dishes, listView, 1);
 		listView.setAdapter(adapter);
-		
+
 		this.reloadPrice();
 	}
 
@@ -66,7 +76,7 @@ public class ConfirmOrderActivity extends Activity {
 				.findViewById(R.id.txt_totalprice);
 		txtTotalPrice.setText(priceStr);
 	}
-	
+
 	public void removeRow(Dish dish) {
 		dishes.remove(dish);
 		adapter.notifyDataSetChanged();

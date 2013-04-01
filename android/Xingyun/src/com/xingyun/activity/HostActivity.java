@@ -36,7 +36,7 @@ public class HostActivity extends TabActivity {
 						getResources().getDrawable(R.drawable.fork_knife))
 				.setContent(new Intent(this, ResturantInfoActivity.class)));
 
-//		if (UserManager.isLogin()) {
+		if (UserManager.isLogin()) {
 			tabHost.addTab(tabHost
 					.newTabSpec(
 							(String) this.getResources().getText(
@@ -45,19 +45,22 @@ public class HostActivity extends TabActivity {
 							(String) this.getResources().getText(
 									R.string.profile),
 							getResources().getDrawable(R.drawable.man))
-					.setContent(new Intent(this, UserProfileActivityGroup.class)));
+					.setContent(new Intent(this, UserProfileActivity.class)));
 
-//		} else {
-//			tabHost.addTab(tabHost
-//					.newTabSpec(
-//							(String) this.getResources().getText(
-//									R.string.profile))
-//					.setIndicator(
-//							(String) this.getResources().getText(
-//									R.string.profile),
-//							getResources().getDrawable(R.drawable.man))
-//					.setContent(new Intent(this, LoginActivity.class)));
-//		}
+		} else {
+
+			tabHost.addTab(tabHost
+					.newTabSpec(
+							(String) this.getResources().getText(
+									R.string.profile))
+					.setIndicator(
+							(String) this.getResources().getText(
+									R.string.profile),
+							getResources().getDrawable(R.drawable.man))
+					.setContent(
+							new Intent(this, UserProfileActivityGroup.class)));
+
+		}
 
 		TabWidget tabWidget = tabHost.getTabWidget();
 		for (int i = 0; i < tabWidget.getChildCount(); i++) {

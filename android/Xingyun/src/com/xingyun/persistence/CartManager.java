@@ -117,4 +117,13 @@ public class CartManager {
 	public static void clearCart() {
 		orderedDishes = new ArrayList<CartDishModel>();
 	}
+	
+	public static int getDishCount() {
+//		int count = 0;
+//		for(int i=0;i<getOrderedDishes().size();i++) {
+//			count = count + getOrderedDishes().get(i).getCount();
+//		}
+//		return count;
+		return getOrderedDishes().size();
+	}
 }

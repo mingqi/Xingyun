@@ -9,6 +9,7 @@ import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.params.HttpParams;
 import com.xingyun.persistence.CartManager;
+import com.xingyun.persistence.UserManager;
 import com.xingyun.setting.Configuration;
 import com.xingyun.utility.StringUtility;
 
@@ -79,7 +80,8 @@ public class OrderInfoActivity extends Activity {
 
 				// String data =
 				// "{    \"customer_id\" : 1,    \"contact_name\" : \"邵明岐\",    \"contact_phone\" : \"13811021667\",    \"people_number\" : 2,    \"box_required\" : true,    \"order_price\": 68,    \"dishes_count\": 8,    \"reserved_time\": \"2012-01-19T19:05:01\",    \"other_requirements\" : \"不要放香菜\",    \"order_dishes\" : [        {   \"menu_item_id\": 1,            \"quantity\" : 1        },        {   \"menu_item_id\": 5,            \"quantity\" : 3        }    ]}";
-				String data = "{\"customer_id\" : 1, \"contact_name\" : \""
+				String data = "{\"customer_id\" : " + UserManager.getId()
+						+ ", \"contact_name\" : \""
 						+ StringUtility.string2Json(name)
 						+ "\", \"contact_phone\" : \""
 						+ StringUtility.string2Json(telephone)
@@ -113,7 +115,7 @@ public class OrderInfoActivity extends Activity {
 					// HTTP/1.0 201 CREATED
 					Log.e("!!", httpResponse.getStatusLine().toString());
 					if (httpResponse.getStatusLine().getStatusCode() == 201) {
-
+						CartManager.clearCart();
 						Intent i = new Intent();
 						i.setClass(OrderInfoActivity.this,
 								OrderDishesResultActivity.class);
@@ -141,8 +143,7 @@ public class OrderInfoActivity extends Activity {
 		});
 		TextView txtDishCount = (TextView) this
 				.findViewById(R.id.txt_dishcount);
-		txtDishCount.setText("共点菜" + CartManager.getOrderedDishes().size()
-				+ "道");
+		txtDishCount.setText("共点菜" + CartManager.getDishCount() + "道");
 		TextView txtTotalPrice = (TextView) this
 				.findViewById(R.id.txt_totalprice);
 		txtTotalPrice.setText("一共" + CartManager.getTotalPrice() + "元");

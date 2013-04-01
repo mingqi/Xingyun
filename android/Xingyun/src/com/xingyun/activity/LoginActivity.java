@@ -28,24 +28,23 @@ import android.widget.Toast;
 
 public class LoginActivity extends Activity {
 	private LoginActivity thisActivity;
+	private String nextStep;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 
+		try {
+			nextStep = this.getIntent().getStringExtra("nextstep");
+		} catch (Exception ex) {
+			nextStep = "";
+		}
+
 		thisActivity = this;
 
 		if (UserManager.isLogin()) {
-			View view = UserProfileActivityGroup.group
-					.getLocalActivityManager()
-					.startActivity(
-							"activity_userprofile",
-							new Intent(LoginActivity.this,
-									UserProfileActivity.class)
-									.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-					.getDecorView();
-			UserProfileActivityGroup.group.setContentView(view);
+			goNextStep();
 		}
 
 		final EditText txtUsername = (EditText) this
@@ -65,14 +64,12 @@ public class LoginActivity extends Activity {
 									InputMethodManager.HIDE_NOT_ALWAYS);
 				} catch (Exception ex) {
 				}
+				Intent i = new Intent(LoginActivity.this, SignupActivity.class)
+						.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				i.putExtra("nextstep", nextStep);
 				View view = UserProfileActivityGroup.group
 						.getLocalActivityManager()
-						.startActivity(
-								"activity_signup",
-								new Intent(LoginActivity.this,
-										SignupActivity.class)
-										.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-						.getDecorView();
+						.startActivity("activity_signup", i).getDecorView();
 				UserProfileActivityGroup.group.setContentView(view);
 			}
 
@@ -139,15 +136,7 @@ public class LoginActivity extends Activity {
 						UserManager.setName(name);
 						UserManager.setLogin(true);
 
-						View view = UserProfileActivityGroup.group
-								.getLocalActivityManager()
-								.startActivity(
-										"activity_userprofile",
-										new Intent(LoginActivity.this,
-												UserProfileActivity.class)
-												.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-								.getDecorView();
-						UserProfileActivityGroup.group.setContentView(view);
+						goNextStep();
 
 					} else {
 						Toast toast = Toast.makeText(
@@ -172,5 +161,27 @@ public class LoginActivity extends Activity {
 
 		});
 
+	}
+
+	private void goNextStep() {
+		if (this.nextStep.equals("order")) {
+			View view = UserProfileActivityGroup.group
+					.getLocalActivityManager()
+					.startActivity(
+							"activity_orderinfo",
+							new Intent(LoginActivity.this,
+									OrderInfoActivity.class)).getDecorView();
+			UserProfileActivityGroup.group.setContentView(view);
+		} else {
+			View view = UserProfileActivityGroup.group
+					.getLocalActivityManager()
+					.startActivity(
+							"activity_userprofile",
+							new Intent(LoginActivity.this,
+									UserProfileActivity.class)
+									.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+					.getDecorView();
+			UserProfileActivityGroup.group.setContentView(view);
+		}
 	}
 }
