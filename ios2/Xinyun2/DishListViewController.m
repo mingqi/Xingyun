@@ -52,9 +52,6 @@
  **/
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    NSLog(@"numberOfSectionsInTableView");
-    NSLog(@"%@", tableView.dataSource);
-    NSLog(@"%@", tableView.delegate);
     return 1;
 }
 
@@ -66,8 +63,9 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 4;
+    return 3;
 }
+
 
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

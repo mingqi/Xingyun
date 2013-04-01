@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B18FC351707DD5500E980D6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BB6877516E5CE6E00A629D3 /* Default@2x.png */; };
+		2B2D0B891707D44D005A76AC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B2D0B881707D44D005A76AC /* Default-568h@2x.png */; };
+		2B2D0B8E1707D77A005A76AC /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B2D0B8C1707D77A005A76AC /* icon.png */; };
+		2B2D0B8F1707D77A005A76AC /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B2D0B8D1707D77A005A76AC /* icon@2x.png */; };
+		2B2D0B901707DD1D005A76AC /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BB6877316E5CE6600A629D3 /* Default.png */; };
 		2B5C178816E8E82700795666 /* PromotionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B5C178716E8E82700795666 /* PromotionViewController.m */; };
 		2B5C178C16E8ECBB00795666 /* prom01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2B5C178916E8ECBB00795666 /* prom01.jpg */; };
 		2B5C178D16E8ECBB00795666 /* prom02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2B5C178A16E8ECBB00795666 /* prom02.jpg */; };
@@ -38,10 +43,6 @@
 		2BB6875B16E5B2CB00A629D3 /* DishConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB6875A16E5B2CB00A629D3 /* DishConfirmViewController.m */; };
 		2BB6876016E5B91700A629D3 /* OrderConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB6875F16E5B91700A629D3 /* OrderConfirmViewController.m */; };
 		2BB6876316E5C34A00A629D3 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BB6876116E5C34A00A629D3 /* MainStoryboard.storyboard */; };
-		2BB6876F16E5CCB800A629D3 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BB6876D16E5CCB800A629D3 /* icon.png */; };
-		2BB6877216E5CCDF00A629D3 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BB6877116E5CCDF00A629D3 /* icon@2x.png */; };
-		2BB6877416E5CE6600A629D3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BB6877316E5CE6600A629D3 /* Default.png */; };
-		2BB6877616E5CE6E00A629D3 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BB6877516E5CE6E00A629D3 /* Default@2x.png */; };
 		2BFE6DFF16E5D852007720D9 /* fork-knife.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BFE6DFE16E5D852007720D9 /* fork-knife.png */; };
 		2BFE6E0116E5D8B7007720D9 /* man.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BFE6E0016E5D8B7007720D9 /* man.png */; };
 		2BFE6E0316E5D9EB007720D9 /* gift.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BFE6E0216E5D9EB007720D9 /* gift.png */; };
@@ -50,6 +51,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2B2D0B881707D44D005A76AC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		2B2D0B8C1707D77A005A76AC /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		2B2D0B8D1707D77A005A76AC /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		2B5C178616E8E82700795666 /* PromotionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromotionViewController.h; sourceTree = "<group>"; };
 		2B5C178716E8E82700795666 /* PromotionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromotionViewController.m; sourceTree = "<group>"; };
 		2B5C178916E8ECBB00795666 /* prom01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = prom01.jpg; sourceTree = "<group>"; };
@@ -97,8 +101,6 @@
 		2BB6875E16E5B91700A629D3 /* OrderConfirmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderConfirmViewController.h; sourceTree = "<group>"; };
 		2BB6875F16E5B91700A629D3 /* OrderConfirmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderConfirmViewController.m; sourceTree = "<group>"; };
 		2BB6876216E5C34A00A629D3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		2BB6876D16E5CCB800A629D3 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = Xinyun2/icon.png; sourceTree = "<group>"; };
-		2BB6877116E5CCDF00A629D3 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		2BB6877316E5CE6600A629D3 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		2BB6877516E5CE6E00A629D3 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		2BFE6DFE16E5D852007720D9 /* fork-knife.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fork-knife.png"; sourceTree = "<group>"; };
@@ -127,10 +129,11 @@
 		2BB6870D16E4B28300A629D3 = {
 			isa = PBXGroup;
 			children = (
+				2B2D0B881707D44D005A76AC /* Default-568h@2x.png */,
 				2BB6877516E5CE6E00A629D3 /* Default@2x.png */,
+				2B2D0B8C1707D77A005A76AC /* icon.png */,
+				2B2D0B8D1707D77A005A76AC /* icon@2x.png */,
 				2BB6877316E5CE6600A629D3 /* Default.png */,
-				2BB6877116E5CCDF00A629D3 /* icon@2x.png */,
-				2BB6876D16E5CCB800A629D3 /* icon.png */,
 				2BB6871F16E4B28300A629D3 /* Xinyun2 */,
 				2BB6871816E4B28300A629D3 /* Frameworks */,
 				2BB6871716E4B28300A629D3 /* Products */,
@@ -286,10 +289,6 @@
 				2BB6874B16E4E0AF00A629D3 /* logo.jpg in Resources */,
 				2BB6875816E5AD4E00A629D3 /* dish.jpg in Resources */,
 				2BB6876316E5C34A00A629D3 /* MainStoryboard.storyboard in Resources */,
-				2BB6876F16E5CCB800A629D3 /* icon.png in Resources */,
-				2BB6877216E5CCDF00A629D3 /* icon@2x.png in Resources */,
-				2BB6877416E5CE6600A629D3 /* Default.png in Resources */,
-				2BB6877616E5CE6E00A629D3 /* Default@2x.png in Resources */,
 				2BFE6DFF16E5D852007720D9 /* fork-knife.png in Resources */,
 				2BFE6E0116E5D8B7007720D9 /* man.png in Resources */,
 				2BFE6E0316E5D9EB007720D9 /* gift.png in Resources */,
@@ -299,6 +298,11 @@
 				2B5C178C16E8ECBB00795666 /* prom01.jpg in Resources */,
 				2B5C178D16E8ECBB00795666 /* prom02.jpg in Resources */,
 				2B5C178E16E8ECBB00795666 /* prom03.jpg in Resources */,
+				2B2D0B891707D44D005A76AC /* Default-568h@2x.png in Resources */,
+				2B2D0B8E1707D77A005A76AC /* icon.png in Resources */,
+				2B2D0B8F1707D77A005A76AC /* icon@2x.png in Resources */,
+				2B2D0B901707DD1D005A76AC /* Default.png in Resources */,
+				2B18FC351707DD5500E980D6 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,7 +378,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos6.1;
 			};
@@ -398,7 +402,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos6.1;
 				VALIDATE_PRODUCT = YES;
@@ -411,7 +415,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Xinyun2/Xinyun2-Prefix.pch";
 				INFOPLIST_FILE = "Xinyun2/Xinyun2-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "行运餐厅";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -424,7 +428,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Xinyun2/Xinyun2-Prefix.pch";
 				INFOPLIST_FILE = "Xinyun2/Xinyun2-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "行运餐厅";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
