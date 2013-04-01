@@ -101,7 +101,7 @@
                         android:textColor="#000000" />
 
                     <EditText
-                        android:id="@+id/editText1"
+                        android:id="@+id/txt_name"
                         android:layout_width="180dp"
                         android:layout_height="38dp"
                         android:layout_marginRight="15dp"
@@ -136,7 +136,7 @@
                         android:textColor="#000000" />
 
                     <EditText
-                        android:id="@+id/editText2"
+                        android:id="@+id/txt_telephone"
                         android:layout_width="180dp"
                         android:layout_height="38dp"
                         android:layout_marginRight="15dp"
@@ -172,7 +172,7 @@
                         android:textColor="#000000" />
 
                     <EditText
-                        android:id="@+id/editText4"
+                        android:id="@+id/txt_guestnumber"
                         android:layout_width="180dp"
                         android:layout_height="38dp"
                         android:layout_marginRight="15dp"
@@ -209,7 +209,7 @@
                         android:textColor="#000000" />
 
                     <CheckBox
-                        android:id="@+id/checkBox1"
+                        android:id="@+id/cb_isvip"
                         android:layout_width="wrap_content"
                         android:layout_height="38dp"
                         android:text="" />
@@ -237,16 +237,53 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
+                        android:text="@string/arrival_date"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#000000" />
+
+                    <EditText
+                        android:id="@+id/txt_arrivaldate"
+                        android:layout_width="180dp"
+                        android:layout_height="38dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginTop="2dp"
+                        android:focusable="false"
+                        android:inputType="time" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_height="1px"
+                    android:background="#BDBDBD" >
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="1px"
+                        android:layout_span="2"
+                        android:text="" >
+                    </TextView>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:focusable="false"
                         android:text="@string/arrival_time"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#000000" />
 
                     <EditText
-                        android:id="@+id/editText5"
+                        android:id="@+id/txt_arrivaltime"
                         android:layout_width="180dp"
                         android:layout_height="38dp"
                         android:layout_marginRight="15dp"
                         android:layout_marginTop="2dp"
+                        android:focusable="false"
                         android:inputType="time" />
                 </TableRow>
             </com.xingyun.excontrol.RoundedRectTableLayout>
@@ -270,6 +307,7 @@
                     android:gravity="center_vertical" >
 
                     <TextView
+                        android:id="@+id/txt_dishcount"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:layout_marginLeft="10dp"
@@ -297,6 +335,7 @@
                     android:gravity="center_vertical" >
 
                     <TextView
+                        android:id="@+id/txt_totalprice"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:layout_marginLeft="10dp"
@@ -316,6 +355,7 @@
                 android:textColor="#000000" />
 
             <com.xingyun.excontrol.RoundedRectEditTextLayout
+                android:id="@+id/txt_requirements"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:layout_marginBottom="10dp"

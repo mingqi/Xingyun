@@ -18,14 +18,14 @@ public class WSUtility {
 		return evt;
 	}
 
-	public static ArrayList<Dish> getDishes(DishType type) {
-		ArrayList<Dish> dishes = new ArrayList<Dish>();
-
-		for (int i = 0; i < 10; i++) {
-			Dish dish = new Dish("宫保鸡丁" + i, "价格: "+i+"元", "http://scby.cn/uploads/allimg/110116/1-110116154004.jpg");
-			dishes.add(dish);
-		}
-
-		return dishes;
-	}
+//	public static ArrayList<Dish> getDishes(DishType type) {
+//		ArrayList<Dish> dishes = new ArrayList<Dish>();
+//
+//		for (int i = 0; i < 10; i++) {
+//			Dish dish = new Dish("宫保鸡丁" + i, "价格: "+i+"元", "http://scby.cn/uploads/allimg/110116/1-110116154004.jpg");
+//			dishes.add(dish);
+//		}
+//
+//		return dishes;
+//	}
 }

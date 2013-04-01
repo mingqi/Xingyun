@@ -72,10 +72,12 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:layout_marginRight="10dp"
         android:gravity="center_vertical"
         android:orientation="vertical" >
 
         <Button
+            android:id="@+id/btn_add"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@drawable/rounded_corner_button_gray"
@@ -84,7 +86,7 @@
             android:textColor="#000000" />
 
         <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/txt_count"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_gravity="center_vertical|center_horizontal"
@@ -93,6 +95,7 @@
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <Button
+            android:id="@+id/btn_remove"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@drawable/rounded_corner_button_gray"

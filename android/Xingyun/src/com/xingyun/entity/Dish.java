@@ -1,6 +1,18 @@
 package com.xingyun.entity;
 
+import com.xingyun.setting.Configuration;
+
 public class Dish {
+	// dish.getInt("category");
+	// dish.getString("title");
+	// dish.getString("price");
+	// dish.getInt("menu_item_id");
+	// dish.getString("image_uri");
+	// dish.getInt("sorted_seq");
+
+	private int category;
+	private int menuItemId;
+	private int sortedSeq;
 	private String name;
 	private String price;
 	private String imageUrl;
@@ -10,6 +22,44 @@ public class Dish {
 		this.name = name;
 		this.price = price;
 		this.imageUrl = imageUrl;
+	}
+
+	public Dish(int category, int menuItemId, int sortedSeq, String name,
+			String price, String imageUrl) {
+		super();
+		this.category = category;
+		this.menuItemId = menuItemId;
+		this.sortedSeq = sortedSeq;
+		this.name = name;
+		this.price = price;
+		this.imageUrl = imageUrl;
+	}
+
+	public Dish() {
+	}
+
+	public int getCategory() {
+		return category;
+	}
+
+	public void setCategory(int category) {
+		this.category = category;
+	}
+
+	public int getMenuItemId() {
+		return menuItemId;
+	}
+
+	public void setMenuItemId(int menuItemId) {
+		this.menuItemId = menuItemId;
+	}
+
+	public int getSortedSeq() {
+		return sortedSeq;
+	}
+
+	public void setSortedSeq(int sortedSeq) {
+		this.sortedSeq = sortedSeq;
 	}
 
 	public String getName() {
@@ -29,7 +79,7 @@ public class Dish {
 	}
 
 	public String getImageUrl() {
-		return imageUrl;
+		return Configuration.WS_IMAGE_URI_PREFIX + imageUrl;
 	}
 
 	public void setImageUrl(String imageUrl) {

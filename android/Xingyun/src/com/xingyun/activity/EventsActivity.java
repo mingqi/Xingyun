@@ -1,11 +1,29 @@
 package com.xingyun.activity;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.viewpagerindicator.CirclePageIndicator;
-import com.xingyun.usercontrol.EventSlider;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import com.viewpagerindicator.CirclePageIndicator;
+import com.xingyun.activity.OrderDishesActivity.GetDishesTask;
+import com.xingyun.entity.Dish;
+import com.xingyun.entity.DishType;
+import com.xingyun.entity.Event;
+import com.xingyun.setting.Configuration;
+import com.xingyun.usercontrol.EventSlider;
+import com.xingyun.utility.StringUtility;
+
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.app.Activity;
@@ -15,9 +33,11 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class EventsActivity extends FragmentActivity {
 
@@ -26,33 +46,27 @@ public class EventsActivity extends FragmentActivity {
 	private EventPagerAdapter eventPagerAdapter;
 
 	private List<View> eventViews;
+	GetEventsTask eTask;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_events);
 
+		// 把活动列表搞下来
+		eTask = new GetEventsTask();
+		eTask.execute();
+
+	}
+
+	private void fillEventData() {
 		// 5张示例图
 		eventViews = new ArrayList<View>();
-		int[] drawableIds = { R.drawable.s2, R.drawable.s3,
-				R.drawable.s4, R.drawable.s5 };
-		for (int i = 0; i < drawableIds.length; i++) {
-			EventSlider es = new EventSlider(this, "", "", drawableIds[i]);
-			final int index = i;
-			es.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					// TODO Auto-generated method stub
-					Log.d("==========", "added in events activity");
-//					Intent intent = new Intent();
-//					Bundle bundle = new Bundle();
-//					bundle.putInt("event_index", index);
-//					intent.setClass(EventsActivity.this, EventDetailActivity.class);
-//					intent.putExtras(bundle);
-//					startActivity(intent);
-				}
-
-			});
+		// int[] drawableIds = { R.drawable.s2, R.drawable.s3, R.drawable.s4,
+		// R.drawable.s5 };
+		for (int i = 0; i < eventList.size(); i++) {
+			EventSlider es = new EventSlider(this, "", "", Configuration.WS_IMAGE_URI_PREFIX+ eventList.get(i)
+					.getImageUrl());
 			eventViews.add(es);
 		}
 
@@ -112,4 +126,69 @@ public class EventsActivity extends FragmentActivity {
 
 	}
 
+	List<Event> eventList;
+
+	class GetEventsTask extends AsyncTask<Object, Object, String> {
+		String events; // json格式的字符串
+
+		@Override
+		protected void onPostExecute(String result) {
+			if (events == null) {
+				Toast toast = Toast.makeText(getApplicationContext(),
+						getResources().getString(R.string.failed_to_get_data),
+						Toast.LENGTH_LONG);
+				toast.setGravity(Gravity.CENTER, 0, 0);
+				toast.show();
+			} else {
+				try {
+					eventList = new ArrayList<Event>();
+					JSONArray jsonArray = new JSONArray(events);
+					for (int i = 0; i < jsonArray.length(); i++) {
+						JSONObject event = (JSONObject) jsonArray.get(i);
+						int id = event.getInt("activity_id");
+						String imageUri = event.getString("image_uri");
+						int sortedSeq = event.getInt("sorted_seq");
+						Event eventObj = new Event(imageUri, id, sortedSeq);
+						eventList.add(eventObj);
+					}
+
+					Log.e("event length", "" + eventList.size());
+					fillEventData();
+				} catch (JSONException ex) {
+					Toast toast = Toast.makeText(
+							getApplicationContext(),
+							getResources().getString(
+									R.string.failed_to_get_data),
+							Toast.LENGTH_LONG);
+					toast.setGravity(Gravity.CENTER, 0, 0);
+					toast.show();
+				}
+			}
+			super.onPostExecute(result);
+		}
+
+		@Override
+		protected String doInBackground(Object... params) {
+			try {
+				String path = Configuration.WS_GETEVENTS;
+
+				HttpGet httpGet = new HttpGet(path);
+
+				HttpParams httpParameters = new BasicHttpParams();
+				HttpConnectionParams.setConnectionTimeout(httpParameters,
+						Configuration.WS_CONNTIMEOUT);
+				HttpConnectionParams.setSoTimeout(httpParameters,
+						Configuration.WS_SOCKETTIMEOUT);
+				DefaultHttpClient httpClient = new DefaultHttpClient(
+						httpParameters);
+				HttpResponse response = httpClient.execute(httpGet);
+				InputStream is = response.getEntity().getContent();
+				events = StringUtility.inputstreamToString(is);
+			} catch (Exception e) {
+				System.out.println(e.toString());
+			}
+			return events;
+		}
+
+	}
 }
