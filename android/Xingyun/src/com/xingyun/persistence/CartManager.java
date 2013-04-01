@@ -61,9 +61,7 @@ public class CartManager {
 
 	public static ArrayList<Dish> getPureDishes() {
 		ArrayList<Dish> dishes = new ArrayList<Dish>();
-		if (orderedDishes == null) {
-			dishes = null;
-		} else {
+		if (orderedDishes != null) {
 			for (int i = 0; i < orderedDishes.size(); i++) {
 				dishes.add(orderedDishes.get(i).getDish());
 			}
@@ -114,5 +112,9 @@ public class CartManager {
 		str += "]";
 		Log.e("json str", str);
 		return str;
+	}
+	
+	public static void clearCart() {
+		orderedDishes = new ArrayList<CartDishModel>();
 	}
 }

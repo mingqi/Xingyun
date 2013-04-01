@@ -1,33 +1,26 @@
 package com.xingyun.activity;
 
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
-
 import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.params.HttpParams;
-import org.apache.http.protocol.HTTP;
-import org.apache.http.util.EntityUtils;
-
 import com.xingyun.persistence.CartManager;
 import com.xingyun.setting.Configuration;
+import com.xingyun.utility.StringUtility;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.app.TimePickerDialog.OnTimeSetListener;
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.Message;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -36,6 +29,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 public class OrderInfoActivity extends Activity {
 
@@ -75,6 +69,7 @@ public class OrderInfoActivity extends Activity {
 				String arrivalDateTime = ((EditText) activity
 						.findViewById(R.id.txt_arrivaldate)).getText()
 						.toString()
+						+ "T"
 						+ ((EditText) activity
 								.findViewById(R.id.txt_arrivaltime)).getText()
 								.toString();
@@ -82,51 +77,64 @@ public class OrderInfoActivity extends Activity {
 						.findViewById(R.id.txt_requirements)).getText()
 						.toString();
 
+				// String data =
+				// "{    \"customer_id\" : 1,    \"contact_name\" : \"邵明岐\",    \"contact_phone\" : \"13811021667\",    \"people_number\" : 2,    \"box_required\" : true,    \"order_price\": 68,    \"dishes_count\": 8,    \"reserved_time\": \"2012-01-19T19:05:01\",    \"other_requirements\" : \"不要放香菜\",    \"order_dishes\" : [        {   \"menu_item_id\": 1,            \"quantity\" : 1        },        {   \"menu_item_id\": 5,            \"quantity\" : 3        }    ]}";
+				String data = "{\"customer_id\" : 1, \"contact_name\" : \""
+						+ StringUtility.string2Json(name)
+						+ "\", \"contact_phone\" : \""
+						+ StringUtility.string2Json(telephone)
+						+ "\", \"people_number\" : "
+						+ StringUtility.string2Json(guestNumber)
+						+ ", \"box_required\" : "
+						+ StringUtility.string2Json(isVip)
+						+ ", \"order_price\": " + CartManager.getTotalPrice()
+						+ ", \"dishes_count\": "
+						+ CartManager.getOrderedDishes().size()
+						+ ", \"reserved_time\": \"" + arrivalDateTime
+						+ "\", \"other_requirements\" : \""
+						+ StringUtility.string2Json(requirements)
+						+ "\", \"order_dishes\" : " + CartManager.getJsonStr()
+						+ "}";
 				// post data
-				//HttpPost httpRequest = new HttpPost(Configuration.WS_PLACEORDER);
-				HttpGet httpGet = new HttpGet(Configuration.WS_PLACEORDER);
-//				List<NameValuePair> params = new ArrayList<NameValuePair>();
-//				params.add(new BasicNameValuePair("customer_id", "1"));
-//				params.add(new BasicNameValuePair("contact_name", name));
-//				params.add(new BasicNameValuePair("contact_phone", telephone));
-//				params.add(new BasicNameValuePair("people_number", guestNumber));
-//				params.add(new BasicNameValuePair("box_required", isVip));
-//				params.add(new BasicNameValuePair("order_price", CartManager.getTotalPrice()+""));
-//				params.add(new BasicNameValuePair("dishes_count", CartManager.getOrderedDishes().size()+""));
-//				params.add(new BasicNameValuePair("reserved_time", "2013-04-01")); //todo
-//				params.add(new BasicNameValuePair("other_requirements", requirements));
-//				params.add(new BasicNameValuePair("order_dishes", CartManager.getJsonStr()));
+				HttpPut httpPut = new HttpPut(Configuration.WS_PLACEORDER);
 
 				HttpParams params = new BasicHttpParams();
-				params.setParameter("customer_id", "1");
-				params.setParameter("contact_name", name);
-				params.setParameter("contact_phone", telephone);
-				params.setParameter("people_number", guestNumber);
-				params.setParameter("box_required", isVip);
-				params.setParameter("order_price", CartManager.getTotalPrice()+"");
-				params.setParameter("dishes_count", CartManager.getOrderedDishes().size()+"");
-				params.setParameter("reserved_time", "2013-04-01");
-				params.setParameter("other_requirements", requirements);
-				params.setParameter("order_dishes", CartManager.getJsonStr());
-				
-				try { 
-					httpGet.setParams(params);
-//					httpGet.setEntity(new UrlEncodedFormEntity(params,
-//							HTTP.UTF_8));
+
+				params.setParameter(CoreConnectionPNames.SO_TIMEOUT,
+						Configuration.WS_SOCKETTIMEOUT);
+				params.setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,
+						Configuration.WS_CONNTIMEOUT);
+
+				try {
+					StringEntity se = new StringEntity(data, "UTF-8");
+					httpPut.setEntity(se);
 					HttpResponse httpResponse = new DefaultHttpClient()
-							.execute(httpGet);
-					// 201!
+							.execute(httpPut);
+					// HTTP/1.0 201 CREATED
 					Log.e("!!", httpResponse.getStatusLine().toString());
 					if (httpResponse.getStatusLine().getStatusCode() == 201) {
-						String strResult = EntityUtils.toString(httpResponse
-								.getEntity());
+
+						Intent i = new Intent();
+						i.setClass(OrderInfoActivity.this,
+								OrderDishesResultActivity.class);
+						startActivity(i);
 					} else {
-						String strResult = EntityUtils.toString(httpResponse
-								.getEntity());
-						Log.e("=======", strResult);
+						Toast toast = Toast.makeText(
+								getApplicationContext(),
+								getResources().getString(
+										R.string.plz_check_input),
+								Toast.LENGTH_LONG);
+						toast.setGravity(Gravity.BOTTOM, 0, 0);
+						toast.show();
 					}
 				} catch (Exception e) {
-					e.printStackTrace();
+					Toast toast = Toast.makeText(
+							getApplicationContext(),
+							getResources().getString(
+									R.string.failed_to_get_data),
+							Toast.LENGTH_LONG);
+					toast.setGravity(Gravity.BOTTOM, 0, 0);
+					toast.show();
 				}
 			}
 

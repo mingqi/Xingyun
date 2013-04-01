@@ -1,5 +1,7 @@
 package com.xingyun.activity;
 
+import com.xingyun.persistence.UserManager;
+
 import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -34,13 +36,28 @@ public class HostActivity extends TabActivity {
 						getResources().getDrawable(R.drawable.fork_knife))
 				.setContent(new Intent(this, ResturantInfoActivity.class)));
 
-		tabHost.addTab(tabHost
-				.newTabSpec(
-						(String) this.getResources().getText(R.string.profile))
-				.setIndicator(
-						(String) this.getResources().getText(R.string.profile),
-						getResources().getDrawable(R.drawable.man))
-				.setContent(new Intent(this, UserProfileActivity.class)));
+//		if (UserManager.isLogin()) {
+			tabHost.addTab(tabHost
+					.newTabSpec(
+							(String) this.getResources().getText(
+									R.string.profile))
+					.setIndicator(
+							(String) this.getResources().getText(
+									R.string.profile),
+							getResources().getDrawable(R.drawable.man))
+					.setContent(new Intent(this, UserProfileActivityGroup.class)));
+
+//		} else {
+//			tabHost.addTab(tabHost
+//					.newTabSpec(
+//							(String) this.getResources().getText(
+//									R.string.profile))
+//					.setIndicator(
+//							(String) this.getResources().getText(
+//									R.string.profile),
+//							getResources().getDrawable(R.drawable.man))
+//					.setContent(new Intent(this, LoginActivity.class)));
+//		}
 
 		TabWidget tabWidget = tabHost.getTabWidget();
 		for (int i = 0; i < tabWidget.getChildCount(); i++) {
