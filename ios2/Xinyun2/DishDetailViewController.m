@@ -11,6 +11,7 @@
 
 @interface DishDetailViewController ()
 
+@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) IBOutlet UIButton *cartButton;
 @end
 
@@ -29,6 +30,11 @@
 {
     [super viewDidLoad];
     self.cartButton.layer.cornerRadius = 10;
+}
+
+- (void) viewDidLayoutSubviews
+{
+    [self.titleLabel sizeToFit];
 }
 
 - (void)didReceiveMemoryWarning

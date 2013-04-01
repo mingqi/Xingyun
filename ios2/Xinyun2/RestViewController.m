@@ -13,6 +13,7 @@
 - (IBAction)checkoutButtonTouchUpInside:(id)sender;
 @property (strong, nonatomic) IBOutlet UIButton *placeOrderButton;
 @property (strong, nonatomic) UIActionSheet *phoneCallSheet;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 @end
 
 @implementation RestViewController
@@ -38,6 +39,11 @@
                                         destructiveButtonTitle:nil
                                              otherButtonTitles:@"0996-2218222", nil];
     self.phoneCallSheet.actionSheetStyle = UIBarStyleBlackTranslucent;
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -101,6 +107,8 @@
         default:
             break;
     }
+    
+    //[tableView deselectRowAtIndexPath:indexPath animated:YES];
     
 }
 
