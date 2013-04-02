@@ -11,6 +11,7 @@ from django.views.decorators.http import require_GET, require_POST
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse, reverse_lazy
+from django.views.decorators.gzip  import gzip_page
 
 
 urlpatterns = patterns('',
