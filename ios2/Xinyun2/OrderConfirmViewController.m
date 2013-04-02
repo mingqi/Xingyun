@@ -9,11 +9,13 @@
 #import "OrderConfirmViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
+
 @interface OrderConfirmViewController ()
 @property (strong, nonatomic) IBOutlet UITextField *customerNameTextField;
 @property (strong, nonatomic) IBOutlet UITextField *telPhoneTextField;
 @property (strong, nonatomic) IBOutlet UITextField *peopleNumberTextField;
-
+@property (strong, nonatomic) UIDatePicker *datePicker;
+@property (strong, nonatomic) IBOutlet UITextField *reservedTimeTextField;
 @end
 
 @implementation OrderConfirmViewController
@@ -30,6 +32,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 250, 320, 300)];
+    self.datePicker.datePickerMode = UIDatePickerModeDateAndTime;
+    self.datePicker.minuteInterval = 15;
+    [self.datePicker addTarget:self action:@selector(datePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
+    
+    self.reservedTimeTextField.inputView = self.datePicker;
+   
+}
+
+- (void) datePickerValueChanged:(UIDatePicker *) datePicker
+{
+    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+    [fmt setDateFormat:@"yyyy-MM-dd HH:mm"];
+    self.reservedTimeTextField.text = [fmt stringFromDate:self.datePicker.date];
 }
 
 - (void)didReceiveMemoryWarning
@@ -51,6 +67,8 @@
         [self.telPhoneTextField resignFirstResponder];
     }else if([self.peopleNumberTextField isFirstResponder]){
         [self.peopleNumberTextField resignFirstResponder];
+    }else if( [self.reservedTimeTextField isFirstResponder]){
+        [self.reservedTimeTextField resignFirstResponder];
     }
 }
 #pragma mark - Table view data source
@@ -120,14 +138,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    /*
+ /*
     if(indexPath.section == 0 && indexPath.row == 4){
         UIDatePicker *datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 250, 320, 300)];
         datePicker.datePickerMode = UIDatePickerModeDateAndTime;
-        [self.view addSubview:datePicker];
-        
+        //[self.view addSubview:datePicker];
+        [tableView addSubview:datePicker];
     }
-    */
+*/
 }
 
 @end
