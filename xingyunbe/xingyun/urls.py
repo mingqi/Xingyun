@@ -55,6 +55,7 @@ urlpatterns = patterns('',
     url(r'^api/activities/?$', APIActivitiesView.as_view(), name='api/activities'),
     url(r'^api/customer/signin?$', APICustomerSigninView.as_view()),
     url(r'^api/customer/signup?$', csrf_exempt(APICustomerSignupView.as_view())),
+    url(r'^api/customer/(?P<pk>\w+)/?$', csrf_exempt(APICustomerView.as_view()), name='api/order'),
 )
 
 

@@ -12,6 +12,9 @@ curl -X GET --header "Content-Type:application/json"  http://127.0.0.1:8000/xing
 # get a order detail
 curl -X GET --header "Content-Type:application/json"  http://127.0.0.1:8000/xingyun/api/order/9   -v
 
+# update order information
+curl -X POST --header "Content-Type:application/json" http://127.0.0.1:8000/xingyun/api/order/11 --data @./apitest/updateorder.json -v
+
 # get activities list
 curl -X GET --header "Content-Type:application/json"  http://127.0.0.1:8000/xingyun/api/activities   -v
 
@@ -20,3 +23,9 @@ curl -X GET --header "Content-Type:application/json"  "http://127.0.0.1:8000/xin
 
 # customer signup
 curl -X PUT --header "Content-Type:application/json"  http://127.0.0.1:8000/xingyun/api/customer/signup --data @./apitest/signup.json -v
+
+# get customer information
+curl -X GET --header "Content-Type:application/json"  http://127.0.0.1:8000/xingyun/api/customer/2   -v
+
+# change customer information
+curl -X POST --header "Content-Type:application/json" http://127.0.0.1:8000/xingyun/api/customer/2 --data @./apitest/updatecustomer.json -v

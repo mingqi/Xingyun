@@ -62,11 +62,6 @@ class ModelSetFieldsByDictMixin(object):
             if hasattr(self, key):
                 setattr(self, key, value)
     
-class ModelUpdateFromDictMixin(object):
-    def update_from_dict(self, d):
-        for key, value in d.items():
-            if hasattr(self, key):
-                setattr(self, key, value)
 
 
 class ContentTypeRestrictedFileField(forms.FileField):
@@ -143,7 +138,7 @@ class MenuItemUpdateForm(forms.ModelForm):
         fields = ('image_file', 'title', 'price', 'category', 'sorted_seq', 'menu_item_id')
         
 ############# Order Models #################
-class Order(models.Model, ModelAsDictMixin, ModelUpdateFromDictMixin, ModelSetFieldsByDictMixin):
+class Order(models.Model, ModelAsDictMixin, ModelSetFieldsByDictMixin):
     ORDER_STATUS_CHOICES = (
         (1, '未处理'),
         (2, '预定成功'),

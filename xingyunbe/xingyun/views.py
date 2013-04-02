@@ -311,7 +311,7 @@ class APIOrderView(DetailView):
                                            type = 'client',
                                            status = 400)
             order = Order.objects.get(pk = pk) 
-            order.update_from_dict(order_update_dict)
+            order.set_fields_by_dict(order_update_dict)
             order.save()
             
             return HttpResponse(status=204)
@@ -448,29 +448,60 @@ class APICustomerSigninView(View):
                             content = json.dumps(content_dict), 
                             content_type = "application/json; charset=utf-8")
         
-class APICustomerGetInfo(View):
+class APICustomerView(DetailView):
     
-    def get(self, request):
+    model = Customer;
+    
+    def render_to_response(self, context, **response_kwargs):
         """
-        api/customer/signin
+        override  DetailView's  TemplateResponseMixin. this is only take in effective for GET method
         """
-        if 'customer_id'  not in request.REQUEST:
-            return rest_response_error(errorCode = 'MissRequiredParameterException', 
-                                           message = 'customer_id parameter is required', 
+        customer_dict = context['object'].as_dict()
+        del customer_dict['password']
+        content = json.dumps(customer_dict,ensure_ascii=False, cls=CustomizedJsonEncoder)
+        return HttpResponse(content, content_type = "application/json; charset=utf-8", status = 200)
+    
+    def post(self, request, pk, **kwargs):
+        if self.request.META['CONTENT_TYPE'] == 'application/json':
+            try:
+                customer_update_dict = json.loads(request.body)
+            except Exception as e:
+                logger.exception("failed parse json")
+                return rest_response_error(errorCode = 'SerializationException', 
+                                           message = 'illegal json content: %s' % e, 
                                            type = 'client',
                                            status = 400)
+            customer = Customer.objects.get(pk = pk) 
+            customer.set_fields_by_dict(customer_update_dict)
+            customer.save()
             
-        try: 
-            customer =  Customer.objects.get(pk = request.REQUEST['customer_id'])
-        except Customer.DoesNotExist:
-            return rest_response_error(errorCode = 'IllegalParameterException', 
-                                       message = 'illegal customer id', 
-                                       type = 'client',
-                                       status = 404)
+            return HttpResponse(status=204)
+        else:
+            return super(OrderUpdate, self).post(self, request, **kwargs)
+    
+#    def get(self, request):
+#        """
+#        api/customer/signin
+#        """
+#        if 'customer_id'  not in request.REQUEST:
+#            return rest_response_error(errorCode = 'MissRequiredParameterException', 
+#                                           message = 'customer_id parameter is required', 
+#                                           type = 'client',
+#                                           status = 400)
+#            
+#        try: 
+#            customer =  Customer.objects.get(pk = request.REQUEST['customer_id'])
+#        except Customer.DoesNotExist:
+#            return rest_response_error(errorCode = 'IllegalParameterException', 
+#                                       message = 'illegal customer id', 
+#                                       type = 'client',
+#                                       status = 404)
+#        
+#        return HttpResponse(status=200, 
+#                            content = json.dumps(customer.as_dict()), 
+#                            content_type = "application/json; charset=utf-8")
         
-        return HttpResponse(status=200, 
-                            content = json.dumps(customer.as_dict()), 
-                            content_type = "application/json; charset=utf-8")
+        
     
 class APICustomerSignupView(View):
     
