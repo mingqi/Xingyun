@@ -1,60 +1,187 @@
 package com.xingyun.activity;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.io.InputStream;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
+import org.json.JSONObject;
+
+import com.xingyun.persistence.UserManager;
+import com.xingyun.setting.Configuration;
+import com.xingyun.utility.StringUtility;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 public class LoginActivity extends Activity {
+	private LoginActivity thisActivity;
+	private String nextStep;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 
-		final ListView list = (ListView) findViewById(R.id.lv_form);
+		try {
+			nextStep = this.getIntent().getStringExtra("nextstep");
+		} catch (Exception ex) {
+			nextStep = "";
+		}
 
-		ArrayList<HashMap<String, String>> formList = new ArrayList<HashMap<String, String>>();
+		thisActivity = this;
 
-		// 手机号 密码
-		HashMap<String, String> map = new HashMap<String, String>();
+		if (UserManager.isLogin()) {
+			goNextStep();
+		}
 
-		formList.add(map);
-		SimpleAdapter adapter = new SimpleAdapter(this, formList,
-				R.layout.loginform, new String[] {}, new int[] {});
+		final EditText txtUsername = (EditText) this
+				.findViewById(R.id.txt_username);
+		final EditText txtPassword = (EditText) this
+				.findViewById(R.id.txt_password);
 
-		list.setAdapter(adapter);
-
-		Button btnBack = (Button) findViewById(R.id.btn_cancel);
-		btnBack.setOnClickListener(new OnClickListener() {
+		Button btnSignup = (Button) this.findViewById(R.id.btn_signup);
+		btnSignup.setOnClickListener(new OnClickListener() {
 
 			@Override
-			public void onClick(View arg0) {
-				// finish();
+			public void onClick(View v) {
+				try {
+					((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE))
+							.hideSoftInputFromWindow(LoginActivity.this
+									.getCurrentFocus().getWindowToken(),
+									InputMethodManager.HIDE_NOT_ALWAYS);
+				} catch (Exception ex) {
+				}
+				Intent i = new Intent(LoginActivity.this, SignupActivity.class)
+						.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				i.putExtra("nextstep", nextStep);
+				View view = UserProfileActivityGroup.group
+						.getLocalActivityManager()
+						.startActivity("activity_signup", i).getDecorView();
+				UserProfileActivityGroup.group.setContentView(view);
 			}
 
 		});
 
-		Button btnLogin = (Button) findViewById(R.id.btn_login);
+		Button btnLogin = (Button) this.findViewById(R.id.btn_login);
 		btnLogin.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View arg0) {
-				String tel = ((EditText) findViewById(R.id.login_tel))
-						.getText().toString();
-				String password = ((EditText) findViewById(R.id.login_password))
-						.getText().toString();
-				Log.d("tel:", tel);
-				Log.d("password:", password);
+				// TODO Auto-generated method stub
+				try {
+					((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE))
+							.hideSoftInputFromWindow(LoginActivity.this
+									.getCurrentFocus().getWindowToken(),
+									InputMethodManager.HIDE_NOT_ALWAYS);
+				} catch (Exception ex) {
+				}
+
+				String username = txtUsername.getText().toString();
+				String password = txtPassword.getText().toString();
+
+				String path = Configuration.WS_LOGIN.replace("__1__", username)
+						.replace("__2__", password);
+
+				HttpGet httpGet = new HttpGet(path);
+
+				HttpParams httpParameters = new BasicHttpParams();
+				HttpConnectionParams.setConnectionTimeout(httpParameters,
+						Configuration.WS_CONNTIMEOUT);
+				HttpConnectionParams.setSoTimeout(httpParameters,
+						Configuration.WS_SOCKETTIMEOUT);
+				DefaultHttpClient httpClient = new DefaultHttpClient(
+						httpParameters);
+				HttpResponse response;
+				try {
+					response = httpClient.execute(httpGet);
+					InputStream is = response.getEntity().getContent();
+					String responseMsg = "";
+					try {
+						responseMsg = StringUtility.inputstreamToString(is);
+						Log.e("====dd===", responseMsg);
+					} catch (Exception e) {
+						Toast toast = Toast.makeText(
+								getApplicationContext(),
+								getResources().getString(
+										R.string.failed_to_get_data),
+								Toast.LENGTH_LONG);
+						toast.setGravity(Gravity.CENTER, 0, 0);
+						toast.show();
+					}
+					Log.e("===", response.getStatusLine().getStatusCode() + "");
+					if (response.getStatusLine().getStatusCode() == 200) {
+						// {"customer_id": 1, "contact_phone": "26", "name":
+						// "mingqi1", "contact_name": "\u516b\u70b9"}
+
+						JSONObject user = new JSONObject(responseMsg);
+						int id = user.getInt("customer_id");
+						String name = user.getString("name");
+						String contactName = user.getString("contact_name");
+
+						UserManager.setId(id);
+						UserManager.setContactName(contactName);
+						UserManager.setName(name);
+						UserManager.setLogin(true);
+
+						goNextStep();
+
+					} else {
+						Toast toast = Toast.makeText(
+								getApplicationContext(),
+								getResources().getString(
+										R.string.wrong_username_or_password),
+								Toast.LENGTH_LONG);
+						toast.setGravity(Gravity.CENTER, 0, 0);
+						toast.show();
+					}
+
+				} catch (Exception e) {
+					Toast toast = Toast.makeText(
+							getApplicationContext(),
+							getResources().getString(
+									R.string.failed_to_get_data),
+							Toast.LENGTH_LONG);
+					toast.setGravity(Gravity.CENTER, 0, 0);
+					toast.show();
+				}
 			}
+
 		});
+
+	}
+
+	private void goNextStep() {
+		if (this.nextStep.equals("order")) {
+			View view = UserProfileActivityGroup.group
+					.getLocalActivityManager()
+					.startActivity(
+							"activity_orderinfo",
+							new Intent(LoginActivity.this,
+									OrderInfoActivity.class)).getDecorView();
+			UserProfileActivityGroup.group.setContentView(view);
+		} else {
+			View view = UserProfileActivityGroup.group
+					.getLocalActivityManager()
+					.startActivity(
+							"activity_userprofile",
+							new Intent(LoginActivity.this,
+									UserProfileActivity.class)
+									.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+					.getDecorView();
+			UserProfileActivityGroup.group.setContentView(view);
+		}
 	}
 }

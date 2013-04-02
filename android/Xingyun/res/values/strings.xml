@@ -42,7 +42,22 @@
 	<string name="loading">加载中</string>
 	<string name="failed_to_get_data">获取网络内容失败</string>
 	<string name="add_to_cart_succeed">点菜成功</string>
+	<string name="order_dishes_result">订餐结果</string>
+	<string name="order_dishes_succeed">订餐成功，稍后会有工作人员与您联系</string>
+	<string name="finish">完成</string>
+	<string name="plz_check_input">请检查输入是否完整</string>
+	<string name="login">登录</string>
+	<string name="username">用户名：</string>
+	<string name="password">密码：</string>
+	<string name="wrong_username_or_password">用户名或密码错误</string>
+	<string name="signup">注册</string>
+	<string name="repeat">重复：</string>
+	<string name="different_password">两次密码输入不一致</string>
+	<string name="realname">称谓</string>
+	<string name="empty_username">用户名不能为空</string>
+	<string name="empty_realname">称谓不能为空</string>
 	
+	 
 	<string name="sample_str1">请确认您要点的菜品 一共元</string>
 	<string name="sample_str2">宫保鸡丁</string>
 	<string name="sample_str3">20元</string>

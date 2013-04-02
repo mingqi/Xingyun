@@ -76,9 +76,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
+                        android:id="@+id/txt_contactname"
                         android:layout_marginLeft="10dp"
                         android:gravity="center_vertical"
-                        android:text="顾客姓名：孙先生"
+                        android:text="顾客姓名："
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#000000" />
                 </TableRow>
@@ -104,9 +105,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
+                        android:id="@+id/txt_telephone"
                         android:layout_marginLeft="10dp"
                         android:gravity="center_vertical"
-                        android:text="联系方式：138-0013-8000"
+                        android:text="联系方式："
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#000000" />
                 </TableRow>
@@ -134,7 +136,8 @@
                         android:layout_height="40dp"
                         android:layout_marginLeft="10dp"
                         android:gravity="center_vertical"
-                        android:text="用餐人数：8人"
+                        android:id="@+id/txt_guestnumber"
+                        android:text="用餐人数："
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#000000" />
                 </TableRow>
@@ -162,7 +165,8 @@
                         android:layout_height="40dp"
                         android:layout_marginLeft="10dp"
                         android:gravity="center_vertical"
-                        android:text="堂食/包厢：包厢"
+                        android:id="@+id/txt_isvip"
+                        android:text="堂食/包厢："
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#000000" />
                 </TableRow>
@@ -190,7 +194,8 @@
                         android:layout_height="40dp"
                         android:layout_marginLeft="10dp"
                         android:gravity="center_vertical"
-                        android:text="到店时间：2013-04-02 12:00"
+                        android:id="@+id/txt_arrivaltime"
+                        android:text="到店时间："
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#000000" />
                 </TableRow>
@@ -219,7 +224,8 @@
                         android:layout_height="40dp"
                         android:layout_marginLeft="10dp"
                         android:gravity="center_vertical"
-                        android:text="共点菜2道"
+                        android:id="@+id/txt_dishcount"
+                        android:text="共点菜道"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#000000" />
                 </TableRow>
@@ -246,7 +252,8 @@
                         android:layout_height="40dp"
                         android:layout_marginLeft="10dp"
                         android:gravity="center_vertical"
-                        android:text="一共88元"
+                        android:id="@+id/txt_totalprice"
+                        android:text="一共元"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#000000" />
                 </TableRow>
@@ -266,8 +273,8 @@
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
                 android:enabled="false"
-                android:inputType="textMultiLine"
-                android:text="不要香菜" >
+                android:inputType="textMultiLine" 
+                android:id="@+id/txt_requirements" >
             </com.xingyun.excontrol.RoundedRectEditTextLayout>
         </LinearLayout>
     </ScrollView>

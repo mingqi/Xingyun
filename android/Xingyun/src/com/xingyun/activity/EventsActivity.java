@@ -60,10 +60,7 @@ public class EventsActivity extends FragmentActivity {
 	}
 
 	private void fillEventData() {
-		// 5张示例图
 		eventViews = new ArrayList<View>();
-		// int[] drawableIds = { R.drawable.s2, R.drawable.s3, R.drawable.s4,
-		// R.drawable.s5 };
 		for (int i = 0; i < eventList.size(); i++) {
 			EventSlider es = new EventSlider(this, "", "", Configuration.WS_IMAGE_URI_PREFIX+ eventList.get(i)
 					.getImageUrl());
@@ -75,10 +72,6 @@ public class EventsActivity extends FragmentActivity {
 		eventPager = (ViewPager) findViewById(R.id.eventPager);
 		eventPager.setAdapter(eventPagerAdapter);
 
-		// Bitmap imbm = BitmapFactory.decodeFile(parent.listFiles()[count]
-		// .getAbsolutePath());
-
-		// Bind the title indicator to the adapter
 		CirclePageIndicator titleIndicator = (CirclePageIndicator) findViewById(R.id.circlePageIndicator);
 		titleIndicator.setViewPager(eventPager);
 	}
