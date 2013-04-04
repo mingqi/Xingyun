@@ -7,11 +7,15 @@
 //
 
 #import "PromotionViewController.h"
+#import "Restfulservice.h"
+#import "MBProgressHUD.h"
+
 
 @interface PromotionViewController ()
 
 @property (strong, nonatomic) IBOutlet UIPageControl *pageControl;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) MBProgressHUD *hub;
 @end
 
 @implementation PromotionViewController
@@ -33,27 +37,54 @@
     self.scrollView.pagingEnabled = YES;
     self.scrollView.delegate = self;
     [self.view addSubview:self.scrollView];
-    [self setupScrollView:self.scrollView];
+    //[self setupScrollView:self.scrollView];
+    Restfulservice *service = [[Restfulservice alloc] initWiteRemoteAddress:@"http://127.0.0.1:8000/xingyun"];
+    //[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.hub = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:self.hub];
+    [service getActivities:self withProgressHUB:self.hub];
     
-    /*
-    UIPageControl *pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(160, 400, 0, 0)];
-    pageControl.numberOfPages = 3;
-    pageControl.pageIndicatorTintColor = [UIColor redColor];
-    pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
-    //[self.view addSubview: pageControl];
-    */
-    
-    self.pageControl.frame = CGRectMake(160, 400, 0, 0);
-    self.pageControl.numberOfPages = 3;
-    //self.pageControl.pageIndicatorTintColor = [UIColor redColor];
-    //self.pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
-//    [self.pageControl removeFromSuperview];
-    
-    [self.view addSubview: self.pageControl];
+    NSLog(@"ending... viewDidLoad");
 
 }
 
+- (void) successLoadActivities:(NSArray *)images
+{
+    NSLog(@"This is successLoad: %@", images);
+    for (int i=0; i<[images count]; i++) {
+        // create imageView
+        UIImageView *imageView = [images objectAtIndex:(i)];
+        [imageView setFrame: CGRectMake(i*self.scrollView.frame.size.width, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)];
+        
+        // set scale to fill
+        imageView.contentMode=UIViewContentModeScaleToFill;
+        // apply tag to access in future
+        imageView.tag=i+2;
+        // add to scrollView
+        [self.scrollView addSubview:imageView];
+    }
+    // set the content size to 10 image width
+    [self.scrollView setContentSize:CGSizeMake(self.scrollView.frame.size.width*[images count], self.scrollView.frame.size.height)];
+    self.pageControl.frame = CGRectMake(160, 400, 0, 0);
+    self.pageControl.numberOfPages = [images count];
+    [self.view addSubview: self.pageControl];
+}
+
+- (void) failureLoadActivities:(NSError *)error
+{
+    NSMutableArray *images = [NSMutableArray arrayWithCapacity:3];
+    for (int i=1; i<=3; i++) {
+        NSString *imageName = [NSString stringWithFormat:@"prom%02i.jpg",i];
+        UIImage *image = [UIImage imageNamed:imageName];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+        [images addObject:imageView];
+    }
+    
+    [self successLoadActivities:images];
+}
+
 - (void)setupScrollView:(UIScrollView*)scrMain {
+    /*
     for (int i=1; i<=3; i++) {
         // create image
         NSString *imageName = [NSString stringWithFormat:@"prom%02i.jpg",i];
@@ -72,7 +103,7 @@
     }
     // set the content size to 10 image width
     [scrMain setContentSize:CGSizeMake(scrMain.frame.size.width*3, scrMain.frame.size.height)];
-    
+    */
 }
 
 - (void)didReceiveMemoryWarning

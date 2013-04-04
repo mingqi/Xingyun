@@ -21,7 +21,7 @@ from django.views.generic import ListView, View
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from os.path import join
-import json, logging
+import json, logging, time
 from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
@@ -409,6 +409,7 @@ class APIActivitiesView(View):
         """
         GET api/activities: get the list of activities
         """
+        time.sleep(5)
         queryset = Activity.objects.all().order_by('sorted_seq')
         content = json.dumps([ x.as_dict(one2many_fields=None) for x in queryset], ensure_ascii = False, cls=CustomizedJsonEncoder)
         return HttpResponse(content, content_type = "application/json; charset=utf-8", status = 200)

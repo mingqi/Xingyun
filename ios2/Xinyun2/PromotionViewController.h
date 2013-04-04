@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Restfulservice.h"
 
-@interface PromotionViewController : UIViewController <UIScrollViewDelegate>
+@interface PromotionViewController : UIViewController <UIScrollViewDelegate, GetActivitiesDelegate>
 
 @end
