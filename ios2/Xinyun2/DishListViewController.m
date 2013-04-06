@@ -35,15 +35,20 @@
 {
     [super viewDidLoad];
     NSLog(@"Dish Lish View Controller viewDidLoad");
+    
         /*** draw table's footer view ***/
     UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, 40)];
     footerView.backgroundColor = [UIColor whiteColor];
     UILabel *footerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
-    footerLabel.text = @"点击加载更多...";
+    footerLabel.text = @"";
     footerLabel.textColor = [UIColor blackColor];
     footerLabel.textAlignment = NSTextAlignmentCenter;
     footerLabel.font = [UIFont systemFontOfSize:12];
     
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc]
+                                         initWithTarget:self action:@selector(handleSingleTapOnFooter:)];
+
+    [footerView addGestureRecognizer:singleTap];
     
     self.hub = [[MBProgressHUD alloc] initWithView:self.view];
     [self.view addSubview: self.hub];
@@ -56,6 +61,7 @@
     self.tableViewManager = [[DishListTableViewManager alloc] init];
     self.tableViewManager.tableView = self.tableView;
     self.tableViewManager.hub = self.hub;
+    self.tableViewManager.tableFooterLabel = footerLabel;
     self.tableView.dataSource = self.tableViewManager;
     
     [self.tableViewManager reloadTableView];
@@ -82,17 +88,43 @@
 }
 
 
+- (IBAction)categoryChanged:(id)sender {
+    UISegmentedControl *segmentedControl = (UISegmentedControl*) sender;
+    NSInteger selectedIndex = [segmentedControl selectedSegmentIndex];
+    NSLog(@"categoryChanged: %d", selectedIndex);
+    self.tableViewManager.category = selectedIndex;
+    [self.tableViewManager reloadTableView];
+}
+
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{    
     [self performSegueWithIdentifier:@"dishDetailSegue" sender:self];
 }
 
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)aScrollView
+{
+    NSArray *visibleRows = [self.tableView visibleCells];
+    UITableViewCell *lastVisibleCell = [visibleRows lastObject];
+    NSIndexPath *path = [self.tableView indexPathForCell:lastVisibleCell];
+    if( path.row == [self.tableView numberOfRowsInSection:0]-1)
+    {
+        [self handleSingleTapOnFooter:nil];
+    }
+}
 
+- (IBAction) handleSingleTapOnFooter: (UIGestureRecognizer *) sender {
+    NSLog(@"The footer was tapped!");
+    if(self.tableViewManager.hasMore)
+    {
+        [self.tableViewManager loadMoreCellTableView];
+    }
+}
 
 @end
 
 @interface DishListTableViewManager()
 
 @property (nonatomic, strong) NSMutableArray *dishList;
+@property (nonatomic) NSInteger pageNumber;
 
 @end
 
@@ -103,32 +135,49 @@
     if(self == [super init])
     {
         self.dishList = [NSMutableArray arrayWithCapacity:10];
-        self.pageNumber = 1;
+        self.pageNumber = 0;
         self.category = 0;
+        self.hasMore = NO;
     }
     return self;
 }
 
 - (void) reloadTableView
 {
+    self.pageNumber = 0;
+    self.hasMore = NO;
     Restfulservice *service = [Restfulservice getService];
     [self.hub show:YES];
     [self.dishList removeAllObjects];
-    [service loadMenuItems:self category:0  pageNum:1];
-//    [service loadMenuItems:<#(id<LoadMenuItemDelegate>)#> pageNum:<#(NSInteger)#>]
+    [service loadMenuItems:self category:self.category  pageNum:self.pageNumber+1];
 }
 
 - (void) loadMoreCellTableView
 {
-    
+    [self.hub show:YES];
+    Restfulservice *service = [Restfulservice getService];
+    [service loadMenuItems:self category:self.category  pageNum:self.pageNumber+1];
 }
 
-- (void) successLoad:(NSArray *)menuItems hasMore:(BOOL)hasMore
+- (void) successLoad:(NSArray *)menuItems pageNumber:(NSInteger) pageNum hasMore:(BOOL)hasMore
 {
-    NSLog(@"successLoad %@", menuItems);
+    self.pageNumber = pageNum;
     [self.dishList addObjectsFromArray:menuItems];
     [self.hub hide:YES];
-    [self.tableView reloadData];    
+    [self.tableView reloadData];
+    if([self.dishList count] == 0)
+    {
+        self.tableFooterLabel.text = @"没有菜品";
+        self.hasMore = NO;
+    }else{
+        self.hasMore = hasMore;
+        if( hasMore)
+        {
+            self.tableFooterLabel.text = @"点击或者下拉加载更多菜品";
+        }else{
+            self.tableFooterLabel.text = @"已经到最后了，没有更多菜品可加载了";
+        }
+    }
 }
 
 - (void) failureLoad:(NSError *)error

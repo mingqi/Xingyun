@@ -18,8 +18,9 @@
 
 @property (nonatomic, weak) UITableView *tableView;
 @property (nonatomic, weak) MBProgressHUD *hub;
-@property (nonatomic) NSInteger pageNumber;
+@property (nonatomic, weak) UILabel *tableFooterLabel;
 @property (nonatomic) NSInteger category;
+@property (nonatomic) BOOL hasMore;
 
 - (void) reloadTableView;
 - (void) loadMoreCellTableView;

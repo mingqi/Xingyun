@@ -170,5 +170,5 @@ LOGGING = {
 
 ## root folder of upload image save as
 UPLOAD_IMAGE_SAVE_ROOT = '/Users/mingqi/python/xingyunbe/xingyun/static/menu'
-DELAY_SECONDS = 2
-DEFAULT_PAGE_SIZE = 10
+DELAY_SECONDS = 1
+DEFAULT_PAGE_SIZE = 2

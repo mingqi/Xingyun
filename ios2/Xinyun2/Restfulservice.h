@@ -18,7 +18,7 @@
 
 @protocol LoadMenuItemDelegate <NSObject>
 
-- (void) successLoad:(NSArray *) menuItems hasMore:(BOOL) hasMore;
+- (void) successLoad:(NSArray *) menuItems pageNumber:(NSInteger) pageNum hasMore:(BOOL) hasMore;
 - (void) failureLoad:(NSError *) error;
 @end
 

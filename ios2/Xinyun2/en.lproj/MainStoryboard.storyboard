@@ -756,6 +756,9 @@
                                     <segment title="其他"/>
                                 </segments>
                                 <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="categoryChanged:" destination="0UQ-v8-AeB" eventType="valueChanged" id="PTZ-1p-JNp"/>
+                                </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="124" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Uxs-DC-n3x">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

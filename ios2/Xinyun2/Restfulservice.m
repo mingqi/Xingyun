@@ -75,13 +75,13 @@
 
 - (void) loadMenuItems: (id<LoadMenuItemDelegate>) delegate category:(NSInteger) category pageNum:(NSInteger) pageNum
 {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/menus?page=%d", self._remoteHost, pageNum]];
+    NSString *url = [NSString stringWithFormat:@"%@/api/menus?page=%d", self._remoteHost, pageNum];
     if(category != 0)
     {
         url = [NSString stringWithFormat:@"%@&category=%d", url, category];
     }
     NSLog(@"Restful URL: %@", url);
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         NSLog(@"success");
@@ -105,14 +105,15 @@
             
             [menus addObject:menuItem];
         }
-        
         BOOL hasMore = pageCount>pageNum;
-        NSMethodSignature* signature = [ [delegate class] instanceMethodSignatureForSelector: @selector( successLoad: hasMore:)];
+        NSInteger pn = pageNum;
+        NSMethodSignature* signature = [ [delegate class] instanceMethodSignatureForSelector: @selector( successLoad: pageNumber: hasMore:)];
         NSInvocation* invocation = [NSInvocation invocationWithMethodSignature: signature];
         [invocation setTarget: delegate];
-        [invocation setSelector: @selector( successLoad: hasMore: ) ];
+        [invocation setSelector: @selector( successLoad: pageNumber:hasMore:) ];
         [invocation setArgument: &menus atIndex: 2];
-        [invocation setArgument: &hasMore atIndex: 3];
+        [invocation setArgument: &pn atIndex: 3];
+        [invocation setArgument: &hasMore atIndex: 4];
         [invocation invoke];
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
         NSLog(@"failure");
