@@ -25,6 +25,7 @@ import json, logging, time
 from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.core.paginator import Paginator
 
 logger = logging.getLogger(__name__)
 
@@ -75,6 +76,8 @@ def resize_image(original_image, sizes):
     file_name, file_suffix = original_image.split('.')
     for size in sizes:
         resized_im = im.resize(size, Image.ANTIALIAS)
+        if resized_im.mode != "RGB":
+            resized_im = resized_im.convert('RGB')
         resized_im.save("%s_%dx%d.%s" % (file_name, size[0], size[1], file_suffix))
         
         
@@ -277,7 +280,13 @@ class ChangePasswordView(FormView):
 def change_password_succesful(request):
     return TemplateResponse(request, 'change_password_succesful.html', {})
         
-    
+   
+def delay(fn):
+    def wrapper(*args, **kwargs):
+        time.sleep(settings.DELAY_SECONDS)
+        return fn(*args, **kwargs)
+    return wrapper
+ 
 ### API Views ###
 class APIMenusView(View):
      
@@ -288,9 +297,28 @@ class APIMenusView(View):
             queryset = MenuItem.objects.order_by('sorted_seq')
         
         menu_items_list = queryset.all()
-        content = json.dumps([ x.as_dict() for x in menu_items_list], ensure_ascii = False, cls=CustomizedJsonEncoder)
-        return HttpResponse(content, content_type = "application/json; charset=utf-8", status = 200)
+        
+        if 'page' in self.request.REQUEST:
+            page_num = int(self.request.REQUEST['page'])
+            per_page = settings.DEFAULT_PAGE_SIZE
+            if 'page_size' in self.request.REQUEST:
+                per_page = int(self.request.REQUEST['page_size'])
             
+            p = Paginator(menu_items_list, per_page)
+            
+            print p.num_pages, page_num
+            if p.num_pages >= page_num:
+                item_list = p.page(page_num).object_list
+            else:
+                item_list = []
+            content = json.dumps({'pages_count' : p.num_pages,
+                                  'page_number' : page_num,
+                                  'page_size' : per_page,
+                                  'items':[ x.as_dict() for x in item_list]}, ensure_ascii = False, cls=CustomizedJsonEncoder)
+            return HttpResponse(content, content_type = "application/json; charset=utf-8", status = 200)
+        else:
+            content = json.dumps([ x.as_dict() for x in menu_items_list], ensure_ascii = False, cls=CustomizedJsonEncoder)
+            return HttpResponse(content, content_type = "application/json; charset=utf-8", status = 200)
 
 class APIOrderView(DetailView):
     '''
@@ -409,7 +437,6 @@ class APIActivitiesView(View):
         """
         GET api/activities: get the list of activities
         """
-        time.sleep(5)
         queryset = Activity.objects.all().order_by('sorted_seq')
         content = json.dumps([ x.as_dict(one2many_fields=None) for x in queryset], ensure_ascii = False, cls=CustomizedJsonEncoder)
         return HttpResponse(content, content_type = "application/json; charset=utf-8", status = 200)

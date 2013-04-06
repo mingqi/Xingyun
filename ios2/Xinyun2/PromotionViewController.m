@@ -38,7 +38,8 @@
     self.scrollView.delegate = self;
     [self.view addSubview:self.scrollView];
     //[self setupScrollView:self.scrollView];
-    Restfulservice *service = [[Restfulservice alloc] initWiteRemoteAddress:@"http://127.0.0.1:8000/xingyun"];
+    //Restfulservice *service = [[Restfulservice alloc] initWiteRemoteAddress:@"http://127.0.0.1:8000/xingyun"];
+    Restfulservice *service = [Restfulservice getService];
     //[MBProgressHUD showHUDAddedTo:self.view animated:YES];
     self.hub = [[MBProgressHUD alloc] initWithView:self.view];
     [self.view addSubview:self.hub];

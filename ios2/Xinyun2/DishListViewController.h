@@ -7,7 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Restfulservice.h"
 
 @interface DishListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@end
+
+
+@interface DishListTableViewManager : NSObject <UITableViewDataSource, LoadMenuItemDelegate>
+
+@property (nonatomic, weak) UITableView *tableView;
+@property (nonatomic, weak) MBProgressHUD *hub;
+@property (nonatomic) NSInteger pageNumber;
+@property (nonatomic) NSInteger category;
+
+- (void) reloadTableView;
+- (void) loadMoreCellTableView;
 
 @end
