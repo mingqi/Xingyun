@@ -13,6 +13,14 @@
 
 @implementation MenuItem
 
+- (NSString *) getImageURLWithResolution:(NSString *)resolution
+{
+    NSMutableArray *urlSep = [[self.imageURL componentsSeparatedByString:@"/"] mutableCopy];
+    NSArray *urlSep2 = [[urlSep objectAtIndex:[urlSep count]-1] componentsSeparatedByString:@"."];
+    NSString *newURL = [NSString stringWithFormat:@"%@_%@.%@", [urlSep2 objectAtIndex:0], resolution,[urlSep2 objectAtIndex:1]];
+    [urlSep replaceObjectAtIndex:[urlSep count]-1 withObject:newURL];
+    return [urlSep componentsJoinedByString:@"/"];
+}
 @end
 
 @interface  Restfulservice ()
@@ -93,13 +101,12 @@
         for( id obj in [JSON valueForKey:@"items"])
         {
             MenuItem *menuItem = [[MenuItem alloc] init];
+            menuItem.menuItemId = [(NSNumber *)[obj valueForKey:@"menu_item_id"] intValue];
             menuItem.title =[obj valueForKey:@"title"];
             menuItem.price = [obj valueForKey:@"price"];
             
-            NSString *imageUri = [obj valueForKey:@"image_uri"];
-            NSArray *imageUriArray = [imageUri componentsSeparatedByString:@"."];
-            
-            NSString *imageURL = [NSString stringWithFormat:@"%@/static/menu/%@_100x100.%@", self._remoteHost, [imageUriArray objectAtIndex:0], [imageUriArray objectAtIndex:1] ];
+            NSString *imageUri = [obj valueForKey:@"image_uri"];            
+            NSString *imageURL = [NSString stringWithFormat:@"%@/static/menu/%@", self._remoteHost, imageUri];
             NSLog(@"image url: %@", imageURL);
             menuItem.imageURL = imageURL;
             

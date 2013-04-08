@@ -23,9 +23,13 @@
 @end
 
 @interface MenuItem : NSObject
+@property (nonatomic) NSInteger menuItemId;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSNumber *price;
 @property (nonatomic, strong) NSString *imageURL;
+
+- (NSString *) getImageURLWithResolution:(NSString *) resolution;
+
 @end
 
 @interface Restfulservice : NSObject

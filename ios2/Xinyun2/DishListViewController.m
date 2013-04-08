@@ -10,6 +10,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "Restfulservice.h"
 #import "UIImageView+AFNetworking.h"
+#import "ShoppingCartManager.h"
+#import "DishDetailViewController.h"
 
 @interface DishListViewController ()
 
@@ -17,6 +19,7 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) MBProgressHUD * hub;
 @property (strong, nonatomic) DishListTableViewManager *tableViewManager;
+@property (strong, nonatomic) ShoppingCartManager *cartManager;
 
 @end
 
@@ -64,12 +67,25 @@
     self.tableViewManager.tableFooterLabel = footerLabel;
     self.tableView.dataSource = self.tableViewManager;
     
+    self.cartManager = [ShoppingCartManager getInstance];
     [self.tableViewManager reloadTableView];
+}
+
+- (void) updateRightBar
+{
+    NSInteger itemUnitsInCart = [self.cartManager getItemUnits];
+    if( itemUnitsInCart <= 0)
+    {
+        self.navigationItem.rightBarButtonItem.title=@"下一步";
+    }else{
+        self.navigationItem.rightBarButtonItem.title= [NSString stringWithFormat:@"购物车:%d", itemUnitsInCart];
+    }
 }
 
 - (void) viewDidAppear:(BOOL)animated
 {
-    NSLog(@"Dish Lish View Controller viewDidAppear");
+    [self.tableView reloadData];
+    [self updateRightBar];
     
 }
 
@@ -77,10 +93,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-//    NSLog(@"prepare for segue");
 }
 
 - (IBAction)checkOutAction:(UIBarButtonItem *)sender {
@@ -96,8 +108,48 @@
     [self.tableViewManager reloadTableView];
 }
 
-- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{    
-    [self performSegueWithIdentifier:@"dishDetailSegue" sender:self];
+- (IBAction)cartButtonTap:(id)sender {
+    UIButton *button = (UIButton *)sender;
+    // Get the UITableViewCell which is the superview of the UITableViewCellContentView which is the superview of the UIButton
+    UITableViewCell* cell = (UITableViewCell*)[[button superview] superview];
+    int row = [self.tableView indexPathForCell:cell].row;
+    MenuItem *menuItem = [self.tableViewManager getMenuItemOfRow:row];
+    
+    
+    ShoppingCartItem *cartItem = [self.cartManager findoutShoppingItem:menuItem.menuItemId];
+    if(cartItem == nil)
+    {
+        // not in cart yet, so add to cart
+        button.backgroundColor = [UIColor grayColor];
+        cartItem = [[ShoppingCartItem alloc] init];
+        cartItem.title = menuItem.title;
+        cartItem.price = menuItem.price;
+        cartItem.menuItemId = menuItem.menuItemId;
+        cartItem.quantity = 1;
+        cartItem.imageURL = menuItem.imageURL;
+        [self.cartManager addItem:cartItem];
+    }else{
+        // in cart already
+        [self.cartManager removeItem:cartItem.menuItemId];
+    }
+    
+    [self.tableView reloadData];
+    [self updateRightBar];
+}
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self performSegueWithIdentifier:@"dishDetailSegue" sender:[self.tableView cellForRowAtIndexPath:indexPath]];
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"dishDetailSegue"])
+    {
+        NSInteger row =  [self.tableView indexPathForCell: (UITableViewCell *) sender].row;
+        DishDetailViewController *detailVC = segue.destinationViewController;
+        detailVC.menuItem = [self.tableViewManager getMenuItemOfRow:row];
+    }
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)aScrollView
@@ -112,7 +164,6 @@
 }
 
 - (IBAction) handleSingleTapOnFooter: (UIGestureRecognizer *) sender {
-    NSLog(@"The footer was tapped!");
     if(self.tableViewManager.hasMore)
     {
         [self.tableViewManager loadMoreCellTableView];
@@ -125,6 +176,7 @@
 
 @property (nonatomic, strong) NSMutableArray *dishList;
 @property (nonatomic) NSInteger pageNumber;
+@property (nonatomic, strong) ShoppingCartManager * cartManager;
 
 @end
 
@@ -138,6 +190,7 @@
         self.pageNumber = 0;
         self.category = 0;
         self.hasMore = NO;
+        self.cartManager = [ShoppingCartManager getInstance];
     }
     return self;
 }
@@ -157,6 +210,11 @@
     [self.hub show:YES];
     Restfulservice *service = [Restfulservice getService];
     [service loadMenuItems:self category:self.category  pageNum:self.pageNumber+1];
+}
+
+- (MenuItem *) getMenuItemOfRow:(NSInteger) row
+{
+    return [self.dishList objectAtIndex:row];
 }
 
 - (void) successLoad:(NSArray *)menuItems pageNumber:(NSInteger) pageNum hasMore:(BOOL)hasMore
@@ -197,9 +255,26 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     UIButton *cartButton = (UIButton *)[cell viewWithTag:4];
     cartButton.layer.cornerRadius = 5;
-    UIImageView *imageView = (UIImageView *) [cell viewWithTag:1];
-    [imageView setImageWithURL:[NSURL URLWithString:menuItem.imageURL]];
     
+    ShoppingCartItem *cartItem = [self.cartManager findoutShoppingItem:menuItem.menuItemId];
+    if(cartItem == nil)
+    {
+        // item not in cart yet
+        cartButton.backgroundColor = [UIColor colorWithRed:0.5 green:0.0 blue:0.25 alpha:1];
+        [cartButton setTitle:@"点菜" forState:UIControlStateNormal];
+    }else{
+        // item in cart already
+        cartButton.backgroundColor = [UIColor grayColor];
+        [cartButton setTitle:@"已点" forState:UIControlStateNormal];
+
+    }
+    
+    UIImageView *imageView = (UIImageView *) [cell viewWithTag:1];
+    [imageView setImageWithURL: [NSURL URLWithString:[menuItem getImageURLWithResolution:@"100x100"]]];
+    UILabel *titleLabel = (UILabel *)[cell viewWithTag:2];
+    UILabel *priceLabel = (UILabel *)[cell viewWithTag:3];
+    titleLabel.text = menuItem.title;
+    priceLabel.text = [NSString stringWithFormat:@"%.1f元", [menuItem.price floatValue]];
     return cell;
 }
 
