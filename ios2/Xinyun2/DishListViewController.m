@@ -96,7 +96,12 @@
 }
 
 - (IBAction)checkOutAction:(UIBarButtonItem *)sender {
-    [self performSegueWithIdentifier:@"checkoutSegue" sender:self];
+    NSLog(@"ddd %d", [self.cartManager getItemUnits]);
+    if([self.cartManager getItemUnits] > 0){
+        [self performSegueWithIdentifier:@"checkoutSegue" sender:self];
+    }else{
+        [self performSegueWithIdentifier:@"orderConfirmSegue" sender:self];
+    }
 }
 
 

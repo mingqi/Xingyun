@@ -1,6 +1,6 @@
 {
-    "customer_id" : 2,
-    "contact_name" : "邵明岐",
+    "customer_id" : 0,
+    "contact_name" : "邵明岐1",
     "contact_phone" : "13811021667",
     "people_number" : 2,
     "box_required" : true,
@@ -9,10 +9,10 @@
     "reserved_time": "2012-01-19T19:05:01",
     "other_requirements" : "不要放香菜",
     "order_dishes" : [
-        {   "menu_item_id": 1,
+        {   "menu_item_id": 13,
             "quantity" : 1
         },
-        {   "menu_item_id": 5,
+        {   "menu_item_id": 10,
             "quantity" : 3
         }
     ]

@@ -855,6 +855,7 @@
                         <outlet property="tableView" destination="Uxs-DC-n3x" id="Llu-Dc-Vcn"/>
                         <segue destination="bdH-s5-eiD" kind="push" identifier="checkoutSegue" id="YtQ-oK-t5I"/>
                         <segue destination="2wo-ag-iTH" kind="push" identifier="dishDetailSegue" id="m46-i4-MvA"/>
+                        <segue destination="YPU-do-1Ry" kind="push" identifier="orderConfirmSegue" id="o7c-TU-Ppc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="25m-2h-DcG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1403,4 +1404,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="o7c-TU-Ppc"/>
+    </inferredMetricsTieBreakers>
 </document>
