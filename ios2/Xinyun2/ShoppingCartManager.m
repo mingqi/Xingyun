@@ -10,6 +10,15 @@
 
 @implementation ShoppingCartItem
 
+- (NSString *) getImageURLWithResolution:(NSString *)resolution
+{
+    NSMutableArray *urlSep = [[self.imageURL componentsSeparatedByString:@"/"] mutableCopy];
+    NSArray *urlSep2 = [[urlSep objectAtIndex:[urlSep count]-1] componentsSeparatedByString:@"."];
+    NSString *newURL = [NSString stringWithFormat:@"%@_%@.%@", [urlSep2 objectAtIndex:0], resolution,[urlSep2 objectAtIndex:1]];
+    [urlSep replaceObjectAtIndex:[urlSep count]-1 withObject:newURL];
+    return [urlSep componentsJoinedByString:@"/"];
+}
+
 @end
 
 @interface ShoppingCartManager ()
@@ -90,6 +99,11 @@
     {
         [self.itemArray removeObjectAtIndex:index];
     }
+}
+
+- (NSArray*) getItemArray
+{
+    return [NSArray arrayWithArray:self.itemArray];
 }
 
 - (void) cleanup

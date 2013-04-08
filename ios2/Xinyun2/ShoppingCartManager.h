@@ -14,6 +14,8 @@
 @property (nonatomic, strong) NSString *imageURL;
 @property (nonatomic) NSInteger quantity;
 @property (nonatomic) NSInteger menuItemId;
+- (NSString *) getImageURLWithResolution:(NSString *) resolution;
+
 
 @end
 
@@ -32,6 +34,8 @@
 - (void) cleanup;
 
 - (ShoppingCartItem *)  findoutShoppingItem:(NSInteger) menuItemId;
+
+- (NSArray *) getItemArray;
 
 + (ShoppingCartManager *) getInstance;
 

@@ -879,7 +879,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="123"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="dish2.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="LIi-XR-R5B">
+                                                <imageView userInteractionEnabled="NO" tag="6" contentMode="scaleToFill" image="dish2.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="LIi-XR-R5B">
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="100" id="NJc-pk-5Xz"/>
                                                         <constraint firstAttribute="height" constant="100" id="bRd-vD-WNN"/>
@@ -899,6 +899,9 @@
                                                     <state key="highlighted">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="plusButtonTaped:" destination="bdH-s5-eiD" eventType="touchUpInside" id="hgJ-1i-nUJ"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YrN-VG-K6n">
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -913,8 +916,11 @@
                                                     <state key="highlighted">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="minusButtonTaped:" destination="bdH-s5-eiD" eventType="touchUpInside" id="mKU-G4-u3S"/>
+                                                    </connections>
                                                 </button>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fvB-sx-dYK">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="5" contentMode="left" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fvB-sx-dYK">
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="9hP-uJ-D5K"/>
                                                     </constraints>
@@ -922,7 +928,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="雪梨养生茶" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oPY-At-0fd">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" text="雪梨养生茶" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oPY-At-0fd">
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="122" id="bgx-ID-AeN"/>
                                                         <constraint firstAttribute="height" constant="21" id="wLN-l4-JnE"/>
@@ -931,7 +937,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="价格: 28元" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ocl-UO-S49">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" text="价格: 28元" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ocl-UO-S49">
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="AZB-jZ-9S9"/>
                                                         <constraint firstAttribute="width" constant="80" id="Hht-Ct-yJM"/>
@@ -992,6 +998,8 @@
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="tableView" destination="yTB-Ws-C3q" id="ztU-Tf-Tjk"/>
+                        <outlet property="totalPriceLabel" destination="06T-uN-hyg" id="bTK-Mn-mGI"/>
                         <segue destination="YPU-do-1Ry" kind="push" identifier="orderConfirmSegue" id="dQ0-6K-Lvw"/>
                     </connections>
                 </viewController>

@@ -67,7 +67,6 @@
 
 - (void) updateCartButton
 {
-    
     ShoppingCartItem *cartItem = [self.cartManager findoutShoppingItem:self.menuItem.menuItemId];
     if(cartItem == nil)
     {
