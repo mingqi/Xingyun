@@ -25,4 +25,11 @@
         android:layout_alignBottom="@+id/eventPager"
         android:paddingBottom="15dp" />
 
+    <RelativeLayout
+        android:id="@+id/loadingPanel"
+        style="@style/GenericProgressBackground" >
+
+        <ProgressBar style="@style/GenericProgressIndicator" />
+    </RelativeLayout>
+
 </RelativeLayout>
