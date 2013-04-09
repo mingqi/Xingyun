@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
-	<classpathentry kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
-<<<<<<< HEAD
-	<classpathentry kind="lib" path="/home/liang/Project/Xingyun/android/Xingyun/libs/baidumapapi_v2_0_0.jar"/>
-=======
-	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
->>>>>>> 97811ad6bb350f156a25239139e7a4766e4f2fa8
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Documents and Settings/Jing/android-sdks/platforms/android-8/android.jar"/>
+	<classpathentry kind="lib" path="libs"/>
+	<classpathentry kind="lib" path="libs/android-support-v4.jar"/>
+	<classpathentry kind="lib" path="libs/baidumapapi_v2_0_0.jar"/>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
