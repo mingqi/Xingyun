@@ -4,16 +4,12 @@ import java.util.ArrayList;
 
 import com.xingyun.adapter.DishListAdapter;
 import com.xingyun.entity.Dish;
-import com.xingyun.entity.DishType;
 import com.xingyun.persistence.CartManager;
 import com.xingyun.persistence.UserManager;
-import com.xingyun.utility.WSUtility;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;

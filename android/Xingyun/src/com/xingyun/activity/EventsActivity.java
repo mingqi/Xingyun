@@ -15,9 +15,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.viewpagerindicator.CirclePageIndicator;
-import com.xingyun.activity.OrderDishesActivity.GetDishesTask;
-import com.xingyun.entity.Dish;
-import com.xingyun.entity.DishType;
 import com.xingyun.entity.Event;
 import com.xingyun.setting.Configuration;
 import com.xingyun.usercontrol.EventSlider;
@@ -26,17 +23,13 @@ import com.xingyun.utility.StringUtility;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.TextView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class EventsActivity extends FragmentActivity {
@@ -45,6 +38,8 @@ public class EventsActivity extends FragmentActivity {
 
 	private EventPagerAdapter eventPagerAdapter;
 
+	private RelativeLayout loadingPanel;
+
 	private List<View> eventViews;
 	GetEventsTask eTask;
 
@@ -52,6 +47,8 @@ public class EventsActivity extends FragmentActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_events);
+
+		loadingPanel = (RelativeLayout) this.findViewById(R.id.loadingPanel);
 
 		// 把活动列表搞下来
 		eTask = new GetEventsTask();
@@ -62,8 +59,9 @@ public class EventsActivity extends FragmentActivity {
 	private void fillEventData() {
 		eventViews = new ArrayList<View>();
 		for (int i = 0; i < eventList.size(); i++) {
-			EventSlider es = new EventSlider(this, "", "", Configuration.WS_IMAGE_URI_PREFIX+ eventList.get(i)
-					.getImageUrl());
+			EventSlider es = new EventSlider(this, "", "",
+					Configuration.WS_IMAGE_URI_PREFIX
+							+ eventList.get(i).getImageUrl());
 			eventViews.add(es);
 		}
 
@@ -126,6 +124,7 @@ public class EventsActivity extends FragmentActivity {
 
 		@Override
 		protected void onPostExecute(String result) {
+			loadingPanel.setVisibility(View.GONE);
 			if (events == null) {
 				Toast toast = Toast.makeText(getApplicationContext(),
 						getResources().getString(R.string.failed_to_get_data),
@@ -145,7 +144,8 @@ public class EventsActivity extends FragmentActivity {
 						eventList.add(eventObj);
 					}
 
-					Log.e("event length", "" + eventList.size());
+					Log.d(EventsActivity.class.getName(), "event length:"
+							+ eventList.size());
 					fillEventData();
 				} catch (JSONException ex) {
 					Toast toast = Toast.makeText(
@@ -178,8 +178,9 @@ public class EventsActivity extends FragmentActivity {
 				InputStream is = response.getEntity().getContent();
 				events = StringUtility.inputstreamToString(is);
 			} catch (Exception e) {
-				System.out.println(e.toString());
+				Log.d(EventsActivity.class.getName(), e.toString());
 			}
+
 			return events;
 		}
 

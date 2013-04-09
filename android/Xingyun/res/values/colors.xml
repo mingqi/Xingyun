@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="theme_color1">#8B2252</color>
+    <color name="theme_color">#ACDFCC</color>
+    <color name="theme_color_dark">#660000</color>
+    <color name="list_view_border_color">#ACDFCC</color>
+    <color name="list_view_border_color1">#B3B3B3</color>
+    
+</resources>

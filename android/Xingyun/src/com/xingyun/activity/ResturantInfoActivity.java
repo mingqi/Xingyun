@@ -7,7 +7,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -30,13 +29,15 @@ public class ResturantInfoActivity extends Activity {
 
 		// 预订 菜品 地图 电话
 		HashMap<String, String> mOrder = new HashMap<String, String>();
-		mOrder.put("title", "餐厅介绍");
+		mOrder.put("title",
+				this.getResources().getString(R.string.resturant_introduction));
 		HashMap<String, String> mFood = new HashMap<String, String>();
-		mFood.put("title", "所有菜品");
+		mFood.put("title", this.getResources().getString(R.string.all_dishes));
 		HashMap<String, String> mMap = new HashMap<String, String>();
-		mMap.put("title", "地图位置");
+		mMap.put("title", this.getResources().getString(R.string.map));
 		HashMap<String, String> mTel = new HashMap<String, String>();
-		mTel.put("title", "联系电话: 88886666");
+		mTel.put("title",
+				this.getResources().getString(R.string.resturant_phone_number));
 		actionList.add(mOrder);
 		actionList.add(mFood);
 		actionList.add(mMap);
@@ -52,7 +53,6 @@ public class ResturantInfoActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				Log.d("list item index", arg2 + "");
 				switch (arg2) {
 				case 0:
 					Intent detailIntent = new Intent();
@@ -61,12 +61,7 @@ public class ResturantInfoActivity extends Activity {
 					startActivity(detailIntent);
 					break;
 				case 1:
-					// 菜品
-//					Intent dishesIntent = new Intent();
-//					dishesIntent.setClass(ResturantInfoActivity.this,
-//							DishesActivity.class);
-//					startActivity(dishesIntent);
-					
+
 					Intent dishesIntent = new Intent();
 					dishesIntent.setClass(ResturantInfoActivity.this,
 							OrderDishesActivity.class);

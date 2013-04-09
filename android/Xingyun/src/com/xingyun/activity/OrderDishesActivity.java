@@ -19,7 +19,6 @@ import com.xingyun.setting.Configuration;
 import com.xingyun.utility.StringUtility;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,6 +29,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,14 +48,19 @@ public class OrderDishesActivity extends Activity {
 	private TextView txtHotDish;
 	private TextView txtColdDish;
 	private TextView txtOtherDish;
-	private int selectedTextViewColor = Color.rgb(102, 0, 0);
-	private int unSelectedTextViewColor = Color.rgb(139, 34, 82);
+	private RelativeLayout loadingPanel;
+	private int selectedTextViewColor;
+	private int unSelectedTextViewColor;
 	GetDishesTask dTask;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_orderdishes);
+		selectedTextViewColor = getResources().getColor(
+				R.color.theme_color_dark);
+		unSelectedTextViewColor = getResources().getColor(R.color.theme_color);
+		loadingPanel = (RelativeLayout) this.findViewById(R.id.loadingPanel);
 
 		listView = (ListView) findViewById(R.id.lv_dishes);
 
@@ -97,6 +102,7 @@ public class OrderDishesActivity extends Activity {
 			public void onClick(View v) {
 				resetTextViewColor();
 				txtAllDish.setBackgroundColor(selectedTextViewColor);
+				clearList();
 				dTask.cancel(true);
 				dTask = new GetDishesTask();
 				dTask.execute(DishType.ALL);
@@ -109,6 +115,7 @@ public class OrderDishesActivity extends Activity {
 			public void onClick(View v) {
 				resetTextViewColor();
 				txtHotDish.setBackgroundColor(selectedTextViewColor);
+				clearList();
 				dTask.cancel(true);
 				dTask = new GetDishesTask();
 				dTask.execute(DishType.HOT);
@@ -121,6 +128,7 @@ public class OrderDishesActivity extends Activity {
 			public void onClick(View v) {
 				resetTextViewColor();
 				txtColdDish.setBackgroundColor(selectedTextViewColor);
+				clearList();
 				dTask.cancel(true);
 				dTask = new GetDishesTask();
 				dTask.execute(DishType.COLD);
@@ -133,6 +141,7 @@ public class OrderDishesActivity extends Activity {
 			public void onClick(View v) {
 				resetTextViewColor();
 				txtOtherDish.setBackgroundColor(selectedTextViewColor);
+				clearList();
 				dTask.cancel(true);
 				dTask = new GetDishesTask();
 				dTask.execute(DishType.OTHER);
@@ -142,10 +151,17 @@ public class OrderDishesActivity extends Activity {
 
 	}
 
+	private void clearList() {
+		dishList = new ArrayList<Dish>();
+		adapter = new DishListAdapter(this, dishList, listView, 0);
+		listView.setAdapter(adapter);
+		loadingPanel.setVisibility(View.VISIBLE);
+	}
+
 	private void fillDishesData() {
 		adapter = new DishListAdapter(this, dishList, listView, 0);
 		listView.setAdapter(adapter);
-
+	
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -175,6 +191,7 @@ public class OrderDishesActivity extends Activity {
 
 		@Override
 		protected void onPostExecute(String result) {
+			loadingPanel.setVisibility(View.GONE);
 			if (dishes == null) {
 				Toast toast = Toast.makeText(getApplicationContext(),
 						getResources().getString(R.string.failed_to_get_data),
@@ -194,8 +211,8 @@ public class OrderDishesActivity extends Activity {
 						String imageUri = dish.getString("image_uri");
 
 						if (imageUri != null) {
-							imageUri = StringUtility.replaceLast(imageUri,
-									".", "_100x100.");
+							imageUri = StringUtility.replaceLast(imageUri, ".",
+									"_100x100.");
 						}
 
 						int sortedSeq = dish.getInt("sorted_seq");
@@ -203,7 +220,8 @@ public class OrderDishesActivity extends Activity {
 								sortedSeq, title, price, imageUri);
 						dishList.add(dishObj);
 					}
-					Log.e("list length", dishList.size() + "");
+					Log.d(OrderDishesActivity.class.getName(), "list length:"
+							+ dishList.size() + "");
 					fillDishesData();
 				} catch (JSONException ex) {
 					Toast toast = Toast.makeText(

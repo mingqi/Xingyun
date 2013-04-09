@@ -56,11 +56,13 @@
 	<string name="realname">称谓</string>
 	<string name="empty_username">用户名不能为空</string>
 	<string name="empty_realname">称谓不能为空</string>
+	<string name="all_dishes">所有菜品</string>
+	<string name="resturant_phone_number">联系电话：88886666</string>
 	
 	 
 	<string name="sample_str1">请确认您要点的菜品 一共元</string>
-	<string name="sample_str2">宫保鸡丁</string>
-	<string name="sample_str3">20元</string>
+	<string name="sample_str2">菜品名称</string>
+	<string name="sample_str3">菜品价格</string>
 	<string name="sample_str4">共电菜2道</string>
 	<string name="sample_str5">一共55元</string>
 	<string name="sample_str6">这里是餐厅介绍</string>
