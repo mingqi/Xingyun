@@ -122,12 +122,60 @@
             </objects>
             <point key="canvasLocation" x="1180" y="234"/>
         </scene>
+        <!--History Order Home View Controller - 历史订单-->
+        <scene sceneID="3nq-fb-HtE">
+            <objects>
+                <viewController id="V7d-WZ-68N" customClass="HistoryOrderHomeViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xcy-Yv-NZv">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="输入您下单时候的手机号码查询历史订单" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wi8-Fr-UEy">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="238" id="jEF-dq-tMB"/>
+                                    <constraint firstAttribute="height" constant="21" id="xY2-hW-2nV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="35D-3b-gDg">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="141" id="Lu4-oj-z5j"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="next"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="35D-3b-gDg" firstAttribute="centerX" secondItem="Wi8-Fr-UEy" secondAttribute="centerX" type="default" id="CoJ-Ba-TPS"/>
+                            <constraint firstItem="Wi8-Fr-UEy" firstAttribute="top" secondItem="xcy-Yv-NZv" secondAttribute="top" constant="20" symbolic="YES" type="default" id="Jur-EV-EGr"/>
+                            <constraint firstItem="35D-3b-gDg" firstAttribute="top" secondItem="Wi8-Fr-UEy" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="MWe-fd-Uxo"/>
+                            <constraint firstItem="Wi8-Fr-UEy" firstAttribute="centerX" secondItem="xcy-Yv-NZv" secondAttribute="centerX" type="default" id="RIo-dr-v3w"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="历史订单" id="Uk5-hV-2j7">
+                        <barButtonItem key="rightBarButtonItem" title="下一步" id="9dS-eg-uE7">
+                            <connections>
+                                <action selector="nextStepAction:" destination="V7d-WZ-68N" id="BKh-f6-i9P"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="17n-66-V8a" kind="push" identifier="orderListSegue" id="q7D-D6-hmu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nfS-5u-qty" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1278" y="1555"/>
+        </scene>
         <!--My Account View Controller - 个人中心-->
         <scene sceneID="JZB-Gx-8l0">
             <objects>
                 <tableViewController id="CJS-KT-pcq" customClass="MyAccountViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="brk-ci-n7w">
-                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
@@ -194,21 +242,17 @@
                         </sections>
                     </tableView>
                     <navigationItem key="navigationItem" title="个人中心" id="lV5-8t-ine"/>
-                    <connections>
-                        <segue destination="17n-66-V8a" kind="push" identifier="orderDetailSegue" id="RBJ-a0-8kb"/>
-                        <segue destination="HFo-BM-Aej" kind="push" identifier="changePasswordSegue" id="Rd9-Hb-V5a"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wT5-Uo-e3K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1214" y="1406"/>
+            <point key="canvasLocation" x="1250" y="2177"/>
         </scene>
         <!--My Order View Controller - 我的订单-->
         <scene sceneID="XH4-RE-Tv3">
             <objects>
-                <tableViewController id="17n-66-V8a" customClass="MyOrderViewController" sceneMemberID="viewController">
+                <tableViewController hidesBottomBarWhenPushed="YES" id="17n-66-V8a" customClass="MyOrderViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" id="ulE-Eb-n2F">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -262,21 +306,21 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="我的订单" id="MEe-Fh-teH"/>
-                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <segue destination="zlv-Ry-nSt" kind="push" identifier="orderDetailSegue" id="rgg-Vu-bEO"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="awW-hf-PGg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1830" y="1148"/>
+            <point key="canvasLocation" x="1894" y="1284"/>
         </scene>
         <!--Table View Controller - 修改密码-->
         <scene sceneID="aeH-wU-uLo">
             <objects>
                 <tableViewController id="HFo-BM-Aej" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="ib4-2q-Drs">
-                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
@@ -394,14 +438,14 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bzz-CP-b9Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1844" y="1823"/>
+            <point key="canvasLocation" x="1844" y="2121"/>
         </scene>
         <!--Table View Controller - 订单详情-->
         <scene sceneID="rlA-d5-8a8">
             <objects>
                 <tableViewController id="zlv-Ry-nSt" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Gyj-UR-exz">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
@@ -610,7 +654,7 @@
             <objects>
                 <tableViewController id="lsY-gH-hDe" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="91" sectionHeaderHeight="22" sectionFooterHeight="22" id="i3M-Wo-H08">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -680,17 +724,17 @@
             </objects>
             <point key="canvasLocation" x="2862" y="1149"/>
         </scene>
-        <!--Navigation Controller - 个人中心-->
+        <!--Navigation Controller - 历史订单-->
         <scene sceneID="qbE-Hw-XNA">
             <objects>
                 <navigationController definesPresentationContext="YES" id="MFD-zr-LqY" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="个人中心" image="man.png" id="i2a-pK-0gF"/>
+                    <tabBarItem key="tabBarItem" title="历史订单" image="clock.png" id="i2a-pK-0gF"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="oSW-S0-axM">
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="CJS-KT-pcq" kind="relationship" relationship="rootViewController" id="bFT-MS-2C3"/>
+                        <segue destination="V7d-WZ-68N" kind="relationship" relationship="rootViewController" id="SXM-Lb-Qhw"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wco-YY-VU3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1393,12 +1437,83 @@
         </scene>
     </scenes>
     <resources>
+        <image name="clock.png" width="29" height="30"/>
         <image name="dish2.jpg" width="440" height="426"/>
         <image name="fork-knife.png" width="30" height="30"/>
         <image name="gift.png" width="30" height="30"/>
-        <image name="man.png" width="30" height="30"/>
         <image name="xingyun_intro.jpg" width="450" height="300"/>
     </resources>
+    <classes>
+        <class className="DishConfirmViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DishConfirmViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="nextStepAction:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="totalPriceLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="DishDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DishDetailViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="cartButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="image" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="priceLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="DishListViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DishListViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="checkOutAction:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="HistoryOrderHomeViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/HistoryOrderHomeViewController.h"/>
+        </class>
+        <class className="MainViewController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
+        </class>
+        <class className="MapViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MapViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+            </relationships>
+        </class>
+        <class className="MyAccountViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MyAccountViewController.h"/>
+        </class>
+        <class className="MyOrderViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MyOrderViewController.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="OrderConfirmViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/OrderConfirmViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="customerNameTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="peopleNumberTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="reservedTimeTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="telPhoneTextField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="PromotionViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PromotionViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="pageControl" candidateClass="UIPageControl"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="RestViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RestViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="checkoutButtonTouchUpInside:"/>
+                <relationship kind="outlet" name="placeOrderButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
