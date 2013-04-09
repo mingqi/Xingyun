@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Restfulservice.h"
 
 @interface DishDetailViewController : UIViewController
+
+@property (nonatomic, strong) MenuItem *menuItem;
 
 @end

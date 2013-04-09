@@ -808,6 +808,9 @@
                                                     <state key="highlighted">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="cartButtonTap:" destination="0UQ-v8-AeB" eventType="touchUpInside" id="o4p-e1-ee2"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -852,6 +855,7 @@
                         <outlet property="tableView" destination="Uxs-DC-n3x" id="Llu-Dc-Vcn"/>
                         <segue destination="bdH-s5-eiD" kind="push" identifier="checkoutSegue" id="YtQ-oK-t5I"/>
                         <segue destination="2wo-ag-iTH" kind="push" identifier="dishDetailSegue" id="m46-i4-MvA"/>
+                        <segue destination="YPU-do-1Ry" kind="push" identifier="orderConfirmSegue" id="o7c-TU-Ppc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="25m-2h-DcG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -876,7 +880,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="123"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="dish2.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="LIi-XR-R5B">
+                                                <imageView userInteractionEnabled="NO" tag="6" contentMode="scaleToFill" image="dish2.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="LIi-XR-R5B">
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="100" id="NJc-pk-5Xz"/>
                                                         <constraint firstAttribute="height" constant="100" id="bRd-vD-WNN"/>
@@ -896,6 +900,9 @@
                                                     <state key="highlighted">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="plusButtonTaped:" destination="bdH-s5-eiD" eventType="touchUpInside" id="hgJ-1i-nUJ"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YrN-VG-K6n">
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -910,8 +917,11 @@
                                                     <state key="highlighted">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="minusButtonTaped:" destination="bdH-s5-eiD" eventType="touchUpInside" id="mKU-G4-u3S"/>
+                                                    </connections>
                                                 </button>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fvB-sx-dYK">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="5" contentMode="left" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fvB-sx-dYK">
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="9hP-uJ-D5K"/>
                                                     </constraints>
@@ -919,7 +929,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="雪梨养生茶" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oPY-At-0fd">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" text="雪梨养生茶" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oPY-At-0fd">
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="122" id="bgx-ID-AeN"/>
                                                         <constraint firstAttribute="height" constant="21" id="wLN-l4-JnE"/>
@@ -928,7 +938,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="价格: 28元" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ocl-UO-S49">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" text="价格: 28元" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ocl-UO-S49">
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="AZB-jZ-9S9"/>
                                                         <constraint firstAttribute="width" constant="80" id="Hht-Ct-yJM"/>
@@ -989,6 +999,8 @@
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="tableView" destination="yTB-Ws-C3q" id="ztU-Tf-Tjk"/>
+                        <outlet property="totalPriceLabel" destination="06T-uN-hyg" id="bTK-Mn-mGI"/>
                         <segue destination="YPU-do-1Ry" kind="push" identifier="orderConfirmSegue" id="dQ0-6K-Lvw"/>
                     </connections>
                 </viewController>
@@ -1297,7 +1309,7 @@
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="28元" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsg-4J-aFb">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="36" type="user" id="2RC-Mv-5Yo"/>
+                                    <constraint firstAttribute="width" constant="81" id="ITG-Q3-cMr"/>
                                     <constraint firstAttribute="height" constant="21" id="vZr-1e-1Mr"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -1318,6 +1330,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="cartButtonTaped:" destination="2wo-ag-iTH" eventType="touchUpInside" id="dfJ-cY-7Gv"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="dish2.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="6lp-AC-KMf">
                                 <constraints>
@@ -1341,6 +1356,8 @@
                     <navigationItem key="navigationItem" title="菜品" id="xuU-6p-p47"/>
                     <connections>
                         <outlet property="cartButton" destination="wsP-ES-0tg" id="8oU-PH-cCb"/>
+                        <outlet property="image" destination="6lp-AC-KMf" id="OCP-Pr-EnF"/>
+                        <outlet property="priceLabel" destination="gsg-4J-aFb" id="JG1-IF-YU9"/>
                         <outlet property="titleLabel" destination="JL1-CK-FEo" id="acV-Xl-xgl"/>
                     </connections>
                 </viewController>
@@ -1382,73 +1399,12 @@
         <image name="man.png" width="30" height="30"/>
         <image name="xingyun_intro.jpg" width="450" height="300"/>
     </resources>
-    <classes>
-        <class className="DishConfirmViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DishConfirmViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="nextStepAction:" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="DishDetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DishDetailViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="cartButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="DishListViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DishListViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="checkOutAction:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="MainViewController" superclassName="UITabBarController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
-        </class>
-        <class className="MapViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MapViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
-            </relationships>
-        </class>
-        <class className="MyAccountViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MyAccountViewController.h"/>
-        </class>
-        <class className="MyOrderViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MyOrderViewController.h"/>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="OrderConfirmViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/OrderConfirmViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="customerNameTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="peopleNumberTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="reservedTimeTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="telPhoneTextField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="PromotionViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PromotionViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="pageControl" candidateClass="UIPageControl"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="RestViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RestViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="checkoutButtonTouchUpInside:"/>
-                <relationship kind="outlet" name="placeOrderButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="o7c-TU-Ppc"/>
+    </inferredMetricsTieBreakers>
 </document>

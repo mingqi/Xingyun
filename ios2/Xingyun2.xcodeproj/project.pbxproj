@@ -44,6 +44,7 @@
 		2B2D0B8E1707D77A005A76AC /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B2D0B8C1707D77A005A76AC /* icon.png */; };
 		2B2D0B8F1707D77A005A76AC /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B2D0B8D1707D77A005A76AC /* icon@2x.png */; };
 		2B2D0B901707DD1D005A76AC /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BB6877316E5CE6600A629D3 /* Default.png */; };
+		2B492FB71711796A001F22E9 /* ShoppingCartManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B492FB61711796A001F22E9 /* ShoppingCartManager.m */; };
 		2B530469170D1E4500CA26EF /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B530468170D1E4500CA26EF /* SenTestingKit.framework */; };
 		2B53046A170D1E4500CA26EF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BB6871916E4B28300A629D3 /* UIKit.framework */; };
 		2B53046B170D1E4500CA26EF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BB6871B16E4B28300A629D3 /* Foundation.framework */; };
@@ -119,6 +120,8 @@
 		2B2D0B881707D44D005A76AC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		2B2D0B8C1707D77A005A76AC /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		2B2D0B8D1707D77A005A76AC /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		2B492FB51711796A001F22E9 /* ShoppingCartManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingCartManager.h; sourceTree = "<group>"; };
+		2B492FB61711796A001F22E9 /* ShoppingCartManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingCartManager.m; sourceTree = "<group>"; };
 		2B530467170D1E4500CA26EF /* XingyunTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XingyunTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B530468170D1E4500CA26EF /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		2B53046E170D1E4500CA26EF /* XingyunTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "XingyunTest-Info.plist"; sourceTree = "<group>"; };
@@ -359,6 +362,8 @@
 				2BB6872016E4B28300A629D3 /* Supporting Files */,
 				2BDCCDB6170ABB16005A4A5A /* Restfulservice.h */,
 				2BDCCDB7170ABB16005A4A5A /* Restfulservice.m */,
+				2B492FB51711796A001F22E9 /* ShoppingCartManager.h */,
+				2B492FB61711796A001F22E9 /* ShoppingCartManager.m */,
 			);
 			path = Xinyun2;
 			sourceTree = "<group>";
@@ -574,6 +579,7 @@
 				2B2BA80E170D2BB500A80358 /* AFXMLRequestOperation.m in Sources */,
 				2B2BA80F170D2BB500A80358 /* UIImageView+AFNetworking.m in Sources */,
 				2B2C78FF170DB5B400E2F085 /* MBProgressHUD.m in Sources */,
+				2B492FB71711796A001F22E9 /* ShoppingCartManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

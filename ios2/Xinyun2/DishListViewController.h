@@ -24,5 +24,6 @@
 
 - (void) reloadTableView;
 - (void) loadMoreCellTableView;
+- (MenuItem *) getMenuItemOfRow:(NSInteger) row;
 
 @end

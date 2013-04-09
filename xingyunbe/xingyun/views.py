@@ -370,6 +370,8 @@ class APIOrdersView(View):
             queryset = queryset.filter(order_status = self.request.REQUEST['status'])
         if 'customerId' in self.request.REQUEST:
             queryset = queryset.filter(customer_id= self.request.REQUEST['customerId'])
+        if 'contactPhone' in self.request.REQUEST:
+            queryset = queryset.filter(contact_phone= self.request.REQUEST['contactPhone'])
         
         queryset = queryset.filter(order_creation_time__gt = (datetime.now() - timedelta(days = 30)) )
         queryset = queryset.order_by('order_creation_time') 
