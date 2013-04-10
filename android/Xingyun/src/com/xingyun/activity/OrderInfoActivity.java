@@ -74,6 +74,28 @@ public class OrderInfoActivity extends Activity {
 				String guestNumber = ((EditText) activity
 						.findViewById(R.id.txt_guestnumber)).getText()
 						.toString();
+				try{
+					int n = Integer.parseInt(guestNumber);
+					if(n<1) {
+						Toast toast = Toast.makeText(
+								getApplicationContext(),
+								getResources().getString(
+										R.string.bad_guest_number),
+								Toast.LENGTH_LONG);
+						toast.setGravity(Gravity.BOTTOM, 0, 0);
+						toast.show();
+						return;
+					}
+				}catch(Exception ex) {
+					Toast toast = Toast.makeText(
+							getApplicationContext(),
+							getResources().getString(
+									R.string.bad_guest_number),
+							Toast.LENGTH_LONG);
+					toast.setGravity(Gravity.BOTTOM, 0, 0);
+					toast.show();
+					return;
+				}
 				String isVip = ((CheckBox) activity.findViewById(R.id.cb_isvip))
 						.isChecked() ? "true" : "false";
 				String arrivalDateTime = ((EditText) activity

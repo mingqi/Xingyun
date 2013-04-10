@@ -63,7 +63,8 @@
 	<string name="input_phone_number">输入您下单时候的手机号码查询历史订单</string>
 	<string name="plz_input_phone_number">请输入电话号码</string>
 	<string name="my_dishes">菜品详情</string>
-	 
+	<string name="bad_guest_number">人数输入有误</string>
+		 
 	<string name="sample_str1">请确认您要点的菜品 一共元</string>
 	<string name="sample_str2">菜品名称</string>
 	<string name="sample_str3">菜品价格</string>
