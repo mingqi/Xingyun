@@ -60,6 +60,8 @@ public class DishListAdapter extends ArrayAdapter<Dish> {
 				rowView = inflater.inflate(R.layout.dishlistitem, null);
 			} else if (listViewType == 1) {
 				rowView = inflater.inflate(R.layout.dishlistitem1, null);
+			} else if (listViewType == 2) {
+				rowView = inflater.inflate(R.layout.dishlistitem2, null);
 			}
 			viewCache = new DishListItemCache(rowView);
 			rowView.setTag(viewCache);
@@ -128,6 +130,9 @@ public class DishListAdapter extends ArrayAdapter<Dish> {
 				}
 
 			});
+		} else if(listViewType == 2){
+			TextView txtQuantity = (TextView)rowView.findViewById(R.id.txt_quantity);
+			txtQuantity.setText("数量："+dish.getQuantity()+"");
 		}
 
 		// Load the image and set it on the ImageView

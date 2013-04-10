@@ -20,6 +20,7 @@ import com.xingyun.activity.EventsActivity.GetEventsTask;
 import com.xingyun.entity.Event;
 import com.xingyun.persistence.UserManager;
 import com.xingyun.setting.Configuration;
+import com.xingyun.utility.DateTimeUtility;
 import com.xingyun.utility.StringUtility;
 
 import android.app.Activity;
@@ -34,19 +35,28 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 public class MyOrderActivity extends Activity {
 
 	private List<Order> orderList;
+	private MyOrderActivity activity;
+
+	private String contactPhone;
+	private RelativeLayout loadingPanel;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_myorder);
 
-		// ///////////hooooooooooooooooooo~~~~~~~
+		activity = this;
+		Intent intent = this.getIntent();
+		contactPhone = intent.getStringExtra("phonenumber");
+
+		loadingPanel = (RelativeLayout) findViewById(R.id.loadingPanel);
 
 		Button btnBack = (Button) findViewById(R.id.btn_back);
 		btnBack.setOnClickListener(new OnClickListener() {
@@ -72,7 +82,18 @@ public class MyOrderActivity extends Activity {
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("name", "就餐人：" + orderList.get(i).getContactName());
 			map.put("time", "就餐时间：" + orderList.get(i).getReservedTime());
-			map.put("status", "状态：" + orderList.get(i).getStatus());
+
+			String status = "";
+			// status 1未处理/2预定成功/3取消
+			if (orderList.get(i).getStatus() == 1) {
+				status = "未处理";
+			} else if (orderList.get(i).getStatus() == 2) {
+				status = "预定成功";
+			} else if (orderList.get(i).getStatus() == 3) {
+				status = "取消";
+			}
+
+			map.put("status", "状态：" + status);
 			map.put("id", orderList.get(i).getId() + "");
 			list.add(map);
 		}
@@ -105,6 +126,7 @@ public class MyOrderActivity extends Activity {
 
 		@Override
 		protected void onPostExecute(String result) {
+			loadingPanel.setVisibility(View.GONE);
 			orderList = new ArrayList<Order>();
 			if (orders == null) {
 				Toast toast = Toast.makeText(getApplicationContext(),
@@ -121,7 +143,9 @@ public class MyOrderActivity extends Activity {
 						int id = order.getInt("order_id");
 						String contactName = order.getString("contact_name");
 						String reservedTime = order.getString("reserved_time")
-								.replace("T", "/").replace("+00:00", "");
+								.replace("T", " ").replace("+00:00", "");
+						reservedTime = DateTimeUtility.utc2Local(reservedTime,
+								"yyyy-MM-dd HH:mm:ss", "yyyy-MM-dd HH:mm:ss");
 						int status = order.getInt("order_status");
 
 						Order o = new Order(id, contactName, reservedTime,
@@ -148,7 +172,7 @@ public class MyOrderActivity extends Activity {
 		@Override
 		protected String doInBackground(Object... params) {
 			try {
-				String path = Configuration.WS_GETORDERS + UserManager.getId();
+				String path = Configuration.WS_GETORDERSBYPHONE + contactPhone;
 
 				HttpGet httpGet = new HttpGet(path);
 

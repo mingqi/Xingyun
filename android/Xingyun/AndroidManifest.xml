@@ -36,9 +36,6 @@
             android:name="com.xingyun.activity.MapActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.xingyun.activity.LoginActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name="com.xingyun.activity.OrderDishesActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -48,12 +45,6 @@
             android:name="com.xingyun.activity.OrderInfoActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name="com.xingyun.activity.UserProfileActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.xingyun.activity.ModifyPasswordActivity"
-            android:screenOrientation="portrait" />
         <activity
             android:name="com.xingyun.activity.MyOrderActivity"
             android:screenOrientation="portrait" />
@@ -68,10 +59,10 @@
             android:name="com.xingyun.activity.OrderDishesResultActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.xingyun.activity.SignupActivity"
+            android:name="com.xingyun.activity.QueryOrderActivity"
             android:screenOrientation="portrait" />
-         <activity
-            android:name="com.xingyun.activity.UserProfileActivityGroup"
+        <activity
+            android:name="com.xingyun.activity.ViewOrderDishesActivity"
             android:screenOrientation="portrait" />
     </application>
 

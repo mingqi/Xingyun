@@ -1,51 +1,49 @@
 package com.xingyun.persistence;
 
+import android.content.Context;
+
+import com.xingyun.utility.DBManager;
+
 public class UserManager {
-	private static boolean isLogin;
 
-	private static String name;
-	private static String contactName;
-	private static String contactPhone;
-	private static int id;
+	public static String getContactName(Context context) {
 
-	public static boolean isLogin() {
-		return isLogin;
-	}
-
-	public static void setLogin(boolean isLogin) {
-		UserManager.isLogin = isLogin;
-	}
-
-	public static String getName() {
-		return name;
-	}
-
-	public static void setName(String name) {
-		UserManager.name = name;
-	}
-
-	public static String getContactName() {
+		DBManager manager = new DBManager(context);
+		String contactName = manager.getContactName();
+		manager.closeDB();
 		return contactName;
 	}
 
-	public static void setContactName(String contactName) {
-		UserManager.contactName = contactName;
+	public static void setContactName(Context context, String contactName) {
+		DBManager manager = new DBManager(context);
+		manager.setContactName(contactName);
+		manager.closeDB();
 	}
 
-	public static String getContactPhone() {
+	public static String getContactPhone(Context context) {
+		DBManager manager = new DBManager(context);
+		String contactPhone = manager.getUserTelephone();
+		manager.closeDB();
 		return contactPhone;
 	}
 
-	public static void setContactPhone(String contactPhone) {
-		UserManager.contactPhone = contactPhone;
+	public static void setContactPhone(Context context, String contactPhone) {
+		DBManager manager = new DBManager(context);
+		manager.setUserTelephone(contactPhone);
+		manager.closeDB();
 	}
 
-	public static int getId() {
+	public static int getId(Context context) {
+		DBManager manager = new DBManager(context);
+		int id = manager.getUserId();
+		manager.closeDB();
 		return id;
 	}
 
-	public static void setId(int id) {
-		UserManager.id = id;
+	public static void setId(Context context, int id) {
+		DBManager manager = new DBManager(context);
+		manager.setUserId(id);
+		manager.closeDB();
 	}
 
 }

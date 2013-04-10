@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- 我的订单页 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -25,35 +24,49 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:background="@null"
-            android:gravity="center_vertical"
+            android:gravity="right|center_vertical"
             android:orientation="vertical" >
 
             <Button
-                android:id="@+id/btn_back"
+                android:id="@+id/btn_next"
                 android:layout_width="70dp"
                 android:layout_height="25dp"
-                android:layout_marginLeft="10dp"
-                android:background="@drawable/nav_button_back"
-                android:text="@string/back"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/nav_button_next"
+                android:text="@string/next"
                 android:textColor="#FFFFFF" />
         </LinearLayout>
     </FrameLayout>
 
-    <ListView
-        android:id="@+id/lv_orders"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp" >
-    </ListView>
-	
-    <RelativeLayout
-        android:id="@+id/loadingPanel"
-        style="@style/GenericProgressBackground" >
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingTop="10dp" >
 
-        <ProgressBar style="@style/GenericProgressIndicator" />
-    </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/input_phone_number"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#000000" />
+
+        <EditText
+            android:id="@+id/txt_phonenumber"
+            android:layout_width="180dp"
+            android:layout_height="38dp"
+            android:imeOptions="actionDone"
+            android:inputType="phone" >
+
+            <requestFocus />
+        </EditText>
+    </LinearLayout>
+
 </LinearLayout>

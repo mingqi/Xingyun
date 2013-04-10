@@ -1,7 +1,6 @@
 package com.xingyun.activity;
 
 import java.io.InputStream;
-import java.util.ArrayList;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -9,12 +8,12 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.xingyun.persistence.UserManager;
+import com.xingyun.entity.Dish;
 import com.xingyun.setting.Configuration;
+import com.xingyun.utility.DateTimeUtility;
 import com.xingyun.utility.StringUtility;
 
 import android.app.Activity;
@@ -26,6 +25,8 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.RelativeLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,12 +34,19 @@ public class ViewOrderActivity extends Activity {
 	private String orderId;
 	private ViewOrderActivity thisActivity;
 
+	private RelativeLayout loadingPanel;
+
+	private TableRow trViewDishes;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_vieworder);
 
 		thisActivity = this;
+
+		loadingPanel = (RelativeLayout) findViewById(R.id.loadingPanel);
+		trViewDishes = (TableRow) findViewById(R.id.tr_viewdishes);
 
 		Button btnBack = (Button) findViewById(R.id.btn_back);
 		btnBack.setOnClickListener(new OnClickListener() {
@@ -62,6 +70,7 @@ public class ViewOrderActivity extends Activity {
 
 		@Override
 		protected void onPostExecute(String result) {
+			loadingPanel.setVisibility(View.GONE);
 			if (order == null) {
 				Toast toast = Toast.makeText(getApplicationContext(),
 						getResources().getString(R.string.failed_to_get_data),
@@ -70,9 +79,9 @@ public class ViewOrderActivity extends Activity {
 				toast.show();
 			} else {
 				try {
-					JSONObject obj = new JSONObject(order);
+					final JSONObject obj = new JSONObject(order);
 
-					Log.e("====", order);
+					Log.d(ViewOrderActivity.class.getName(), order);
 
 					TextView txtContactName = (TextView) thisActivity
 							.findViewById(R.id.txt_contactname);
@@ -101,9 +110,13 @@ public class ViewOrderActivity extends Activity {
 
 					TextView txtArrivalTime = (TextView) thisActivity
 							.findViewById(R.id.txt_arrivaltime);
-					txtArrivalTime.setText("到店时间："
-							+ obj.getString("reserved_time").replace("T", "/")
-									.replace("+00:00", ""));
+
+					String reservedTime = obj.getString("reserved_time")
+							.replace("T", " ").replace("+00:00", "");
+					reservedTime = DateTimeUtility.utc2Local(reservedTime,
+							"yyyy-MM-dd HH:mm:ss", "yyyy-MM-dd HH:mm:ss");
+
+					txtArrivalTime.setText("到店时间：" + reservedTime);
 
 					TextView txtDishCount = (TextView) thisActivity
 							.findViewById(R.id.txt_dishcount);
@@ -122,6 +135,22 @@ public class ViewOrderActivity extends Activity {
 								.getString("other_requirements"));
 					}
 
+					trViewDishes.setOnClickListener(new OnClickListener() {
+
+						@Override
+						public void onClick(View arg0) {
+							try {
+								String dishes = obj.getString("dishes");
+								Intent i = new Intent();
+								i.setClass(ViewOrderActivity.this, ViewOrderDishesActivity.class);
+							 	i.putExtra("dishes", dishes);
+								startActivity(i);
+							} catch (JSONException e) {
+								Log.e(ViewOrderActivity.class.getName(), e.getMessage());
+							}
+						}
+						
+					});
 				} catch (JSONException ex) {
 					Toast toast = Toast.makeText(
 							getApplicationContext(),

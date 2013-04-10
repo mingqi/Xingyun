@@ -23,8 +23,11 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
@@ -43,7 +46,7 @@ public class OrderDishesActivity extends Activity {
 
 	private ListView listView;
 	private DishListAdapter adapter;
-	private ArrayList<Dish> dishList;
+	private ArrayList<Dish> dishList = new ArrayList<Dish>();;
 	private TextView txtAllDish;
 	private TextView txtHotDish;
 	private TextView txtColdDish;
@@ -52,6 +55,12 @@ public class OrderDishesActivity extends Activity {
 	private int selectedTextViewColor;
 	private int unSelectedTextViewColor;
 	GetDishesTask dTask;
+	private View footerView;
+	private int pageIndex = 1;
+	private int pageCount = Configuration.MAX_PAGE_COUNT;
+	private boolean isLoading = false;
+
+	private DishType selectedDishType = DishType.ALL;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +97,10 @@ public class OrderDishesActivity extends Activity {
 
 		// 通过异步方法获取菜单
 		dTask = new GetDishesTask();
-		dTask.execute(DishType.ALL);
+		dTask.execute(selectedDishType);
+
+		footerView = (View) LayoutInflater.from(this).inflate(
+				R.layout.footerview, null);
 
 		txtAllDish = (TextView) findViewById(R.id.txt_alldish);
 		txtHotDish = (TextView) findViewById(R.id.txt_hotdish);
@@ -104,8 +116,9 @@ public class OrderDishesActivity extends Activity {
 				txtAllDish.setBackgroundColor(selectedTextViewColor);
 				clearList();
 				dTask.cancel(true);
+				selectedDishType = DishType.ALL;
 				dTask = new GetDishesTask();
-				dTask.execute(DishType.ALL);
+				dTask.execute(selectedDishType);
 			}
 
 		});
@@ -117,8 +130,9 @@ public class OrderDishesActivity extends Activity {
 				txtHotDish.setBackgroundColor(selectedTextViewColor);
 				clearList();
 				dTask.cancel(true);
+				selectedDishType = DishType.HOT;
 				dTask = new GetDishesTask();
-				dTask.execute(DishType.HOT);
+				dTask.execute(selectedDishType);
 			}
 
 		});
@@ -130,8 +144,9 @@ public class OrderDishesActivity extends Activity {
 				txtColdDish.setBackgroundColor(selectedTextViewColor);
 				clearList();
 				dTask.cancel(true);
+				selectedDishType = DishType.COLD;
 				dTask = new GetDishesTask();
-				dTask.execute(DishType.COLD);
+				dTask.execute(selectedDishType);
 			}
 
 		});
@@ -143,12 +158,41 @@ public class OrderDishesActivity extends Activity {
 				txtOtherDish.setBackgroundColor(selectedTextViewColor);
 				clearList();
 				dTask.cancel(true);
+				selectedDishType = DishType.OTHER;
 				dTask = new GetDishesTask();
-				dTask.execute(DishType.OTHER);
+				dTask.execute(selectedDishType);
 			}
 
 		});
 
+		listView.setOnScrollListener(new OnScrollListener() {
+
+			@Override
+			public void onScroll(AbsListView arg0, int arg1, int arg2, int arg3) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void onScrollStateChanged(AbsListView arg0, int arg1) {
+				if (!isLoading && pageIndex <= pageCount
+						&& arg0.getLastVisiblePosition() == arg0.getCount() - 1) {
+					// listView.addFooterView(footerView);
+					adapter.notifyDataSetChanged();
+					Log.d("time to load data!", arg0.getLastVisiblePosition()
+							+ ":" + (arg0.getCount() - 1));
+					isLoading = true;
+					dTask = new GetDishesTask();
+					dTask.execute(selectedDishType);
+
+				} else if (pageIndex >= pageCount) {
+					listView.removeFooterView(footerView);
+				}
+			}
+		});
+		listView.setVisibility(View.GONE);
+		listView.addFooterView(footerView);
+		fillDishesData();
 	}
 
 	private void clearList() {
@@ -161,7 +205,7 @@ public class OrderDishesActivity extends Activity {
 	private void fillDishesData() {
 		adapter = new DishListAdapter(this, dishList, listView, 0);
 		listView.setAdapter(adapter);
-	
+
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -184,6 +228,17 @@ public class OrderDishesActivity extends Activity {
 		txtHotDish.setBackgroundColor(unSelectedTextViewColor);
 		txtColdDish.setBackgroundColor(unSelectedTextViewColor);
 		txtOtherDish.setBackgroundColor(unSelectedTextViewColor);
+
+		pageIndex = 1;
+		pageCount = Configuration.MAX_PAGE_COUNT;
+		dishList = new ArrayList<Dish>();
+		listView.setVisibility(View.GONE);
+		try {
+			listView.addFooterView(footerView);
+		} catch (Exception ex) {
+			// nothing is wrong
+		}
+		listView.addFooterView(footerView);
 	}
 
 	class GetDishesTask extends AsyncTask<Object, Object, String> {
@@ -191,7 +246,10 @@ public class OrderDishesActivity extends Activity {
 
 		@Override
 		protected void onPostExecute(String result) {
+			isLoading = false;
 			loadingPanel.setVisibility(View.GONE);
+			listView.setVisibility(View.VISIBLE);
+
 			if (dishes == null) {
 				Toast toast = Toast.makeText(getApplicationContext(),
 						getResources().getString(R.string.failed_to_get_data),
@@ -200,8 +258,17 @@ public class OrderDishesActivity extends Activity {
 				toast.show();
 			} else {
 				try {
-					dishList = new ArrayList<Dish>();
-					JSONArray jsonArray = new JSONArray(dishes);
+					// {"items": [{"category": 2, "title": "鱼香肉丝", "price": 12,
+					// "menu_item_id": 1, "image_uri": "1.jpg", "sorted_seq":
+					// 1}, {"category": 2, "title": "麻辣鸡丝", "price": 123,
+					// "menu_item_id": 2, "image_uri": "2.jpg", "sorted_seq":
+					// 2}], "page_number": 1, "page_size": 2, "pages_count": 4}
+
+					JSONObject jo = new JSONObject(dishes);
+					String dishArrayStr = jo.getString("items");
+					pageCount = jo.getInt("pages_count");
+
+					JSONArray jsonArray = new JSONArray(dishArrayStr);
 					for (int i = 0; i < jsonArray.length(); i++) {
 						JSONObject dish = (JSONObject) jsonArray.get(i);
 						int category = dish.getInt("category");
@@ -222,7 +289,8 @@ public class OrderDishesActivity extends Activity {
 					}
 					Log.d(OrderDishesActivity.class.getName(), "list length:"
 							+ dishList.size() + "");
-					fillDishesData();
+
+					adapter.notifyDataSetChanged();
 				} catch (JSONException ex) {
 					Toast toast = Toast.makeText(
 							getApplicationContext(),
@@ -243,10 +311,14 @@ public class OrderDishesActivity extends Activity {
 
 				String path;
 				if (queryType == DishType.ALL) {
-					path = Configuration.WS_GETMENU;
+					path = Configuration.WS_GETMENU + "?page=" + pageIndex++
+							+ "&page_size="
+							+ Configuration.LAZYLOAD_ITEM_DISPLAY_COUNT;
 				} else {
 					path = Configuration.WS_GETMENU + "?category="
-							+ queryType.ordinal();
+							+ queryType.ordinal() + "&page=" + pageIndex++
+							+ "&page_size="
+							+ Configuration.LAZYLOAD_ITEM_DISPLAY_COUNT;
 				}
 
 				HttpGet httpGet = new HttpGet(path);
@@ -262,7 +334,7 @@ public class OrderDishesActivity extends Activity {
 				InputStream is = response.getEntity().getContent();
 				dishes = StringUtility.inputstreamToString(is);
 			} catch (Exception e) {
-				System.out.println(e.toString());
+				Log.e(OrderDishesActivity.class.getName(), e.getMessage());
 			}
 			return dishes;
 		}
