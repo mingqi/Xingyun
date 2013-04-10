@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B0E368F171413E30059D40C /* HistoryOrderHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0E368E171413E30059D40C /* HistoryOrderHomeViewController.m */; };
+		2B0E369117141A980059D40C /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B0E369017141A980059D40C /* clock.png */; };
 		2B18FC351707DD5500E980D6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BB6877516E5CE6E00A629D3 /* Default@2x.png */; };
 		2B2BA807170D2BB500A80358 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2BA7F5170D2BB500A80358 /* AFHTTPClient.m */; };
 		2B2BA808170D2BB500A80358 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2BA7F7170D2BB500A80358 /* AFHTTPRequestOperation.m */; };
@@ -95,6 +97,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2B0E368D171413E30059D40C /* HistoryOrderHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryOrderHomeViewController.h; sourceTree = "<group>"; };
+		2B0E368E171413E30059D40C /* HistoryOrderHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryOrderHomeViewController.m; sourceTree = "<group>"; };
+		2B0E369017141A980059D40C /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock.png; sourceTree = "<group>"; };
 		2B2BA7F4170D2BB500A80358 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		2B2BA7F5170D2BB500A80358 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		2B2BA7F6170D2BB500A80358 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -364,6 +369,8 @@
 				2BDCCDB7170ABB16005A4A5A /* Restfulservice.m */,
 				2B492FB51711796A001F22E9 /* ShoppingCartManager.h */,
 				2B492FB61711796A001F22E9 /* ShoppingCartManager.m */,
+				2B0E368D171413E30059D40C /* HistoryOrderHomeViewController.h */,
+				2B0E368E171413E30059D40C /* HistoryOrderHomeViewController.m */,
 			);
 			path = Xinyun2;
 			sourceTree = "<group>";
@@ -383,6 +390,7 @@
 		2BB6874916E4E0AF00A629D3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				2B0E369017141A980059D40C /* clock.png */,
 				2B5C178916E8ECBB00795666 /* prom01.jpg */,
 				2B5C178A16E8ECBB00795666 /* prom02.jpg */,
 				2B5C178B16E8ECBB00795666 /* prom03.jpg */,
@@ -499,6 +507,7 @@
 				2B2D0B901707DD1D005A76AC /* Default.png in Resources */,
 				2B18FC351707DD5500E980D6 /* Default@2x.png in Resources */,
 				2B2C7901170E904600E2F085 /* settings.plist in Resources */,
+				2B0E369117141A980059D40C /* clock.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,6 +589,7 @@
 				2B2BA80F170D2BB500A80358 /* UIImageView+AFNetworking.m in Sources */,
 				2B2C78FF170DB5B400E2F085 /* MBProgressHUD.m in Sources */,
 				2B492FB71711796A001F22E9 /* ShoppingCartManager.m in Sources */,
+				2B0E368F171413E30059D40C /* HistoryOrderHomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
