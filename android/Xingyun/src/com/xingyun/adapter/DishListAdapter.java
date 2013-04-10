@@ -132,7 +132,7 @@ public class DishListAdapter extends ArrayAdapter<Dish> {
 			});
 		} else if(listViewType == 2){
 			TextView txtQuantity = (TextView)rowView.findViewById(R.id.txt_quantity);
-			txtQuantity.setText("数量："+dish.getQuantity()+"");
+			txtQuantity.setText("数量: "+dish.getQuantity()+"");
 		}
 
 		// Load the image and set it on the ImageView

@@ -112,7 +112,7 @@ public class OrderDishesActivity extends Activity {
 		txtAllDish.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				resetTextViewColor();
+				resetState();
 				txtAllDish.setBackgroundColor(selectedTextViewColor);
 				clearList();
 				dTask.cancel(true);
@@ -126,7 +126,7 @@ public class OrderDishesActivity extends Activity {
 		txtHotDish.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				resetTextViewColor();
+				resetState();
 				txtHotDish.setBackgroundColor(selectedTextViewColor);
 				clearList();
 				dTask.cancel(true);
@@ -140,7 +140,7 @@ public class OrderDishesActivity extends Activity {
 		txtColdDish.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				resetTextViewColor();
+				resetState();
 				txtColdDish.setBackgroundColor(selectedTextViewColor);
 				clearList();
 				dTask.cancel(true);
@@ -154,7 +154,7 @@ public class OrderDishesActivity extends Activity {
 		txtOtherDish.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				resetTextViewColor();
+				resetState();
 				txtOtherDish.setBackgroundColor(selectedTextViewColor);
 				clearList();
 				dTask.cancel(true);
@@ -178,16 +178,15 @@ public class OrderDishesActivity extends Activity {
 				if (!isLoading && pageIndex <= pageCount
 						&& arg0.getLastVisiblePosition() == arg0.getCount() - 1) {
 					// listView.addFooterView(footerView);
-					adapter.notifyDataSetChanged();
+
 					Log.d("time to load data!", arg0.getLastVisiblePosition()
 							+ ":" + (arg0.getCount() - 1));
 					isLoading = true;
 					dTask = new GetDishesTask();
 					dTask.execute(selectedDishType);
 
-				} else if (pageIndex >= pageCount) {
-					listView.removeFooterView(footerView);
 				}
+
 			}
 		});
 		listView.setVisibility(View.GONE);
@@ -223,7 +222,7 @@ public class OrderDishesActivity extends Activity {
 		});
 	}
 
-	private void resetTextViewColor() {
+	private void resetState() {
 		txtAllDish.setBackgroundColor(unSelectedTextViewColor);
 		txtHotDish.setBackgroundColor(unSelectedTextViewColor);
 		txtColdDish.setBackgroundColor(unSelectedTextViewColor);
@@ -233,8 +232,9 @@ public class OrderDishesActivity extends Activity {
 		pageCount = Configuration.MAX_PAGE_COUNT;
 		dishList = new ArrayList<Dish>();
 		listView.setVisibility(View.GONE);
+		isLoading = false;
 		try {
-			listView.addFooterView(footerView);
+			listView.removeFooterView(footerView);
 		} catch (Exception ex) {
 			// nothing is wrong
 		}
@@ -290,7 +290,12 @@ public class OrderDishesActivity extends Activity {
 					Log.d(OrderDishesActivity.class.getName(), "list length:"
 							+ dishList.size() + "");
 
-					adapter.notifyDataSetChanged();
+					synchronized (dishList) {
+						adapter.notifyDataSetChanged();
+					}
+					if (pageIndex >= pageCount) {
+						listView.removeFooterView(footerView);
+					}
 				} catch (JSONException ex) {
 					Toast toast = Toast.makeText(
 							getApplicationContext(),

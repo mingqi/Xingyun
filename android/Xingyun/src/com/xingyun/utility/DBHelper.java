@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBHelper extends SQLiteOpenHelper {
 
 	private static final String DATABASE_NAME = "xy.db";
-	private static final int DATABASE_VERSION = 2;
+	private static final int DATABASE_VERSION = 3;
 
 	public DBHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -19,7 +19,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		db.execSQL("CREATE TABLE IF NOT EXISTS user"
 				+ "(id INTEGER, telephone VARCHAR, name VARCHAR)");
 
-		db.execSQL("INSERT INTO user VALUES(?, ?, ?)", new Object[] { 0, "13800138000", "张三" });
+		db.execSQL("INSERT INTO user VALUES(?, ?, ?)", new Object[] { 0, "", "" });
 	}
 
 	@Override

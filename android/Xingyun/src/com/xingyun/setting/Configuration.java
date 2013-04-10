@@ -19,8 +19,8 @@ public class Configuration {
 			+ "/xingyun/api/orders?contactPhone=";
 	public static final String WS_GETORDER = WS_IP + "/xingyun/api/order/";
 	public static final String WS_UPDATEUSER = WS_IP + "/xingyun/api/customer/";
-	public static final int WS_CONNTIMEOUT = 3000;
-	public static final int WS_SOCKETTIMEOUT = 3000;
+	public static final int WS_CONNTIMEOUT = 20000;
+	public static final int WS_SOCKETTIMEOUT = 20000;
 	public static final int LAZYLOAD_ITEM_DISPLAY_COUNT = 8;
 	public static final int MAX_PAGE_COUNT = 99999;
 }
