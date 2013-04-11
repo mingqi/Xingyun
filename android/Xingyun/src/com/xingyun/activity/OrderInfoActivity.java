@@ -129,6 +129,9 @@ public class OrderInfoActivity extends Activity {
 						+ StringUtility.string2Json(requirements)
 						+ "\", \"order_dishes\" : " + CartManager.getJsonStr()
 						+ "}";
+				
+				Log.d("json is ", data);
+				
 				// post data
 				HttpPut httpPut = new HttpPut(Configuration.WS_PLACEORDER);
 

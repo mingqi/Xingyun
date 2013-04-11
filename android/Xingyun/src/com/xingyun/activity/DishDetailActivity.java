@@ -23,6 +23,7 @@ public class DishDetailActivity extends Activity {
 	String name;
 	String price;
 	int id;
+	Activity context;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,7 @@ public class DishDetailActivity extends Activity {
 			}
 
 		});
-
+		context = this;
 		final Intent intent = this.getIntent();
 		name = intent.getStringExtra("name");
 		String imageUrl = StringUtility.replaceLast(
@@ -69,7 +70,7 @@ public class DishDetailActivity extends Activity {
 			imgDish.setImageDrawable(cachedImage);
 		}
 
-		Button btnAddToCart = (Button) findViewById(R.id.btn_addtocart);
+		final Button btnAddToCart = (Button) findViewById(R.id.btn_addtocart);
 		btnAddToCart.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -83,13 +84,28 @@ public class DishDetailActivity extends Activity {
 								intent.getStringExtra("imageUrl").lastIndexOf(
 										"/"),
 								intent.getStringExtra("imageUrl").length()));
-				CartManager.addDishToCart(new CartDishModel(thisDish, 1));
 
-				Toast toast = Toast.makeText(getApplicationContext(),
-						getResources().getString(R.string.add_to_cart_succeed),
-						Toast.LENGTH_SHORT);
-				toast.setGravity(Gravity.BOTTOM, 0, 0);
-				toast.show();
+				String currentText = btnAddToCart.getText().toString();
+				if (currentText.equals(context.getResources().getString(
+						R.string.order_dish))) {
+					CartManager.addDishToCart(new CartDishModel(thisDish, 1));
+					btnAddToCart.setText(context.getResources().getString(
+							R.string.dish_ordered));
+					btnAddToCart
+							.setBackgroundDrawable(context
+									.getResources()
+									.getDrawable(
+											R.drawable.rounded_corner_button_gray));
+				} else {
+					CartManager.removeDishFromCart(new CartDishModel(thisDish,
+							CartManager.getCountByDishId(thisDish
+									.getMenuItemId())));
+					btnAddToCart.setText(context.getResources().getString(
+							R.string.order_dish));
+					btnAddToCart.setBackgroundDrawable(context.getResources()
+							.getDrawable(R.drawable.rounded_corner_button));
+				}
+
 			}
 
 		});

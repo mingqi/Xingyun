@@ -13,6 +13,7 @@
 	<string name="confirm_order">确认订单</string>
 	<string name="dishes">菜品</string>
 	<string name="order_dish">点菜</string>
+	<string name="dish_ordered">已点</string>
 	<string name="dish_list">菜单</string>
 	<string name="dish_all">全部</string>
 	<string name="dish_cold">凉菜</string>

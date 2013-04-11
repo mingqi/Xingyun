@@ -37,7 +37,7 @@ public class ViewOrderActivity extends Activity {
 	private RelativeLayout loadingPanel;
 
 	private TableRow trViewDishes;
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -120,14 +120,22 @@ public class ViewOrderActivity extends Activity {
 
 					TextView txtDishCount = (TextView) thisActivity
 							.findViewById(R.id.txt_dishcount);
-					txtDishCount.setText("共点菜" + obj.getString("dishes_count")
-							+ "道");
+					try {
+						txtDishCount.setText("共点菜"
+								+ obj.getString("dishes_count") + "道");
+					} catch (Exception ex) {
+						txtDishCount.setText("共点菜0道");
 
+					}
 					TextView txtTotalPrice = (TextView) thisActivity
 							.findViewById(R.id.txt_totalprice);
-					txtTotalPrice.setText("一共" + obj.getString("order_price")
-							+ "元");
+					try {
+						txtTotalPrice.setText("一共"
+								+ obj.getString("order_price") + "元");
+					} catch (Exception ex) {
+						txtTotalPrice.setText("一共0元");
 
+					}
 					if (obj.has("other_requirements")) {
 						com.xingyun.excontrol.RoundedRectEditTextLayout txtRequirement = (com.xingyun.excontrol.RoundedRectEditTextLayout) thisActivity
 								.findViewById(R.id.txt_requirements);
@@ -142,14 +150,16 @@ public class ViewOrderActivity extends Activity {
 							try {
 								String dishes = obj.getString("dishes");
 								Intent i = new Intent();
-								i.setClass(ViewOrderActivity.this, ViewOrderDishesActivity.class);
-							 	i.putExtra("dishes", dishes);
+								i.setClass(ViewOrderActivity.this,
+										ViewOrderDishesActivity.class);
+								i.putExtra("dishes", dishes);
 								startActivity(i);
 							} catch (JSONException e) {
-								Log.e(ViewOrderActivity.class.getName(), e.getMessage());
+								Log.e(ViewOrderActivity.class.getName(),
+										e.getMessage());
 							}
 						}
-						
+
 					});
 				} catch (JSONException ex) {
 					Toast toast = Toast.makeText(

@@ -15,6 +15,7 @@ import org.json.JSONObject;
 import com.xingyun.adapter.DishListAdapter;
 import com.xingyun.entity.Dish;
 import com.xingyun.entity.DishType;
+import com.xingyun.persistence.CartManager;
 import com.xingyun.setting.Configuration;
 import com.xingyun.utility.StringUtility;
 import android.app.Activity;
@@ -62,6 +63,22 @@ public class OrderDishesActivity extends Activity {
 
 	private DishType selectedDishType = DishType.ALL;
 
+	private Button btnConfirmOrder;
+
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		resetState();
+		txtAllDish.setBackgroundColor(selectedTextViewColor);
+		clearList();
+		dTask.cancel(true);
+		selectedDishType = DishType.ALL;
+		dTask = new GetDishesTask();
+		dTask.execute(selectedDishType);
+		updateDishCount();
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -83,14 +100,23 @@ public class OrderDishesActivity extends Activity {
 
 		});
 
-		Button btnConfirmOrder = (Button) findViewById(R.id.btn_confirmorder);
+		btnConfirmOrder = (Button) findViewById(R.id.btn_confirmorder);
 		btnConfirmOrder.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent();
-				i.setClass(OrderDishesActivity.this, ConfirmOrderActivity.class);
-				startActivity(i);
+				if (CartManager.getDishCount() > 0) {
+					Intent i = new Intent();
+					i.setClass(OrderDishesActivity.this,
+							ConfirmOrderActivity.class);
+					startActivity(i);
+				} else {
+					Intent i = new Intent();
+					i.setClass(OrderDishesActivity.this,
+							OrderInfoActivity.class);
+					startActivity(i);
+
+				}
 			}
 
 		});
@@ -239,6 +265,11 @@ public class OrderDishesActivity extends Activity {
 			// nothing is wrong
 		}
 		listView.addFooterView(footerView);
+	}
+
+	public void updateDishCount() {
+		btnConfirmOrder.setText(CartManager.getDishCount() == 0 ? "下单" : "购物车:"
+				+ CartManager.getDishCount());
 	}
 
 	class GetDishesTask extends AsyncTask<Object, Object, String> {

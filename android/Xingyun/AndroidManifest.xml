@@ -106,8 +106,4 @@
         android:glEsVersion="0x00020000"
         android:required="true" />
 
-    <meta-data
-        android:name="com.google.android.maps.v2.API_KEY"
-        android:value="AIzaSyAHYXTtlurombpteoGbMmNPW117i6NBbMQ" />
-
 </manifest>

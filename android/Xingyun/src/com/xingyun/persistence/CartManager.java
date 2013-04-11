@@ -101,6 +101,10 @@ public class CartManager {
 		 * [ { "menu_item_id": 1, "quantity" : 1 }, { "menu_item_id": 5,
 		 * "quantity" : 3 } ]
 		 */
+		if(getOrderedDishes().size()==0) {
+			return "[]";
+		}
+		
 		String str = "[";
 		for (int i = 0; i < getOrderedDishes().size(); i++) {
 			str = str + "{\"menu_item_id\":"
