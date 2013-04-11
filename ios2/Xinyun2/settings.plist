@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>RestfulServiceRootURL</key>
-	<string>http://192.168.1.109:8000/xingyun</string>
+	<string>http://192.168.0.101:8000/xingyun</string>
 </dict>
 </plist>

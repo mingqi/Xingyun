@@ -4,15 +4,12 @@
     "contact_phone" : "13811021667",
     "people_number" : 2,
     "box_required" : true,
-    "order_price": 68,
+    "order_price": 1209,
     "dishes_count": 8,
     "reserved_time": "2012-01-19T19:05:01",
     "other_requirements" : "不要放香菜",
     "order_dishes" : [
-        {   "menu_item_id": 13,
-            "quantity" : 1
-        },
-        {   "menu_item_id": 10,
+        {   "menu_item_id": 1,
             "quantity" : 3
         }
     ]

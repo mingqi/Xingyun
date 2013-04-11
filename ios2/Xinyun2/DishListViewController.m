@@ -275,7 +275,9 @@
     }
     
     UIImageView *imageView = (UIImageView *) [cell viewWithTag:1];
-    [imageView setImageWithURL: [NSURL URLWithString:[menuItem getImageURLWithResolution:@"100x100"]]];
+    NSString *imageURL = [menuItem getImageURLWithResolution:@"100x100"];
+    NSLog(@"image URL: %@", imageURL);
+    [imageView setImageWithURL: [NSURL URLWithString:imageURL]];
     UILabel *titleLabel = (UILabel *)[cell viewWithTag:2];
     UILabel *priceLabel = (UILabel *)[cell viewWithTag:3];
     titleLabel.text = menuItem.title;
