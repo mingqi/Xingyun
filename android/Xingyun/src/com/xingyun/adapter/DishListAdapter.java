@@ -3,6 +3,7 @@ package com.xingyun.adapter;
 import java.util.List;
 
 import com.xingyun.activity.ConfirmOrderActivity;
+import com.xingyun.activity.OrderDishesActivity;
 import com.xingyun.activity.R;
 import com.xingyun.adapter.AsyncImageLoader.ImageCallback;
 import com.xingyun.entity.Dish;
@@ -32,10 +33,12 @@ public class DishListAdapter extends ArrayAdapter<Dish> {
 
 	private ConfirmOrderActivity confirmOrderActivity;
 
+	private Activity context;
+
 	public DishListAdapter(Activity activity, List<Dish> imageAndTexts,
 			ListView listView, int listViewType) {
 		super(activity, 0, imageAndTexts);
-
+		context = activity;
 		if (activity instanceof ConfirmOrderActivity) {
 			this.confirmOrderActivity = (ConfirmOrderActivity) activity;
 		}
@@ -60,6 +63,8 @@ public class DishListAdapter extends ArrayAdapter<Dish> {
 				rowView = inflater.inflate(R.layout.dishlistitem, null);
 			} else if (listViewType == 1) {
 				rowView = inflater.inflate(R.layout.dishlistitem1, null);
+			} else if (listViewType == 2) {
+				rowView = inflater.inflate(R.layout.dishlistitem2, null);
 			}
 			viewCache = new DishListItemCache(rowView);
 			rowView.setTag(viewCache);
@@ -70,20 +75,56 @@ public class DishListAdapter extends ArrayAdapter<Dish> {
 
 		if (listViewType == 0) {
 			// “点菜”按钮
-			Button btnAddToCart = (Button) rowView
+			final Button btnAddToCart = (Button) rowView
 					.findViewById(R.id.btn_addtocart);
+
+			// set button style first
+			if (CartManager.getCountByDishId(dish.getMenuItemId()) > 0) {
+				btnAddToCart.setText(context.getResources().getString(
+						R.string.dish_ordered));
+				btnAddToCart.setBackgroundDrawable(context.getResources()
+						.getDrawable(R.drawable.rounded_corner_button_gray));
+
+			} else {
+				btnAddToCart.setText(context.getResources().getString(
+						R.string.order_dish));
+				btnAddToCart.setBackgroundDrawable(context.getResources()
+						.getDrawable(R.drawable.rounded_corner_button));
+
+			}
+
 			btnAddToCart.setOnClickListener(new OnClickListener() {
 
 				@Override
 				public void onClick(View arg0) {
-					CartManager.addDishToCart(new CartDishModel(dish, 1));
-
-					Toast toast = Toast.makeText(activity
-							.getApplicationContext(), activity.getResources()
-							.getString(R.string.add_to_cart_succeed),
-							Toast.LENGTH_SHORT);
-					toast.setGravity(Gravity.BOTTOM, 0, 0);
-					toast.show();
+					String currentText = btnAddToCart.getText().toString();
+					if (currentText.equals(context.getResources().getString(
+							R.string.order_dish))) {
+						CartManager.addDishToCart(new CartDishModel(dish, 1));
+						btnAddToCart.setText(context.getResources().getString(
+								R.string.dish_ordered));
+						btnAddToCart.setBackgroundDrawable(context
+								.getResources().getDrawable(
+										R.drawable.rounded_corner_button_gray));
+					} else {
+						CartManager.removeDishFromCart(new CartDishModel(dish,
+								CartManager.getCountByDishId(dish.getMenuItemId())));
+						btnAddToCart.setText(context.getResources().getString(
+								R.string.order_dish));
+						btnAddToCart.setBackgroundDrawable(context
+								.getResources().getDrawable(
+										R.drawable.rounded_corner_button));
+					}
+					
+					OrderDishesActivity oda = (OrderDishesActivity)context;
+					oda.updateDishCount();
+					//
+					// Toast toast = Toast.makeText(activity
+					// .getApplicationContext(), activity.getResources()
+					// .getString(R.string.add_to_cart_succeed),
+					// Toast.LENGTH_SHORT);
+					// toast.setGravity(Gravity.BOTTOM, 0, 0);
+					// toast.show();
 				}
 
 			});
@@ -128,6 +169,10 @@ public class DishListAdapter extends ArrayAdapter<Dish> {
 				}
 
 			});
+		} else if (listViewType == 2) {
+			TextView txtQuantity = (TextView) rowView
+					.findViewById(R.id.txt_quantity);
+			txtQuantity.setText("数量: " + dish.getQuantity() + "");
 		}
 
 		// Load the image and set it on the ImageView

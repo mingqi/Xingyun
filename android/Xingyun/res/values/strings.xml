@@ -13,6 +13,7 @@
 	<string name="confirm_order">确认订单</string>
 	<string name="dishes">菜品</string>
 	<string name="order_dish">点菜</string>
+	<string name="dish_ordered">已点</string>
 	<string name="dish_list">菜单</string>
 	<string name="dish_all">全部</string>
 	<string name="dish_cold">凉菜</string>
@@ -25,7 +26,7 @@
 	<string name="old_password">旧密码: </string>
 	<string name="new_password">新密码: </string>
 	<string name="retype">再输一遍:  </string>
-	<string name="my_order">我的订单</string>
+	<string name="my_order">历史订单</string>
 	<string name="take_order">下单</string>
 	<string name="submit_order">提交订单</string>
 	<string name="order_info">订单信息</string>
@@ -43,7 +44,7 @@
 	<string name="failed_to_get_data">获取网络内容失败</string>
 	<string name="add_to_cart_succeed">点菜成功</string>
 	<string name="order_dishes_result">订餐结果</string>
-	<string name="order_dishes_succeed">订餐成功，稍后会有工作人员与您联系</string>
+	<string name="order_dishes_succeed">操作成功，稍后会有工作人员与您联系</string>
 	<string name="finish">完成</string>
 	<string name="plz_check_input">请检查输入是否完整</string>
 	<string name="login">登录</string>
@@ -56,10 +57,15 @@
 	<string name="realname">称谓</string>
 	<string name="empty_username">用户名不能为空</string>
 	<string name="empty_realname">称谓不能为空</string>
+	<string name="empty_password">密码不能为空</string>
 	<string name="all_dishes">所有菜品</string>
-	<string name="resturant_phone_number">联系电话：88886666</string>
-	
-	 
+	<string name="resturant_phone_number">联系电话：0966-2218222</string>
+	<string name="username_taken">用户名已被占用</string> 
+	<string name="input_phone_number">输入您下单时候的手机号码查询历史订单</string>
+	<string name="plz_input_phone_number">请输入电话号码</string>
+	<string name="my_dishes">菜品详情</string>
+	<string name="bad_guest_number">人数输入有误</string>
+		 
 	<string name="sample_str1">请确认您要点的菜品 一共元</string>
 	<string name="sample_str2">菜品名称</string>
 	<string name="sample_str3">菜品价格</string>

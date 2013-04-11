@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/listItem"
+    android:layout_width="fill_parent"
+    android:layout_height="100dp"
+    android:background="#FFFFFF"
+    android:orientation="horizontal"
+    android:paddingBottom="3dip"
+    android:paddingLeft="10dip"
+    android:weightSum="5" >
+
+    <RelativeLayout
+        android:id="@+id/loadingPanel"
+        style="@style/GenericProgressBackground" >
+
+        <ProgressBar style="@style/GenericProgressIndicator" />
+    </RelativeLayout>
+
+</LinearLayout>

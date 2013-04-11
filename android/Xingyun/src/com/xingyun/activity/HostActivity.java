@@ -36,31 +36,37 @@ public class HostActivity extends TabActivity {
 						getResources().getDrawable(R.drawable.fork_knife))
 				.setContent(new Intent(this, ResturantInfoActivity.class)));
 
-		if (UserManager.isLogin()) {
-			tabHost.addTab(tabHost
-					.newTabSpec(
-							(String) this.getResources().getText(
-									R.string.profile))
-					.setIndicator(
-							(String) this.getResources().getText(
-									R.string.profile),
-							getResources().getDrawable(R.drawable.man))
-					.setContent(new Intent(this, UserProfileActivity.class)));
-
-		} else {
-
-			tabHost.addTab(tabHost
-					.newTabSpec(
-							(String) this.getResources().getText(
-									R.string.profile))
-					.setIndicator(
-							(String) this.getResources().getText(
-									R.string.profile),
-							getResources().getDrawable(R.drawable.man))
-					.setContent(
-							new Intent(this, UserProfileActivityGroup.class)));
-
-		}
+		// if (UserManager.isLogin()) {
+		// tabHost.addTab(tabHost
+		// .newTabSpec(
+		// (String) this.getResources().getText(
+		// R.string.profile))
+		// .setIndicator(
+		// (String) this.getResources().getText(
+		// R.string.profile),
+		// getResources().getDrawable(R.drawable.man))
+		// .setContent(new Intent(this, UserProfileActivity.class)));
+		//
+		// } else {
+		//
+		// tabHost.addTab(tabHost
+		// .newTabSpec(
+		// (String) this.getResources().getText(
+		// R.string.profile))
+		// .setIndicator(
+		// (String) this.getResources().getText(
+		// R.string.profile),
+		// getResources().getDrawable(R.drawable.man))
+		// .setContent(
+		// new Intent(this, UserProfileActivityGroup.class)));
+		// }
+		tabHost.addTab(tabHost
+				.newTabSpec(
+						(String) this.getResources().getText(R.string.my_order))
+				.setIndicator(
+						(String) this.getResources().getText(R.string.my_order),
+						getResources().getDrawable(R.drawable.clock))
+				.setContent(new Intent(this, QueryOrderActivity.class)));
 
 		TabWidget tabWidget = tabHost.getTabWidget();
 		for (int i = 0; i < tabWidget.getChildCount(); i++) {

@@ -16,6 +16,8 @@ public class Dish {
 	private String name;
 	private String price;
 	private String imageUrl;
+	
+	private int quantity;
 
 	public Dish(String name, String price, String imageUrl) {
 		super();
@@ -84,6 +86,14 @@ public class Dish {
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 
 }

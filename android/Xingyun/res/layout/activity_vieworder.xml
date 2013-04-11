@@ -12,7 +12,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:background="#8B2252"
+            android:background="@color/theme_color"
             android:gravity="center_vertical|center_horizontal"
             android:orientation="vertical" >
 
@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
-            android:background="#8B2252"
+            android:background="@null"
             android:gravity="center_vertical"
             android:orientation="vertical" >
 
@@ -42,241 +42,275 @@
         </LinearLayout>
     </FrameLayout>
 
-    <ScrollView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="wrap_content" >
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:orientation="vertical" >
+            android:layout_height="match_parent" >
 
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="订单信息"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#000000" />
-
-            <com.xingyun.excontrol.RoundedRectTableLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp" >
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical" >
 
-                <TableRow
-                    android:id="@+id/tableRow1"
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="订单信息"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000" />
+
+                <com.xingyun.excontrol.RoundedRectTableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical" >
+                    android:layout_marginTop="10dp" >
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:id="@+id/txt_contactname"
-                        android:layout_marginLeft="10dp"
-                        android:gravity="center_vertical"
-                        android:text="顾客姓名："
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="#000000" />
-                </TableRow>
+                    <TableRow
+                        android:id="@+id/tableRow1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical" >
 
-                <TableRow
-                    android:layout_height="1px"
-                    android:background="#BDBDBD" >
+                        <TextView
+                            android:id="@+id/txt_contactname"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="10dp"
+                            android:gravity="center_vertical"
+                            android:text="顾客姓名："
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="#000000" />
+                    </TableRow>
 
-                    <TextView
-                        android:layout_width="fill_parent"
+                    <TableRow
                         android:layout_height="1px"
-                        android:layout_span="2"
-                        android:text="" >
-                    </TextView>
-                </TableRow>
+                        android:background="@color/theme_color" >
 
-                <TableRow
-                    android:id="@+id/tableRow2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical" >
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="1px"
+                            android:layout_span="2"
+                            android:text="" >
+                        </TextView>
+                    </TableRow>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:id="@+id/txt_telephone"
-                        android:layout_marginLeft="10dp"
-                        android:gravity="center_vertical"
-                        android:text="联系方式："
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="#000000" />
-                </TableRow>
+                    <TableRow
+                        android:id="@+id/tableRow2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical" >
 
-                <TableRow
-                    android:layout_height="1px"
-                    android:background="#BDBDBD" >
+                        <TextView
+                            android:id="@+id/txt_telephone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="10dp"
+                            android:gravity="center_vertical"
+                            android:text="联系方式："
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="#000000" />
+                    </TableRow>
 
-                    <TextView
-                        android:layout_width="fill_parent"
+                    <TableRow
                         android:layout_height="1px"
-                        android:layout_span="2"
-                        android:text="" >
-                    </TextView>
-                </TableRow>
+                        android:background="@color/theme_color" >
 
-                <TableRow
-                    android:id="@+id/tableRow3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical" >
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="1px"
+                            android:layout_span="2"
+                            android:text="" >
+                        </TextView>
+                    </TableRow>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="10dp"
-                        android:gravity="center_vertical"
-                        android:id="@+id/txt_guestnumber"
-                        android:text="用餐人数："
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="#000000" />
-                </TableRow>
+                    <TableRow
+                        android:id="@+id/tableRow3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical" >
 
-                <TableRow
-                    android:layout_height="1px"
-                    android:background="#BDBDBD" >
+                        <TextView
+                            android:id="@+id/txt_guestnumber"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="10dp"
+                            android:gravity="center_vertical"
+                            android:text="用餐人数："
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="#000000" />
+                    </TableRow>
 
-                    <TextView
-                        android:layout_width="fill_parent"
+                    <TableRow
                         android:layout_height="1px"
-                        android:layout_span="2"
-                        android:text="" >
-                    </TextView>
-                </TableRow>
+                        android:background="@color/theme_color" >
 
-                <TableRow
-                    android:id="@+id/tableRow4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical" >
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="1px"
+                            android:layout_span="2"
+                            android:text="" >
+                        </TextView>
+                    </TableRow>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="10dp"
-                        android:gravity="center_vertical"
-                        android:id="@+id/txt_isvip"
-                        android:text="堂食/包厢："
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="#000000" />
-                </TableRow>
+                    <TableRow
+                        android:id="@+id/tableRow4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical" >
 
-                <TableRow
-                    android:layout_height="1px"
-                    android:background="#BDBDBD" >
+                        <TextView
+                            android:id="@+id/txt_isvip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="10dp"
+                            android:gravity="center_vertical"
+                            android:text="堂食/包厢："
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="#000000" />
+                    </TableRow>
 
-                    <TextView
-                        android:layout_width="fill_parent"
+                    <TableRow
                         android:layout_height="1px"
-                        android:layout_span="2"
-                        android:text="" >
-                    </TextView>
-                </TableRow>
+                        android:background="@color/theme_color" >
 
-                <TableRow
-                    android:id="@+id/tableRow5"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:gravity="center_vertical" >
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="1px"
+                            android:layout_span="2"
+                            android:text="" >
+                        </TextView>
+                    </TableRow>
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <TableRow
+                        android:id="@+id/tableRow5"
+                        android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:layout_marginLeft="10dp"
-                        android:gravity="center_vertical"
-                        android:id="@+id/txt_arrivaltime"
-                        android:text="到店时间："
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="#000000" />
-                </TableRow>
-            </com.xingyun.excontrol.RoundedRectTableLayout>
+                        android:gravity="center_vertical" >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="菜品"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#000000" />
+                        <TextView
+                            android:id="@+id/txt_arrivaltime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="10dp"
+                            android:gravity="center_vertical"
+                            android:text="到店时间："
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="#000000" />
+                    </TableRow>
+                </com.xingyun.excontrol.RoundedRectTableLayout>
 
-            <com.xingyun.excontrol.RoundedRectTableLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp" >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="菜品"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000" />
 
-                <TableRow
+                <com.xingyun.excontrol.RoundedRectTableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical" >
+                    android:layout_marginTop="10dp" >
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <TableRow
+                        android:id="@+id/tr_viewdishes"
+                        android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:layout_marginLeft="10dp"
                         android:gravity="center_vertical"
-                        android:id="@+id/txt_dishcount"
-                        android:text="共点菜道"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="#000000" />
-                </TableRow>
+                        android:weightSum="8" >
 
-                <TableRow
-                    android:layout_height="1px"
-                    android:background="#BDBDBD" >
+                        <TextView
+                            android:id="@+id/txt_dishcount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="7"
+                            android:gravity="center_vertical"
+                            android:text="共点菜道"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="#000000" />
 
-                    <TextView
-                        android:layout_width="fill_parent"
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="right"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="10dp"
+                                android:layout_marginTop="10dp"
+                                android:text=">"
+                                android:textColor="#000000"
+                                android:textSize="18sp" >
+                            </TextView>
+                        </LinearLayout>
+                    </TableRow>
+
+                    <TableRow
                         android:layout_height="1px"
-                        android:layout_span="2"
-                        android:text="" >
-                    </TextView>
-                </TableRow>
+                        android:background="@color/theme_color" >
 
-                <TableRow
-                    android:layout_width="match_parent"
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="1px"
+                            android:layout_span="2"
+                            android:text="" >
+                        </TextView>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical" >
+
+                        <TextView
+                            android:id="@+id/txt_totalprice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="10dp"
+                            android:gravity="center_vertical"
+                            android:text="一共元"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="#000000" />
+                    </TableRow>
+                </com.xingyun.excontrol.RoundedRectTableLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical" >
+                    android:layout_marginTop="10dp"
+                    android:text="特殊要求"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="10dp"
-                        android:gravity="center_vertical"
-                        android:id="@+id/txt_totalprice"
-                        android:text="一共元"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="#000000" />
-                </TableRow>
-            </com.xingyun.excontrol.RoundedRectTableLayout>
+                <com.xingyun.excontrol.RoundedRectEditTextLayout
+                    android:id="@+id/txt_requirements"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:enabled="false"
+                    android:inputType="textMultiLine" >
+                </com.xingyun.excontrol.RoundedRectEditTextLayout>
+            </LinearLayout>
+        </ScrollView>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="特殊要求"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#000000" />
+        <RelativeLayout
+            android:id="@+id/loadingPanel"
+            style="@style/GenericProgressBackground" >
 
-            <com.xingyun.excontrol.RoundedRectEditTextLayout
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
-                android:enabled="false"
-                android:inputType="textMultiLine" 
-                android:id="@+id/txt_requirements" >
-            </com.xingyun.excontrol.RoundedRectEditTextLayout>
-        </LinearLayout>
-    </ScrollView>
+            <ProgressBar style="@style/GenericProgressIndicator" />
+        </RelativeLayout>
+    </FrameLayout>
 
 </LinearLayout>

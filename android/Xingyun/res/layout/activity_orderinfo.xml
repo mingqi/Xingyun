@@ -13,7 +13,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:background="#8B2252"
+            android:background="@color/theme_color"
             android:gravity="center_vertical|center_horizontal"
             android:orientation="vertical" >
 
@@ -106,12 +106,13 @@
                         android:layout_height="38dp"
                         android:layout_marginRight="15dp"
                         android:layout_marginTop="2dp"
+                        android:imeOptions="actionDone"
                         android:inputType="textPersonName" />
                 </TableRow>
 
                 <TableRow
                     android:layout_height="1px"
-                    android:background="#BDBDBD" >
+                    android:background="@color/theme_color" >
 
                     <TextView
                         android:layout_width="fill_parent"
@@ -141,13 +142,14 @@
                         android:layout_height="38dp"
                         android:layout_marginRight="15dp"
                         android:layout_marginTop="2dp"
+                        android:imeOptions="actionDone"
                         android:inputType="phone" >
                     </EditText>
                 </TableRow>
 
                 <TableRow
                     android:layout_height="1px"
-                    android:background="#BDBDBD" >
+                    android:background="@color/theme_color" >
 
                     <TextView
                         android:layout_width="fill_parent"
@@ -178,13 +180,14 @@
                         android:layout_marginRight="15dp"
                         android:layout_marginTop="2dp"
                         android:ems="10"
+                        android:imeOptions="actionDone"
                         android:inputType="number" >
                     </EditText>
                 </TableRow>
 
                 <TableRow
                     android:layout_height="1px"
-                    android:background="#BDBDBD" >
+                    android:background="@color/theme_color" >
 
                     <TextView
                         android:layout_width="fill_parent"
@@ -217,7 +220,7 @@
 
                 <TableRow
                     android:layout_height="1px"
-                    android:background="#BDBDBD" >
+                    android:background="@color/theme_color" >
 
                     <TextView
                         android:layout_width="fill_parent"
@@ -248,12 +251,13 @@
                         android:layout_marginRight="15dp"
                         android:layout_marginTop="2dp"
                         android:focusable="false"
+                        android:imeOptions="actionDone"
                         android:inputType="time" />
                 </TableRow>
 
                 <TableRow
                     android:layout_height="1px"
-                    android:background="#BDBDBD" >
+                    android:background="@color/theme_color" >
 
                     <TextView
                         android:layout_width="fill_parent"
@@ -284,6 +288,7 @@
                         android:layout_marginRight="15dp"
                         android:layout_marginTop="2dp"
                         android:focusable="false"
+                        android:imeOptions="actionDone"
                         android:inputType="time" />
                 </TableRow>
             </com.xingyun.excontrol.RoundedRectTableLayout>
@@ -319,7 +324,7 @@
 
                 <TableRow
                     android:layout_height="1px"
-                    android:background="#BDBDBD" >
+                    android:background="@color/theme_color" >
 
                     <TextView
                         android:layout_width="fill_parent"
@@ -359,7 +364,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="10dp"  
+                android:imeOptions="actionDone"
                 android:inputType="textMultiLine"
                 android:text="" >
             </com.xingyun.excontrol.RoundedRectEditTextLayout>

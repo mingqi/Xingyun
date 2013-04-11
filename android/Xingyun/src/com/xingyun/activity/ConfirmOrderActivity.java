@@ -43,18 +43,17 @@ public class ConfirmOrderActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				if (UserManager.isLogin()) {
-					Intent i = new Intent();
-					i.setClass(ConfirmOrderActivity.this,
-							OrderInfoActivity.class);
-					startActivity(i);
-				} else {
-					Intent i = new Intent();
-					i.setClass(ConfirmOrderActivity.this,
-							UserProfileActivityGroup.class);
-					i.putExtra("nextstep", "order");
-					startActivity(i);
-				}
+				// if (UserManager.isLogin()) {
+				Intent i = new Intent();
+				i.setClass(ConfirmOrderActivity.this, OrderInfoActivity.class);
+				startActivity(i);
+				// } else {
+				// Intent i = new Intent();
+				// i.setClass(ConfirmOrderActivity.this,
+				// UserProfileActivityGroup.class);
+				// i.putExtra("nextstep", "order");
+				// startActivity(i);
+				// }
 			}
 
 		});

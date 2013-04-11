@@ -77,7 +77,7 @@ public class ResturantInfoActivity extends Activity {
 				case 3:
 					// 电话
 					Intent callIntent = new Intent(Intent.ACTION_CALL);
-					callIntent.setData(Uri.parse("tel:88886666"));
+					callIntent.setData(Uri.parse("tel:09962218222"));
 					startActivity(callIntent);
 					break;
 				}

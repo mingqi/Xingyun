@@ -11,6 +11,7 @@ import org.apache.http.params.HttpParams;
 import com.xingyun.persistence.CartManager;
 import com.xingyun.persistence.UserManager;
 import com.xingyun.setting.Configuration;
+import com.xingyun.utility.DBManager;
 import com.xingyun.utility.StringUtility;
 
 import android.app.Activity;
@@ -18,12 +19,15 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.app.TimePickerDialog.OnTimeSetListener;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnFocusChangeListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
@@ -40,8 +44,13 @@ public class OrderInfoActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_orderinfo);
-
 		activity = this;
+
+		((EditText) activity.findViewById(R.id.txt_name)).setText(UserManager
+				.getContactName(activity));
+		((EditText) activity.findViewById(R.id.txt_telephone))
+				.setText(UserManager.getContactPhone(activity));
+
 		Button btnBack = (Button) findViewById(R.id.btn_back);
 		btnBack.setOnClickListener(new OnClickListener() {
 
@@ -65,6 +74,28 @@ public class OrderInfoActivity extends Activity {
 				String guestNumber = ((EditText) activity
 						.findViewById(R.id.txt_guestnumber)).getText()
 						.toString();
+				try{
+					int n = Integer.parseInt(guestNumber);
+					if(n<1) {
+						Toast toast = Toast.makeText(
+								getApplicationContext(),
+								getResources().getString(
+										R.string.bad_guest_number),
+								Toast.LENGTH_LONG);
+						toast.setGravity(Gravity.BOTTOM, 0, 0);
+						toast.show();
+						return;
+					}
+				}catch(Exception ex) {
+					Toast toast = Toast.makeText(
+							getApplicationContext(),
+							getResources().getString(
+									R.string.bad_guest_number),
+							Toast.LENGTH_LONG);
+					toast.setGravity(Gravity.BOTTOM, 0, 0);
+					toast.show();
+					return;
+				}
 				String isVip = ((CheckBox) activity.findViewById(R.id.cb_isvip))
 						.isChecked() ? "true" : "false";
 				String arrivalDateTime = ((EditText) activity
@@ -80,7 +111,8 @@ public class OrderInfoActivity extends Activity {
 
 				// String data =
 				// "{    \"customer_id\" : 1,    \"contact_name\" : \"邵明岐\",    \"contact_phone\" : \"13811021667\",    \"people_number\" : 2,    \"box_required\" : true,    \"order_price\": 68,    \"dishes_count\": 8,    \"reserved_time\": \"2012-01-19T19:05:01\",    \"other_requirements\" : \"不要放香菜\",    \"order_dishes\" : [        {   \"menu_item_id\": 1,            \"quantity\" : 1        },        {   \"menu_item_id\": 5,            \"quantity\" : 3        }    ]}";
-				String data = "{\"customer_id\" : " + UserManager.getId()
+				String data = "{\"customer_id\" : "
+						+ UserManager.getId(activity)
 						+ ", \"contact_name\" : \""
 						+ StringUtility.string2Json(name)
 						+ "\", \"contact_phone\" : \""
@@ -97,6 +129,9 @@ public class OrderInfoActivity extends Activity {
 						+ StringUtility.string2Json(requirements)
 						+ "\", \"order_dishes\" : " + CartManager.getJsonStr()
 						+ "}";
+				
+				Log.d("json is ", data);
+				
 				// post data
 				HttpPut httpPut = new HttpPut(Configuration.WS_PLACEORDER);
 
@@ -113,9 +148,14 @@ public class OrderInfoActivity extends Activity {
 					HttpResponse httpResponse = new DefaultHttpClient()
 							.execute(httpPut);
 					// HTTP/1.0 201 CREATED
-					Log.e("!!", httpResponse.getStatusLine().toString());
+					Log.d(OrderInfoActivity.class.getName(), httpResponse
+							.getStatusLine().toString());
 					if (httpResponse.getStatusLine().getStatusCode() == 201) {
 						CartManager.clearCart();
+						
+						UserManager.setContactName(activity, name);
+						UserManager.setContactPhone(activity, telephone);
+						
 						Intent i = new Intent();
 						i.setClass(OrderInfoActivity.this,
 								OrderDishesResultActivity.class);
@@ -197,5 +237,6 @@ public class OrderInfoActivity extends Activity {
 			}
 
 		});
+
 	}
 }
