@@ -16,7 +16,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	[self setSelectedIndex:1];
+//	[self setSelectedIndex:1];
 }
 
 - (void)didReceiveMemoryWarning

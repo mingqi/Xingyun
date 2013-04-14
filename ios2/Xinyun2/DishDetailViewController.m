@@ -40,6 +40,7 @@
     [self.image setImageWithURL:[NSURL URLWithString:[self.menuItem getImageURLWithResolution:@"400x400"]]];
     self.cartManager = [ShoppingCartManager getInstance];
     [self updateCartButton];
+    [self.cartButton removeFromSuperview];
 }
 - (IBAction)cartButtonTaped:(id)sender {
     UIButton *button = (UIButton *)sender;

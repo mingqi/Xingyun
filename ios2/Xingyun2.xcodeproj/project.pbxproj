@@ -10,6 +10,7 @@
 		2B0E368F171413E30059D40C /* HistoryOrderHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0E368E171413E30059D40C /* HistoryOrderHomeViewController.m */; };
 		2B0E369117141A980059D40C /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B0E369017141A980059D40C /* clock.png */; };
 		2B18FC351707DD5500E980D6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BB6877516E5CE6E00A629D3 /* Default@2x.png */; };
+		2B208C621717F9060062D137 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B208C611717F9060062D137 /* KeychainItemWrapper.m */; };
 		2B2BA807170D2BB500A80358 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2BA7F5170D2BB500A80358 /* AFHTTPClient.m */; };
 		2B2BA808170D2BB500A80358 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2BA7F7170D2BB500A80358 /* AFHTTPRequestOperation.m */; };
 		2B2BA809170D2BB500A80358 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2BA7F9170D2BB500A80358 /* AFImageRequestOperation.m */; };
@@ -100,6 +101,8 @@
 		2B0E368D171413E30059D40C /* HistoryOrderHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryOrderHomeViewController.h; sourceTree = "<group>"; };
 		2B0E368E171413E30059D40C /* HistoryOrderHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryOrderHomeViewController.m; sourceTree = "<group>"; };
 		2B0E369017141A980059D40C /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock.png; sourceTree = "<group>"; };
+		2B208C601717F9060062D137 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
+		2B208C611717F9060062D137 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
 		2B2BA7F4170D2BB500A80358 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		2B2BA7F5170D2BB500A80358 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		2B2BA7F6170D2BB500A80358 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -229,6 +232,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B208C5F1717F9060062D137 /* KeychinaitemWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				2B208C601717F9060062D137 /* KeychainItemWrapper.h */,
+				2B208C611717F9060062D137 /* KeychainItemWrapper.m */,
+			);
+			path = KeychinaitemWrapper;
+			sourceTree = "<group>";
+		};
 		2B2BA7F3170D2BB500A80358 /* AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -287,6 +299,7 @@
 		2BB6870D16E4B28300A629D3 = {
 			isa = PBXGroup;
 			children = (
+				2B208C5F1717F9060062D137 /* KeychinaitemWrapper */,
 				2B2D0B881707D44D005A76AC /* Default-568h@2x.png */,
 				2BB6877516E5CE6E00A629D3 /* Default@2x.png */,
 				2B2D0B8C1707D77A005A76AC /* icon.png */,
@@ -590,6 +603,7 @@
 				2B2C78FF170DB5B400E2F085 /* MBProgressHUD.m in Sources */,
 				2B492FB71711796A001F22E9 /* ShoppingCartManager.m in Sources */,
 				2B0E368F171413E30059D40C /* HistoryOrderHomeViewController.m in Sources */,
+				2B208C621717F9060062D137 /* KeychainItemWrapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

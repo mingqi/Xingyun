@@ -20,6 +20,7 @@
 @property (strong, nonatomic) MBProgressHUD * hub;
 @property (strong, nonatomic) DishListTableViewManager *tableViewManager;
 @property (strong, nonatomic) ShoppingCartManager *cartManager;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *nextBarButton;
 
 @end
 
@@ -37,7 +38,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"Dish Lish View Controller viewDidLoad");
     
         /*** draw table's footer view ***/
     UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, 40)];
@@ -69,6 +69,7 @@
     
     self.cartManager = [ShoppingCartManager getInstance];
     [self.tableViewManager reloadTableView];
+    
 }
 
 - (void) updateRightBar
@@ -273,6 +274,7 @@
         [cartButton setTitle:@"已点" forState:UIControlStateNormal];
 
     }
+    [cartButton removeFromSuperview];
     
     UIImageView *imageView = (UIImageView *) [cell viewWithTag:1];
     NSString *imageURL = [menuItem getImageURLWithResolution:@"100x100"];

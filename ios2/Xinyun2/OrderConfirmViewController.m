@@ -8,14 +8,25 @@
 
 #import "OrderConfirmViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "Restfulservice.h"
+#import "ShoppingCartManager.h"
+#import "MBProgressHUD.h"
+#import "KeychainItemWrapper.h"
 
 
 @interface OrderConfirmViewController ()
 @property (strong, nonatomic) IBOutlet UITextField *customerNameTextField;
 @property (strong, nonatomic) IBOutlet UITextField *telPhoneTextField;
 @property (strong, nonatomic) IBOutlet UITextField *peopleNumberTextField;
+@property (strong, nonatomic) IBOutlet UISwitch *boxRequiredSwitch;
 @property (strong, nonatomic) UIDatePicker *datePicker;
 @property (strong, nonatomic) IBOutlet UITextField *reservedTimeTextField;
+@property (strong, nonatomic) IBOutlet UITextView *otherRequirementTextView;
+@property (strong, nonatomic) ShoppingCartManager *cartManager;
+@property (strong, nonatomic) NSDate *reservedTime;
+@property (strong, nonatomic) Restfulservice *restService;
+@property (strong, nonatomic) MBProgressHUD *hub;
+@property (strong, nonatomic) KeychainItemWrapper *keychainItem;
 @end
 
 @implementation OrderConfirmViewController
@@ -38,14 +49,74 @@
     [self.datePicker addTarget:self action:@selector(datePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
     
     self.reservedTimeTextField.inputView = self.datePicker;
-   
+    self.cartManager = [ShoppingCartManager getInstance];
+    self.restService = [Restfulservice getService];
+    
+    self.hub = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview: self.hub];
+    [self.hub hide:YES];
+    
+    self.keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:@"Xingyun" accessGroup:nil];
+}
+
+- (void) viewDidAppear:(BOOL)animated{
+    self.customerNameTextField.text = [self.keychainItem objectForKey:(__bridge id)(kSecAttrAccount)];
+    self.telPhoneTextField.text = [self.keychainItem objectForKey:(__bridge id)kSecValueData];
 }
 
 - (void) datePickerValueChanged:(UIDatePicker *) datePicker
 {
     NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
     [fmt setDateFormat:@"yyyy-MM-dd HH:mm"];
-    self.reservedTimeTextField.text = [fmt stringFromDate:self.datePicker.date];
+    self.reservedTimeTextField.text = [fmt stringFromDate:datePicker.date];
+    self.reservedTime = datePicker.date;
+}
+- (IBAction)placeOrderAction:(id)sender {
+    UIAlertView *illegalInputAlertView = [[UIAlertView alloc] initWithTitle:@"输入错误，请重新输入" message:nil delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+    if(self.customerNameTextField.text == nil || [self.customerNameTextField.text length] == 0){
+        illegalInputAlertView.title = @"请填写联系人";
+        [illegalInputAlertView show];
+        return;
+    }
+    if(self.telPhoneTextField.text == nil || [self.telPhoneTextField.text length] == 0){
+        illegalInputAlertView.title = @"请填写联系电话";
+        [illegalInputAlertView show];
+        return;
+    }
+    if(self.peopleNumberTextField.text == nil || [self.peopleNumberTextField.text length] == 0){
+        illegalInputAlertView.title = @"请提供用餐人数";
+        [illegalInputAlertView show];
+        return;
+    }
+    if(self.reservedTimeTextField.text == nil || [self.reservedTimeTextField.text length] == 0){
+        illegalInputAlertView.title = @"请填写预约就餐时间";
+        [illegalInputAlertView show];
+        return;
+    }
+
+    
+    Order *order = [[Order alloc] init];
+    order.customerId = 0;
+    order.contactName = self.customerNameTextField.text;
+    order.contactPhone = self.telPhoneTextField.text;
+    order.peopleNumber = [self.peopleNumberTextField.text intValue];
+    order.boxRequired = [self.boxRequiredSwitch isOn];
+    order.orderPrice = [[self.cartManager getTotalPrice] floatValue];
+    order.dishesCount = [self.cartManager getItemUnits];
+    order.reservedTime = self.reservedTime;
+    order.otherRequirements = self.otherRequirementTextView.text;
+    
+    NSMutableArray *dishesArray = [NSMutableArray arrayWithCapacity:10];
+    for(ShoppingCartItem *cartItem in [self.cartManager getItemArray]){
+        OrderDish *dish = [[OrderDish alloc] init];
+        dish.menuItemId = cartItem.menuItemId;
+        dish.quantity = cartItem.quantity;
+        [dishesArray addObject:dish];
+    }
+    order.orderDishes = dishesArray;
+    [self.hub show:YES];
+    [self.restService placeOrder:self order:order];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -59,7 +130,6 @@
     return YES;
 }
 
-
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     if ([self.customerNameTextField isFirstResponder]) {
         [self.customerNameTextField resignFirstResponder];
@@ -69,83 +139,27 @@
         [self.peopleNumberTextField resignFirstResponder];
     }else if( [self.reservedTimeTextField isFirstResponder]){
         [self.reservedTimeTextField resignFirstResponder];
+    }else if([self.otherRequirementTextView isFirstResponder]){
+        [self.otherRequirementTextView resignFirstResponder];
     }
 }
-#pragma mark - Table view data source
-/*
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
+
+- (void) successPlaceOrder:(NSInteger) orderId{
+    [self.keychainItem setObject:self.customerNameTextField.text forKey:(__bridge id)(kSecAttrAccount)];
+    [self.keychainItem setObject:self.telPhoneTextField.text forKey:(__bridge id)(kSecValueData)];
+    [self.hub hide:YES];
+    UIAlertView *successAlterView = [[UIAlertView alloc] initWithTitle:@"预定成功，稍后餐厅会电话和您确认" message:nil delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+    [self.cartManager cleanup];
+    [successAlterView show];
+}
+- (void) failurePlaceOrder:(NSError *) error{
+    [self.hub hide:YES];
+    UIAlertView *successAlterView = [[UIAlertView alloc] initWithTitle:@"系统出错，请稍后再试或者电话联系餐厅" message:nil delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+    [successAlterView show];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 3;
-}
-*/
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
- /*
-    if(indexPath.section == 0 && indexPath.row == 4){
-        UIDatePicker *datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 250, 320, 300)];
-        datePicker.datePickerMode = UIDatePickerModeDateAndTime;
-        //[self.view addSubview:datePicker];
-        [tableView addSubview:datePicker];
-    }
-*/
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end

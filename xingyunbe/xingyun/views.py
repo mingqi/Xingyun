@@ -384,6 +384,7 @@ class APIOrdersView(View):
         PUT api/orders: create a new order
         """
         try:
+            print request.body
             order_as_dict = json.loads(request.body )
             
         except Exception as e:

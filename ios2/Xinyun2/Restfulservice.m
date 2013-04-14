@@ -10,6 +10,15 @@
 #import "AFJSONRequestOperation.h"
 #import "UIImageView+AFNetworking.h"
 #import "DishListViewController.h"
+#import "AFHTTPClient.h"
+
+@implementation Order
+
+@end
+
+@implementation OrderDish
+
+@end
 
 @implementation MenuItem
 
@@ -129,5 +138,49 @@
     [operation start];
 }
 
+- (void) placeOrder:(id<PlaceOrderDelegate>) delegate order:(Order *) order{
+//    NSString *placeOrderURLString = [NSString stringWithFormat:@"%@/api/orders", self._remoteHost];
+    AFHTTPClient * Client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:self._remoteHost]];
+    NSMutableDictionary * parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInt:order.customerId] forKey:@"customer_id"];
+    [parameters setObject:order.contactName forKey:@"contact_name"];
+    [parameters setObject:order.contactPhone forKey:@"contact_phone"];
+    [parameters setObject:[NSNumber numberWithInt:order.peopleNumber] forKey:@"people_number"];
+    [parameters setObject:[NSNumber numberWithBool:order.boxRequired] forKey:@"box_required"];
+    [parameters setObject:[NSNumber numberWithFloat:order.orderPrice] forKey:@"order_price"];
+    [parameters setObject:[NSNumber numberWithInt:order.dishesCount] forKey:@"dishes_count"];
+    [parameters setObject:order.otherRequirements forKey:@"other_requirements"];
+
+    
+    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+    [fmt setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
+    [parameters setObject:[fmt stringFromDate:order.reservedTime] forKey:@"reserved_time"];
+    
+    NSMutableArray *orderDishesArray = [NSMutableArray arrayWithCapacity:10];
+    for( OrderDish *dish in order.orderDishes){
+        NSDictionary * dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:dish.menuItemId], @"menu_item_id", [NSNumber numberWithInt:dish.quantity], @"quantity", nil];
+        [orderDishesArray addObject:dict];
+    }
+    [parameters setObject:orderDishesArray forKey:@"order_dishes"];
+    [Client setParameterEncoding:AFJSONParameterEncoding];
+    [Client putPath:@"api/orders" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSMethodSignature* signature = [ [delegate class] instanceMethodSignatureForSelector: @selector( successPlaceOrder:)];
+        NSInvocation* invocation = [NSInvocation invocationWithMethodSignature: signature];
+        [invocation setTarget: delegate];
+        [invocation setSelector: @selector( successPlaceOrder: )];
+        NSInteger orderId = 0;
+        [invocation setArgument: &orderId atIndex: 2];
+        [invocation invoke];
+        NSLog(@"success place order");
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSMethodSignature* signature = [ [delegate class] instanceMethodSignatureForSelector: @selector( failurePlaceOrder:)];
+            NSInvocation* invocation = [NSInvocation invocationWithMethodSignature: signature];
+            [invocation setTarget: delegate];
+            [invocation setSelector: @selector( failurePlaceOrder: )];
+            [invocation setArgument: &error atIndex: 2];
+            [invocation invoke];
+            NSLog(@"failed to place order: %@", error);
+        }];
+}
 
 @end

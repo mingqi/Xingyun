@@ -32,6 +32,7 @@
     [super viewDidLoad];
 	
     self.placeOrderButton.layer.cornerRadius = 7;
+    [self.placeOrderButton removeFromSuperview];
     
     self.phoneCallSheet = [[UIActionSheet alloc] initWithTitle:@"拨打电话?"
                                                       delegate:self
@@ -39,6 +40,10 @@
                                         destructiveButtonTitle:nil
                                              otherButtonTitles:@"0996-2218222", nil];
     self.phoneCallSheet.actionSheetStyle = UIBarStyleBlackTranslucent;
+    
+//    UIButton *orderButton = [self.view viewWithTag:1];
+//    [orderButton removeFromSuperview];
+    
 }
 
 - (void) viewWillAppear:(BOOL)animated

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Restfulservice.h"
 
-@interface OrderConfirmViewController : UITableViewController
+@interface OrderConfirmViewController : UITableViewController <PlaceOrderDelegate, UIAlertViewDelegate>
 
 @end
