@@ -154,7 +154,7 @@
 		2B98821A16E7934C00F254BF /* MyAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAccountViewController.m; sourceTree = "<group>"; };
 		2B98821C16E7A27900F254BF /* MyDishListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDishListViewController.h; sourceTree = "<group>"; };
 		2B98821D16E7A27900F254BF /* MyDishListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDishListViewController.m; sourceTree = "<group>"; };
-		2BB6871616E4B28300A629D3 /* 行运餐厅.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "行运餐厅.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2BB6871616E4B28300A629D3 /* xingyun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = xingyun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BB6871916E4B28300A629D3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2BB6871B16E4B28300A629D3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2BB6871D16E4B28300A629D3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -319,7 +319,7 @@
 		2BB6871716E4B28300A629D3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2BB6871616E4B28300A629D3 /* 行运餐厅.app */,
+				2BB6871616E4B28300A629D3 /* xingyun.app */,
 				2B530467170D1E4500CA26EF /* XingyunTest.octest */,
 			);
 			name = Products;
@@ -457,7 +457,7 @@
 			);
 			name = Xinyun2;
 			productName = Xinyun2;
-			productReference = 2BB6871616E4B28300A629D3 /* 行运餐厅.app */;
+			productReference = 2BB6871616E4B28300A629D3 /* xingyun.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -740,7 +740,7 @@
 				INFOPLIST_FILE = "Xinyun2/Xinyun2-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "行运餐厅";
+				PRODUCT_NAME = xingyun;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -749,13 +749,17 @@
 		2BB6874616E4B28300A629D3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Mingqi Shao";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Mingqi Shao";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Xinyun2/Xinyun2-Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"";
 				INFOPLIST_FILE = "Xinyun2/Xinyun2-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "行运餐厅";
+				PRODUCT_NAME = xingyun;
+				PROVISIONING_PROFILE = "19B08317-DD1F-44F2-816E-56FB00EBFEF7";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "19B08317-DD1F-44F2-816E-56FB00EBFEF7";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
