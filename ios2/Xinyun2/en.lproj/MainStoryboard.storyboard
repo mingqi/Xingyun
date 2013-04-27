@@ -789,13 +789,12 @@
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="oiN-0V-CFL">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="MIN-zM-6i7"/>
                                     <constraint firstAttribute="width" constant="310" id="SIT-bj-NCh"/>
                                 </constraints>
                                 <segments>
                                     <segment title="全部"/>
-                                    <segment title="凉菜"/>
-                                    <segment title="热菜"/>
+                                    <segment title="正餐"/>
+                                    <segment title="沙拉"/>
                                     <segment title="其他"/>
                                 </segments>
                                 <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -813,15 +812,15 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="123"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" image="dish2.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="3dI-G6-pYA">
+                                                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" image="t.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="3dI-G6-pYA">
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="100" id="6rl-P8-0aE"/>
-                                                        <constraint firstAttribute="width" constant="100" id="lju-K9-PFv"/>
+                                                        <constraint firstAttribute="height" constant="100" id="RsC-se-3Wd"/>
+                                                        <constraint firstAttribute="width" constant="151" id="s8x-nT-Xej"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" text="雪梨养生茶" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xB3-Ba-RDe">
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="85" id="aP4-r0-b1n"/>
+                                                        <constraint firstAttribute="width" constant="130" id="3WX-gi-1Eq"/>
                                                         <constraint firstAttribute="height" constant="21" id="roe-Vy-wms"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -830,8 +829,8 @@
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="3" contentMode="left" text="价格:28元" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ad-xL-0sb">
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="75" id="5cq-i0-1EO"/>
                                                         <constraint firstAttribute="height" constant="21" id="fRL-Xg-bDp"/>
+                                                        <constraint firstAttribute="width" constant="109" id="idr-Av-Poj"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -860,13 +859,13 @@
                                         </view>
                                         <constraints>
                                             <constraint firstItem="3dI-G6-pYA" firstAttribute="top" secondItem="ZAm-SS-Aga" secondAttribute="top" constant="9" id="CVA-Gn-G7A"/>
-                                            <constraint firstItem="1ad-xL-0sb" firstAttribute="leading" secondItem="xB3-Ba-RDe" secondAttribute="leading" type="default" id="CjH-C7-1Cu"/>
-                                            <constraint firstItem="3dI-G6-pYA" firstAttribute="leading" secondItem="ZAm-SS-Aga" secondAttribute="leading" constant="13" id="DKE-oV-3lo"/>
                                             <constraint firstItem="tul-BM-6sX" firstAttribute="centerY" secondItem="3dI-G6-pYA" secondAttribute="centerY" type="default" id="Jy4-Ge-k2v"/>
                                             <constraint firstItem="1ad-xL-0sb" firstAttribute="top" secondItem="xB3-Ba-RDe" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Lyi-bw-hVn"/>
+                                            <constraint firstAttribute="trailing" secondItem="xB3-Ba-RDe" secondAttribute="trailing" constant="25" id="MEA-0A-IB3"/>
+                                            <constraint firstItem="3dI-G6-pYA" firstAttribute="leading" secondItem="ZAm-SS-Aga" secondAttribute="leading" constant="8" id="QKl-B4-Pfk"/>
                                             <constraint firstAttribute="trailing" secondItem="tul-BM-6sX" secondAttribute="trailing" constant="12" id="cwI-NT-sYo"/>
-                                            <constraint firstItem="xB3-Ba-RDe" firstAttribute="centerX" secondItem="ZAm-SS-Aga" secondAttribute="centerX" type="default" id="dW9-xQ-nyh"/>
                                             <constraint firstItem="xB3-Ba-RDe" firstAttribute="top" secondItem="ZAm-SS-Aga" secondAttribute="top" constant="35" id="iZd-aw-Z1j"/>
+                                            <constraint firstItem="1ad-xL-0sb" firstAttribute="leading" secondItem="xB3-Ba-RDe" secondAttribute="leading" type="default" id="q3W-ld-7ZI"/>
                                         </constraints>
                                     </tableViewCell>
                                 </prototypes>
@@ -1342,9 +1341,7 @@
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="雪梨养生茶雪梨养生茶" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JL1-CK-FEo">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="108" type="user" id="09Z-dX-oUy"/>
-                                    <constraint firstAttribute="height" constant="22" id="YzP-rg-d7S"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="108" type="user" id="yEs-jc-9q3"/>
+                                    <constraint firstAttribute="height" constant="22" type="user" id="YzP-rg-d7S"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1352,8 +1349,8 @@
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="28元" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsg-4J-aFb">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="81" id="ITG-Q3-cMr"/>
-                                    <constraint firstAttribute="height" constant="21" id="vZr-1e-1Mr"/>
+                                    <constraint firstAttribute="width" constant="165" id="m23-oG-8Yo"/>
+                                    <constraint firstAttribute="height" constant="21" type="user" id="vZr-1e-1Mr"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1377,9 +1374,9 @@
                                     <action selector="cartButtonTaped:" destination="2wo-ag-iTH" eventType="touchUpInside" id="dfJ-cY-7Gv"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="dish2.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="6lp-AC-KMf">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="t.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="6lp-AC-KMf">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="323" type="user" id="F9g-MA-pqh"/>
+                                    <constraint firstAttribute="height" constant="213" type="user" id="z9m-f8-875"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -1388,12 +1385,13 @@
                             <constraint firstItem="6lp-AC-KMf" firstAttribute="trailing" secondItem="cFD-Bp-i2m" secondAttribute="trailing" type="user" id="5MX-wB-c7h"/>
                             <constraint firstItem="6lp-AC-KMf" firstAttribute="leading" secondItem="cFD-Bp-i2m" secondAttribute="leading" type="user" id="7Ky-cI-0u2"/>
                             <constraint firstItem="gsg-4J-aFb" firstAttribute="leading" secondItem="JL1-CK-FEo" secondAttribute="leading" type="default" id="9i3-6F-pJo"/>
+                            <constraint firstItem="JL1-CK-FEo" firstAttribute="top" secondItem="6lp-AC-KMf" secondAttribute="bottom" constant="14" type="user" id="CYN-1L-f5h"/>
                             <constraint firstItem="JL1-CK-FEo" firstAttribute="leading" secondItem="cFD-Bp-i2m" secondAttribute="leading" constant="5" type="user" id="Gh7-Ee-KLA"/>
-                            <constraint firstItem="gsg-4J-aFb" firstAttribute="top" secondItem="JL1-CK-FEo" secondAttribute="bottom" constant="4" type="user" id="IPW-GR-3yQ"/>
+                            <constraint firstItem="gsg-4J-aFb" firstAttribute="top" secondItem="JL1-CK-FEo" secondAttribute="bottom" constant="8" type="user" id="TS7-JO-pAh"/>
+                            <constraint firstItem="6lp-AC-KMf" firstAttribute="top" secondItem="cFD-Bp-i2m" secondAttribute="top" type="user" id="Tv2-66-qEs"/>
                             <constraint firstItem="6lp-AC-KMf" firstAttribute="centerX" secondItem="wsP-ES-0tg" secondAttribute="centerX" type="user" id="XMh-t9-wib"/>
-                            <constraint firstItem="wsP-ES-0tg" firstAttribute="top" secondItem="6lp-AC-KMf" secondAttribute="bottom" constant="51" type="user" id="f1L-yY-1Hm"/>
-                            <constraint firstItem="JL1-CK-FEo" firstAttribute="top" secondItem="6lp-AC-KMf" secondAttribute="bottom" constant="4" type="user" id="t6W-CK-wUb"/>
-                            <constraint firstItem="6lp-AC-KMf" firstAttribute="top" secondItem="cFD-Bp-i2m" secondAttribute="top" type="user" id="xzU-G6-aV4"/>
+                            <constraint firstAttribute="trailing" secondItem="JL1-CK-FEo" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="a62-rH-YsV"/>
+                            <constraint firstAttribute="bottom" secondItem="wsP-ES-0tg" secondAttribute="bottom" constant="61" id="odb-2E-WIL"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="菜品" id="xuU-6p-p47"/>
@@ -1440,6 +1438,7 @@
         <image name="dish2.jpg" width="440" height="426"/>
         <image name="fork-knife.png" width="30" height="30"/>
         <image name="gift.png" width="30" height="30"/>
+        <image name="t.jpg" width="900" height="600"/>
         <image name="xingyun_intro.jpg" width="450" height="300"/>
     </resources>
     <classes>
@@ -1463,16 +1462,16 @@
         <class className="DishListViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DishListViewController.h"/>
             <relationships>
-                <relationship kind="action" name="cartButtonTap:"/>
-                <relationship kind="action" name="categoryChanged:"/>
                 <relationship kind="action" name="checkOutAction:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="action" name="handleSingleTapOnFooter:" candidateClass="UIGestureRecognizer"/>
                 <relationship kind="outlet" name="nextBarButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
         </class>
         <class className="HistoryOrderHomeViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/HistoryOrderHomeViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="nextStepAction:"/>
+            </relationships>
         </class>
         <class className="MainViewController" superclassName="UITabBarController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>

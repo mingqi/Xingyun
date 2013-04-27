@@ -43,6 +43,7 @@
 		2B2BA826170D57A200A80358 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BB6874F16E4EBCA00A629D3 /* MapKit.framework */; };
 		2B2C78FF170DB5B400E2F085 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2C78FE170DB5B400E2F085 /* MBProgressHUD.m */; };
 		2B2C7901170E904600E2F085 /* settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B2C7900170E904600E2F085 /* settings.plist */; };
+		2B2C97991726EBD3005B76BD /* t.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2B2C97981726EBD3005B76BD /* t.jpg */; };
 		2B2D0B891707D44D005A76AC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B2D0B881707D44D005A76AC /* Default-568h@2x.png */; };
 		2B2D0B8E1707D77A005A76AC /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B2D0B8C1707D77A005A76AC /* icon.png */; };
 		2B2D0B8F1707D77A005A76AC /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B2D0B8D1707D77A005A76AC /* icon@2x.png */; };
@@ -125,6 +126,7 @@
 		2B2C78FD170DB5B400E2F085 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		2B2C78FE170DB5B400E2F085 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		2B2C7900170E904600E2F085 /* settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = settings.plist; sourceTree = "<group>"; };
+		2B2C97981726EBD3005B76BD /* t.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = t.jpg; sourceTree = "<group>"; };
 		2B2D0B881707D44D005A76AC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		2B2D0B8C1707D77A005A76AC /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		2B2D0B8D1707D77A005A76AC /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
@@ -403,6 +405,7 @@
 		2BB6874916E4E0AF00A629D3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				2B2C97981726EBD3005B76BD /* t.jpg */,
 				2B0E369017141A980059D40C /* clock.png */,
 				2B5C178916E8ECBB00795666 /* prom01.jpg */,
 				2B5C178A16E8ECBB00795666 /* prom02.jpg */,
@@ -521,6 +524,7 @@
 				2B18FC351707DD5500E980D6 /* Default@2x.png in Resources */,
 				2B2C7901170E904600E2F085 /* settings.plist in Resources */,
 				2B0E369117141A980059D40C /* clock.png in Resources */,
+				2B2C97991726EBD3005B76BD /* t.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

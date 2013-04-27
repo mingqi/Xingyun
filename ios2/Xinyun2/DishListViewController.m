@@ -112,6 +112,7 @@
     NSLog(@"categoryChanged: %d", selectedIndex);
     self.tableViewManager.category = selectedIndex;
     [self.tableViewManager reloadTableView];
+    [self.tableView reloadData];
 }
 
 - (IBAction)cartButtonTap:(id)sender {
@@ -256,6 +257,13 @@
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"row: %d",indexPath.row);
+    NSLog(@"distList count: %d", [self.dishList count]);
+    
+    if(indexPath.row +1 > [self.dishList count]){
+        NSLog(@"return nil cell");
+        return nil;
+    }
     MenuItem *menuItem = [self.dishList objectAtIndex:indexPath.row];
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
@@ -277,7 +285,7 @@
     [cartButton removeFromSuperview];
     
     UIImageView *imageView = (UIImageView *) [cell viewWithTag:1];
-    NSString *imageURL = [menuItem getImageURLWithResolution:@"100x100"];
+    NSString *imageURL = [menuItem getImageURLWithResolution:@"150x100"];
     NSLog(@"image URL: %@", imageURL);
     [imageView setImageWithURL: [NSURL URLWithString:imageURL]];
     UILabel *titleLabel = (UILabel *)[cell viewWithTag:2];

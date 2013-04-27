@@ -37,7 +37,7 @@
     self.cartButton.layer.cornerRadius = 10;
     self.titleLabel.text = self.menuItem.title;
     self.priceLabel.text = [NSString stringWithFormat:@"%.1f元", [self.menuItem.price floatValue]];
-    [self.image setImageWithURL:[NSURL URLWithString:[self.menuItem getImageURLWithResolution:@"400x400"]]];
+    [self.image setImageWithURL:[NSURL URLWithString:[self.menuItem getImageURLWithResolution:@"600x400"]]];
     self.cartManager = [ShoppingCartManager getInstance];
     [self updateCartButton];
     [self.cartButton removeFromSuperview];

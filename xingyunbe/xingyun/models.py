@@ -107,8 +107,8 @@ def next_sequence(sequenceName):
 ############# Menu Models #################
 class MenuItem(models.Model, ModelAsDictMixin):
     MENU_ITEM_CATEGORY_CHOICES = (
-        (1, '凉菜'),
-        (2, '热菜'),
+        (1, '正餐'),
+        (2, '沙拉'),
         (3, '其他'),
     )
     menu_item_id = models.IntegerField(primary_key = True)
@@ -123,7 +123,7 @@ class MenuItem(models.Model, ModelAsDictMixin):
         
     
 class MenuItemForm(forms.ModelForm): 
-    image_file = ContentTypeRestrictedFileField(label='图片(400x400)', content_types=['image/gif', 'image/jpeg', 'image/pjpeg', 'image/png'], max_upload_size = 1024 * 500)
+    image_file = ContentTypeRestrictedFileField(label='图片(400x400)', content_types=['image/gif', 'image/jpeg', 'image/pjpeg', 'image/png'], max_upload_size = 1024 * 50000)
     class Meta:
         model = MenuItem
         fields = ('image_file', 'title', 'price', 'category', 'sorted_seq')
@@ -131,7 +131,7 @@ class MenuItemForm(forms.ModelForm):
 class MenuItemUpdateForm(forms.ModelForm):
     image_file = ContentTypeRestrictedFileField(label='图片(400x400)', 
                                                content_types=['image/gif', 'image/jpeg', 'image/pjpeg', 'image/png'], 
-                                               max_upload_size = 1024 * 500, required=False)
+                                               max_upload_size = 1024 * 50000, required=False)
     menu_item_id = forms.CharField(widget=forms.HiddenInput)
     class Meta:
         model = MenuItem

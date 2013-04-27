@@ -75,10 +75,11 @@ def resize_image(original_image, sizes):
     im = Image.open(original_image)
     file_name, file_suffix = original_image.split('.')
     for size in sizes:
-        resized_im = im.resize(size, Image.ANTIALIAS)
-        if resized_im.mode != "RGB":
-            resized_im = resized_im.convert('RGB')
-        resized_im.save("%s_%dx%d.%s" % (file_name, size[0], size[1], file_suffix))
+        #resized_im = im.thumbnail(size, Image.ANTIALIAS)
+        im.thumbnail(size, Image.ANTIALIAS)
+        if im.mode != "RGB":
+            im = im.convert('RGB')
+        im.save("%s_%dx%d.%s" % (file_name, size[0], size[1], file_suffix))
         
         
 class MenuItemCreate(CreateView):
@@ -97,7 +98,7 @@ class MenuItemCreate(CreateView):
             for chunk in image_file.chunks():
                 destination.write(chunk)
         logger.info("upload file was save as " + dest_file_name)
-        resize_image(join(settings.UPLOAD_IMAGE_SAVE_ROOT,dest_file_name), ((400,400), (100, 100)))
+        resize_image(join(settings.UPLOAD_IMAGE_SAVE_ROOT,dest_file_name), ((600,400), (150, 100)))
         
         form.instance.menu_item_id=menu_item_id
         form.instance.image_uri = dest_file_name
@@ -119,7 +120,7 @@ class MenuItemUpdate(UpdateView):
                 for chunk in image_file.chunks():
                     destination.write(chunk)
             logger.info("upload file was save as " + dest_file_name)
-            resize_image(join(settings.UPLOAD_IMAGE_SAVE_ROOT,dest_file_name), ((400,400), (100, 100)))
+            resize_image(join(settings.UPLOAD_IMAGE_SAVE_ROOT,dest_file_name), ((600,400), (150, 100)))
             
             form.instance.menu_item_id = menu_item_id
             form.instance.image_uri = dest_file_name
