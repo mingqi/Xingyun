@@ -9,6 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.ImageView.ScaleType;
 
 public class EventSlider extends FrameLayout {
 
@@ -46,6 +47,7 @@ public class EventSlider extends FrameLayout {
 
 		params.setMargins(0, 0, 0, 0);
 		imageView.setLayoutParams(params);
+		imageView.setScaleType(ScaleType.FIT_XY);
 
 		this.addView(imageView, params);
 	}

@@ -46,16 +46,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="0dp"
         android:background="#FFFFFF"
         android:gravity="center_vertical|center_horizontal"
         android:orientation="vertical" >
 
-        <ImageView
+        <com.xingyun.view.AspectRatioImageView
             android:id="@+id/imgDish"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scaleType="fitXY" />
+            android:adjustViewBounds="true"
+             />
     </LinearLayout>
 
     <TextView
@@ -63,6 +64,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
         android:text="@string/sample_str2"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#000000" />
@@ -72,11 +74,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
         android:text="@string/sample_str3"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#000000" />
 
     <LinearLayout
+        android:id = "@+id/btn_addtocart_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"

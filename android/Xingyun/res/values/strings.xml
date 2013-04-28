@@ -16,8 +16,8 @@
 	<string name="dish_ordered">已点</string>
 	<string name="dish_list">菜单</string>
 	<string name="dish_all">全部</string>
-	<string name="dish_cold">凉菜</string>
-	<string name="dish_hot">热菜</string>
+	<string name="dish_cold">正餐</string>
+	<string name="dish_hot">沙拉</string>
 	<string name="dish_other">其他</string>
 	<string name="book_resturant">预订餐厅</string>
 	<string name="map">餐厅地图</string>
@@ -71,5 +71,18 @@
 	<string name="sample_str3">菜品价格</string>
 	<string name="sample_str4">共电菜2道</string>
 	<string name="sample_str5">一共55元</string>
-	<string name="sample_str6">这里是餐厅介绍</string>
+	<string name="sample_str6"><![CDATA[行运西餐成立于2010年5月161日，是位于库尔勒市人民东路银星大酒店B座一楼的休闲清真餐厅，订餐电话是：0996-2218222，餐厅经营范围是：西餐：牛扒、比
+萨、意面、咖啡、进口酒水、私房菜、各类下午茶，行运西餐是上岛咖啡附属品牌，连锁店面，同属一家公司，只是风格不同我们的理念是：源于自然的时尚生活我们的信念是：\n
+\u0020\u0020\u0020\u0020我们的企业是本行业最优秀的；\n
+\u0020\u0020\u0020\u0020我是这个企业里最优秀的一员；\n
+\u0020\u0020\u0020\u0020对于咖啡、西餐、服务之道；\n
+\u0020\u0020\u0020\u0020我最具有发言权；\n
+\u0020\u0020\u0020\u0020我们充满热情的迎接每一天；\n
+\u0020\u0020\u0020\u0020我们期盼彼此健康、充实而快乐；\n
+\u0020\u0020\u0020\u0020我们的工作具有崇高的意义；\n
+\u0020\u0020\u0020\u0020帮助别人，提升自己; \n
+\u0020\u0020\u0020\u0020深怀感恩之心；\n
+\u0020\u0020\u0020\u0020对待顾客、关爱同事; \n
+\u0020\u0020\u0020\u0020快乐工作、快乐生活]]>
+	</string>
 </resources>

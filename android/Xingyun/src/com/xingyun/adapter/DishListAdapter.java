@@ -74,10 +74,13 @@ public class DishListAdapter extends ArrayAdapter<Dish> {
 		final Dish dish = getItem(position);
 
 		if (listViewType == 0) {
+			
+			final View btnAddToCartLayout = rowView.findViewById(R.id.btn_addtocart_layout);
+			btnAddToCartLayout.setVisibility(View.INVISIBLE);
 			// “点菜”按钮
 			final Button btnAddToCart = (Button) rowView
 					.findViewById(R.id.btn_addtocart);
-
+			
 			// set button style first
 			if (CartManager.getCountByDishId(dish.getMenuItemId()) > 0) {
 				btnAddToCart.setText(context.getResources().getString(

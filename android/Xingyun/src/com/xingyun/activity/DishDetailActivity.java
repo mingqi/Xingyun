@@ -43,7 +43,7 @@ public class DishDetailActivity extends Activity {
 		final Intent intent = this.getIntent();
 		name = intent.getStringExtra("name");
 		String imageUrl = StringUtility.replaceLast(
-				intent.getStringExtra("imageUrl"), "100x100.", "400x400.");
+				intent.getStringExtra("imageUrl"), "150x100.", "600x400.");
 		price = intent.getStringExtra("price");
 		id = intent.getIntExtra("id", 0);
 
@@ -70,6 +70,9 @@ public class DishDetailActivity extends Activity {
 			imgDish.setImageDrawable(cachedImage);
 		}
 
+		View btnAddToCartLayoutView = findViewById(R.id.btn_addtocart_layout);
+		btnAddToCartLayoutView.setVisibility(View.INVISIBLE);
+		
 		final Button btnAddToCart = (Button) findViewById(R.id.btn_addtocart);
 		btnAddToCart.setOnClickListener(new OnClickListener() {
 

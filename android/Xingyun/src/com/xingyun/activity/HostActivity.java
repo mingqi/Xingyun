@@ -15,6 +15,16 @@ public class HostActivity extends TabActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tabs);
 		TabHost tabHost = getTabHost();
+		
+		tabHost.addTab(tabHost
+				.newTabSpec(
+						(String) this.getResources().getText(
+								R.string.book_order))
+				.setIndicator(
+						(String) this.getResources().getText(
+								R.string.book_order),
+						getResources().getDrawable(R.drawable.fork_knife))
+				.setContent(new Intent(this, ResturantInfoActivity.class)));
 
 		tabHost.addTab(tabHost
 				.newTabSpec(
@@ -26,15 +36,7 @@ public class HostActivity extends TabActivity {
 						getResources().getDrawable(R.drawable.gift))
 				.setContent(new Intent(this, EventsActivity.class)));
 
-		tabHost.addTab(tabHost
-				.newTabSpec(
-						(String) this.getResources().getText(
-								R.string.book_order))
-				.setIndicator(
-						(String) this.getResources().getText(
-								R.string.book_order),
-						getResources().getDrawable(R.drawable.fork_knife))
-				.setContent(new Intent(this, ResturantInfoActivity.class)));
+
 
 		// if (UserManager.isLogin()) {
 		// tabHost.addTab(tabHost
@@ -60,6 +62,8 @@ public class HostActivity extends TabActivity {
 		// .setContent(
 		// new Intent(this, UserProfileActivityGroup.class)));
 		// }
+		
+		/*
 		tabHost.addTab(tabHost
 				.newTabSpec(
 						(String) this.getResources().getText(R.string.my_order))
@@ -67,7 +71,7 @@ public class HostActivity extends TabActivity {
 						(String) this.getResources().getText(R.string.my_order),
 						getResources().getDrawable(R.drawable.clock))
 				.setContent(new Intent(this, QueryOrderActivity.class)));
-
+		*/
 		TabWidget tabWidget = tabHost.getTabWidget();
 		for (int i = 0; i < tabWidget.getChildCount(); i++) {
 			tabWidget.getChildAt(i).getLayoutParams().height = 80;

@@ -20,7 +20,7 @@
 
         <ImageView
             android:id="@+id/dishImage"
-            android:layout_width="80dp"
+            android:layout_width="120dp"
             android:layout_height="80dp" >
         </ImageView>
     </LinearLayout>
@@ -28,7 +28,7 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="5dp"
         android:layout_weight="3"
         android:orientation="vertical" >
 
@@ -44,6 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="name"
+                android:gravity="left"
                 android:textColor="#000000"
                 android:textSize="14sp" >
             </TextView>
@@ -61,6 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="price"
+                android:gravity="left"
                 android:textColor="#000000"
                 android:textSize="14sp" >
             </TextView>
@@ -68,10 +70,11 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/btn_addtocart_layout"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginRight="5dp"
-        android:layout_weight="1"
+        android:layout_weight="0"
         android:gravity="center_vertical"
         android:orientation="vertical" >
 

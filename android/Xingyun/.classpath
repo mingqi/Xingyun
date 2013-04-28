@@ -3,10 +3,10 @@
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Documents and Settings/Jing/android-sdks/platforms/android-8/android.jar"/>
 	<classpathentry kind="lib" path="libs"/>
 	<classpathentry kind="lib" path="libs/android-support-v4.jar"/>
 	<classpathentry kind="lib" path="libs/baidumapapi_v2_0_0.jar"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
+	<classpathentry kind="lib" path="/Applications/adt-bundle-mac/sdk/platforms/android-8/android.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

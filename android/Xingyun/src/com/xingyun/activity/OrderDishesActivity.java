@@ -101,6 +101,7 @@ public class OrderDishesActivity extends Activity {
 		});
 
 		btnConfirmOrder = (Button) findViewById(R.id.btn_confirmorder);
+		btnConfirmOrder.setVisibility(View.INVISIBLE);
 		btnConfirmOrder.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -310,7 +311,7 @@ public class OrderDishesActivity extends Activity {
 
 						if (imageUri != null) {
 							imageUri = StringUtility.replaceLast(imageUri, ".",
-									"_100x100.");
+									"_150x100.");
 						}
 
 						int sortedSeq = dish.getInt("sorted_seq");

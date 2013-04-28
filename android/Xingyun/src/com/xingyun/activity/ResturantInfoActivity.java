@@ -86,6 +86,7 @@ public class ResturantInfoActivity extends Activity {
 		});
 
 		Button btnOrderDishes = (Button) findViewById(R.id.btn_orderdishes);
+		btnOrderDishes.setVisibility(View.INVISIBLE);
 		btnOrderDishes.setOnClickListener(new OnClickListener() {
 
 			@Override
